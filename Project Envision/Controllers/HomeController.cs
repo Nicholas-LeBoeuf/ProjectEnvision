@@ -23,7 +23,25 @@ namespace Project_Envision.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult CreateAccount()
+        {
+            return View();
+        }
+
+        public IActionResult ForgotPassword1()
+        {
+            return View();
+        }
+        public IActionResult ForgotPassword2()
+        {
+            return View();
+        }
+        public IActionResult ForgotPassword3()
         {
             return View();
         }
