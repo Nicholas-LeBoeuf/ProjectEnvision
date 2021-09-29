@@ -1,32 +1,48 @@
-﻿@{
+﻿@model Project_Envision.Models.CreateAccountModel
+@{
     ViewData["Title"] = "Create Account";
 }
-
-<form>
-    <label>
+<form asp-action="CreateAccount" method="post">
+    <label id="FirstNameLabel" asp-for="firstName">
         First Name:
-        <input type="text" name="firstName" />
+        <input type="text" name="firstName" asp-for="firstName" minLength = "2" required maxLength ="20" />
+        <span asp-validation-for="firstName" class="text-danger"></span>
     </label>
-    <label>
+    <label id="LastNameLabel" asp-for="lastName">
         Last Name:
-        <input type="text" name="lastName" />
+        <input type="text" name="lastName" asp-for="lastName" minLength = "2" required maxLength ="20" />
+        <span asp-validation-for="lastName" class="text-danger"></span>
     </label>
-    <label>
+    <label id="UsernameLabel" asp-for="username">
         Username:
-        <input type="text" name="username" />
+        <input type="text" name="username" asp-for="username" minLength = "8" required maxLength ="20"/>
+        <span asp-validation-for="username" class="text-danger"></span>
     </label>
-    <label>
+    <label id="EmailLabel" asp-for="email">
         Email:
-        <input type="text" name="email" />
+        <input type="text" name="email" asp-for="email"  minLength = "8" required maxLength ="30"/>
+        <span asp-validation-for="email" class="text-danger"></span>
     </label>
-    <label>
+    <label id="PasswordLabel" asp-for="Password">
         Password:
-        <input type="text" name="password" />
+        <input type="text" name="Password" asp-for="Password" minLength = "8" required maxLength ="20" />
+        <span asp-validation-for="Password" class="text-danger"></span>
     </label>
-    <label>
+    <label id="ConfirmPasswordLabel" asp-for="confirmPassword">
         Confirm Password:
-        <input type="text" name="confirmPassword" />
+        <input type="text" name="confirmPassword" asp-for="confirmPassword"  minLength = "8" required maxLength ="20"/>
+        <s<span id="confirmPasswordValidation" asp-validation-for="confirmPassword" class="text-danger"></span>
     </label>
-    <input type="submit" value="Create Account" />
+    <button id="CreateAccountButton" type="submit">Create Account</button>
+
     <input type="button" id="cancelButton" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
 </form>
+@if (ViewBag.Message != null)
+{
+    <script type="text/ id="ConfirmPasswordLabel" asp-for="confirmPassword"javascript">
+    window.onload = function () {
+        alert("@ViewBag.Message");
+    };
+    </script>
+}
+
