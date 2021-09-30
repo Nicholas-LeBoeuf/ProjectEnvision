@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GSF.Net.Smtp;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MailKit.Net.Smtp;
+using MimeKit;
 using MySql.Data.MySqlClient;
 using Project_Envision.Models;
 using System;
@@ -63,12 +66,12 @@ namespace Project_Envision.Controllers
                         {
                             if (dRead.Read())
                             {
-                                DBObject.m_email = dRead.GetValue(0).ToString();
+                                ModelItems.m_email = dRead.GetValue(0).ToString();
                             }
                         }
                         conn.Close();
                         dRead.Close();
-                        return View("/Main");
+                        return RedirectToAction("Home", "HomeWindow");
                     }
                     else
                     {
@@ -143,17 +146,109 @@ namespace Project_Envision.Controllers
             return View("CreateAccount");
         }
 
-        public IActionResult ForgotPassword1()
-        {
+        public IActionResult ForgotPassword1(ForgotPassword1 fp1)
+        {  
+            string username = fp1.username;
+            string email = fp1.email;
+            
+            MySqlConnection Conn = new MySqlConnection(Database_connection.m_connection);
+            MySqlDataReader reader;
+            string selectcmd = $"Select* FROM users where username = '" + username + "' and email = '" + email + "'";
+            MySqlCommand selectCmd = new MySqlCommand(selectcmd, Conn);
+            
+            Conn.Open();
+
+            if (ModelState.IsValid)
+            {
+                using (reader = selectCmd.ExecuteReader())
+                {
+                    if(reader.Read())
+                    {
+
+                        int random;
+                        string codes = "";
+                        Random rand = new Random();            
+                        ModelItems.m_username = username;
+                        ModelItems.m_email = email;
+
+                        for (int i = 0; i < 6; i++)
+                        {
+                            random = rand.Next(10);
+                            codes = random + codes;
+                        }
+
+                        ModelItems.code = codes;
+
+                        MimeMessage codemail = new MimeMessage();
+                        MailboxAddress from = new MailboxAddress("ProjectEnvision", "ProjectEnvision.gmail.com");
+                        codemail.From.Add(from);
+
+                        MailboxAddress to = new MailboxAddress(ModelItems.m_username, ModelItems.m_email);
+                        codemail.To.Add(to);
+                        codemail.Subject = "Forgot Password Security Code";
+
+                        SmtpClient client = new SmtpClient();
+                        client.Connect("smtp.gmail.com", 465, true);
+                        client.Authenticate("ProjectEnvision2021@gmail.com", "guess123!");
+
+                        codemail.Body = new TextPart("plain")
+                        {
+
+                            Text = @"ForgotPassword Securitycode:" + ModelItems.code.ToString()
+                        };
+
+                        client.Send(codemail);
+                        client.Disconnect(true);
+                        client.Dispose();
+                        Conn.Close();  
+
+                        return View("ForgotPassword2");
+
+
+                    }
+                    else
+                    {
+                        ViewBag.message = " Username or Email not Found";
+                        Conn.Close();
+                        return View();
+                    }
+                }
+            }
+            Conn.Close();
             return View();
         }
-        public IActionResult ForgotPassword2()
+
+        public IActionResult ForgotPassword2(ForgotPassword2 fp2)
         {
-            return View();
+
+          
+            if (fp2.SecurityCode == ModelItems.code)
+            {
+                return View("ForgotPassword3");
+            }
+            else
+            {
+                return View();
+            }
         }
-        public IActionResult ForgotPassword3()
+
+        public IActionResult ForgotPassword3(ForgotPassword3 fp3)
         {
-            return View();
+            string Password = fp3.Password;
+            string ConfirmPass = fp3.confirmPassword;
+            string updatecmd = "update users SET password = '" + Password + "' Where username = '" + ModelItems.m_username + "'";
+
+            
+            MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+            MySqlCommand datacmd = new MySqlCommand(updatecmd, conn);
+
+            conn.Open();
+            datacmd.ExecuteNonQuery();
+
+            ViewBag.message = ("Password has been Changed");
+            conn.Close();
+
+            return View("Login");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

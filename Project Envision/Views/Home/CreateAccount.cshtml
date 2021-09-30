@@ -3,6 +3,7 @@
     ViewData["Title"] = "Create Account";
 }
 <form asp-action="CreateAccount" method="post">
+
     <label id="FirstNameLabel" asp-for="firstName">
         First Name:
         <input type="text" name="firstName" asp-for="firstName" minLength = "2" required maxLength ="20" />

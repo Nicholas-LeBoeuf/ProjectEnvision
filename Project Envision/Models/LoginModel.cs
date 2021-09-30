@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Project_Envision.Models
 {
-    public class LoginModel : DBObject
+    public class LoginModel : ModelItems
     {
         [Required(ErrorMessage = "*")]
         [Display(Name = "UserName")]

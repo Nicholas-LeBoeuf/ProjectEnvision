@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace Project_Envision.Models
 {
-    public class DBObject
+    public class ModelItems
     { 
         public static int m_userid;
         public static string m_username;
         public static string m_email;
-        public static string RandC;
+        public static string code;
        
 
 
@@ -29,10 +29,10 @@ namespace Project_Envision.Models
             get => m_userid;
             set => m_userid = value;
         }
-        public string RandC1
+        public string RandCode
         {
-            get => RandC;
-            set => RandC = value;
+            get => code;
+            set => code = value;
         }
 
 

@@ -3,17 +3,18 @@
         ViewData["Title"] = "Login";
     }
 
-    <form asp-action="Login" method="post">
-        <label>
-            Username:
-            <input type="text" name="username" />
-            <span asp-validation-for="Username" class="text-danger"></span>
-        </label>
-        <label>
-            Password:
-            <input type="text" name="password" />
-            <span asp-validation-for="password" class="text-danger"></span>
-        </label>
-        <input type="submit" value="Login" />
-        <input type="button" id="cancelButton" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
-    </form>
+<form asp-action="Login" method="post">
+    <label>
+        Username:
+        <input type="text" name="username" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </label>
+    <label>
+        Password:
+        <input type="text" name="password" />
+        <span asp-validation-for="password" class="text-danger"></span>
+    </label>
+    <input type="submit" value="Login" />
+    <input type="button" id="ForgotPassword" value="ForgotPassword" onclick="location.href='@Url.Action("ForgotPassword1")'" />
+    <input type="button" id="cancelButton" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
+</form>

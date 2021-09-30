@@ -35,3 +35,21 @@
 #loginButton {
     margin-top: 40%;
 }
+
+#rsquare {
+    border-radius: 25px;
+    border: 5px solid #000000;
+    padding: 125px;
+    display: table-cell;
+    background-color: white;
+    top: 40%;
+    left: 30%;
+    position: fixed;
+    width:800px;
+    height:400px;
+}
+
+#headertxt {
+    text-align: center;
+    font-size: 30px;
+}
