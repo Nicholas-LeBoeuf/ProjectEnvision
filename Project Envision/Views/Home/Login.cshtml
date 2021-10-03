@@ -2,25 +2,22 @@
     ViewData["Title"] = "Login";
 }
 
-<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/Login.css" />
 
-<body>
-    <div class="loginContainer">
-        <div id="square"></div>
-        <div id="logo"></div>
-        <form id="loginForm">
-            <label>
-                Username:
-                <input type="text" name="username" />
-            </label>
-            <br />
-            <label>
-                Password:
-                <input type="text" name="password" />
-            </label>
-            <br />
+<div class="box">
+    <form>
+        <div id="loginLogo"></div>
+        <div class="loginContainer">
+            <input type="text" required="" />
+            <label>Login</label>
+        </div>
+        <div class="loginContainer">
+            <input type="password" required="" />
+            <label>Password</label>
+        </div>
+        <div class="buttons">
             <input type="submit" class="button homeButtons" value="Login" />
             <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
-        </form>
-    </div>
-</body>
+        </div>   
+    </form>
+</div>
