@@ -8,12 +8,12 @@
     padding: 15px 75px;
 }
 
-.loginContainer {
+.createAccountContainer {
     position: relative;
     margin-bottom: 25px;
 }
 
-.loginContainer label {
+.createAccountContainer label {
     font-family: 'Lucida Bright';
     position: absolute;
     top: 0px;
@@ -24,7 +24,7 @@
     transition: all 0.5s ease-in-out;
 }
 
-.loginContainer input {
+.createAccountContainer input {
     border: 0;
     border-bottom: 1px solid #555;
     background: transparent;
@@ -34,19 +34,19 @@
     color: #fff;
 }
 
-.loginContainer input:focus {
+.createAccountContainer input:focus {
     border: none;
     outline: none;
     border-bottom: 1px solid #e74c3c;
 }
 
-.loginContainer input:focus ~ label,
-.loginContainer input:valid ~ label {
+.createAccountContainer input:focus ~ label,
+.createAccountContainer input:valid ~ label {
     top: -12px;
     font-size: 12px;
 }
 
-#loginLogo {
+#CreateAccountLogo {
     height: 400px;
     width: 400px;
     margin-top: -75px;
@@ -86,4 +86,8 @@
 .homeButtons:hover {
     background-color: #696969;
     color: #ff9036;
+}
+
+.right {
+    padding-right: 30px;
 }
