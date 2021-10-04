@@ -1,52 +1,59 @@
-﻿@{
+﻿@model Project_Envision.Models.CreateAccountModel
+@{
     ViewData["Title"] = "Create Account";
 }
 
 <link rel="stylesheet" href="~/css/CreateAccount.css" />
 
 <div class="box">
-    <form>
+    <form id="FirstNameLabel" method="post">
         <div id="CreateAccountLogo"></div>
         <table>
             <tr>
                 <td class="right">
                     <div class="createAccountContainer">
-                        <input type="text" required="" />
-                        <label>First Name</label>
+                        <input type="text" name="firstName" asp-for="firstName" minLength="2" required maxLength="20" />
+                        <label id="FirstNameLabel" asp-for="firstName">First Name</label>
+                        <span asp-validation-for="firstName" class="text-danger"></span>
                     </div>
                 </td>
                 <td>
                     <div class="createAccountContainer">
-                        <input type="text" required="" />
-                        <label>Last Name</label>
+                        <input type="text" name="lastName" asp-for="lastName" minLength="2" required maxLength="20" />
+                        <label id="LastNameLabel" asp-for="lastName">Last Name</label>
+                        <span asp-validation-for="lastName" class="text-danger"></span>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td class="right">
                     <div class="createAccountContainer">
-                        <input type="text" required="" />
-                        <label>Username</label>
+                        <input type="text" name="username" asp-for="username" minLength="8" required maxLength="20" />
+                        <label id="UsernameLabel" asp-for="username">Username</label>
+                        <span asp-validation-for="username" class="text-danger"></span>
                     </div>
                 </td>
                 <td>
                     <div class="createAccountContainer">
-                        <input type="text" required="" />
-                        <label>Email</label>
+                        <input type="email" name="email" asp-for="email" minLength="8" required maxLength="30" />
+                        <label id="EmailLabel" asp-for="email">Email</label>
+                        <span asp-validation-for="email" class="text-danger"></span>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td class="right">
                     <div class="createAccountContainer">
-                        <input type="password" required="" />
-                        <label>Password</label>
+                        <input type="password" name="Password" asp-for="Password" minLength="8" required maxLength="20" />
+                        <label id="PasswordLabel" asp-for="Password">Password</label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                 </td>
                 <td>
                     <div class="createAccountContainer">
-                        <input type="password" required="" />
-                        <label>Confirm Password</label>
+                        <input type="password" name="confirmPassword" asp-for="confirmPassword" minLength="8" required maxLength="20" />
+                        <label id="ConfirmPasswordLabel" asp-for="confirmPassword">Confirm Password</label>
+                        <span id="confirmPasswordValidation" asp-validation-for="confirmPassword" class="text-danger"></span>
                     </div>
                 </td>
             </tr>
@@ -56,4 +63,12 @@
             <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
         </div>
     </form>
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/ id=" ConfirmPasswordLabel" asp-for="confirmPassword" javascript">
+    window.onload = function () {
+        alert("@ViewBag.Message");
+    };
+        </script>
+    }
 </div>
