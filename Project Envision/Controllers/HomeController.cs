@@ -70,7 +70,7 @@ namespace Project_Envision.Controllers
                         }
                         conn.Close();
                         dRead.Close();
-                        return RedirectToAction("Index","MainWindowController");
+                        return RedirectToAction("Index","MainWindow");
                     }
                     else
                     {
