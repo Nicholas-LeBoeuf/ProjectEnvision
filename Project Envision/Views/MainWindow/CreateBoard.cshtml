@@ -2,3 +2,20 @@
 @{
     ViewData["Title"] = "Create Board";
 }
+
+<link rel="stylesheet" href="~/css/CreateBoard.css" />
+
+<div class="box">
+    <form>
+        <div>
+            <input type="text" name="boardname" placeholder="Board Name" required="" />
+        </div>
+        <div>
+            <textarea cols="25" rows="4" placeholder="Board Description" id="description" maxlength="100"></textarea>
+        </div>
+        <div class="buttons">
+            <input type="submit" class="button homeButtons" value="Create" />
+            <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("ChooseBoard")'" />
+        </div>
+    </form>
+</div>

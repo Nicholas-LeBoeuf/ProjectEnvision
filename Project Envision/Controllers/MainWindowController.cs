@@ -15,7 +15,7 @@ namespace Project_Envision.Controllers
     {
         public IActionResult Index()
         {
-            return View("Main");
+            return View("ChooseBoard");
         }
 
         public IActionResult Main()
