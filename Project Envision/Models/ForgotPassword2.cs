@@ -5,7 +5,7 @@ namespace Project_Envision.Models
     {
 
         [Display(Name = "Security Code:")]
-        [StringLength(10, MinimumLength = 0)]
+        [StringLength(6, MinimumLength = 0)]
         public string SecurityCode { get; set; }
     }
 }

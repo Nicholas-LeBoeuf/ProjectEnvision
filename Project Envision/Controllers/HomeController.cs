@@ -37,7 +37,7 @@ namespace Project_Envision.Controllers
             string Password = lm.password;
 
             conn.Open();
-            string txtcmd2 = $"SELECT* FROM users where username = '" + username + "' AND password = '" + Password + "'"; // the command
+            string txtcmd2 = $"SELECT* FROM users where username = '" + username + "' AND password = '" + Password + "'"; 
             MySqlCommand cmd2 = new MySqlCommand(txtcmd2, conn);
 
             MySqlDataReader dRead;
@@ -48,7 +48,7 @@ namespace Project_Envision.Controllers
                 {
                     if (dRead.Read())
                     {
-
+                        ModelItems.m_username = username;
                         string txtcmd1 = "SELECT user_id FROM users where username='" + username + "'";
                         MySqlCommand cmd1 = new MySqlCommand(txtcmd1, conn);
                         dRead.Close();
@@ -56,7 +56,7 @@ namespace Project_Envision.Controllers
                         {
                             if (dRead.Read())
                             {
-                                lm.id = Convert.ToInt32(dRead.GetValue(0).ToString());
+                                ModelItems.m_userid = Convert.ToInt32(dRead.GetValue(0).ToString());
                             }
                         }
                         txtcmd1 = "SELECT email FROM users where username='" + username + "'";
@@ -71,7 +71,7 @@ namespace Project_Envision.Controllers
                         }
                         conn.Close();
                         dRead.Close();
-                        return RedirectToAction("Home", "HomeWindow");
+                        return RedirectToAction("Index","MainWindow");
                     }
                     else
                     {

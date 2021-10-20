@@ -2,13 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 
-<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/Index.css" />
 
-<div class="logoContainer">
-    <div id="circle"></div>
-    <div id="logo"></div>
-    <div class="buttons">
-        <input type="button" id="loginButton" value="Login" onclick="location.href='@Url.Action("Login", "Home")'" />
-        <input type="button" id="CreateAccountButton" value="Create Account" onclick="location.href='@Url.Action("CreateAccount", "Home")'" />
+<body>
+    <div class="logoContainer">
+        <div id="circle"></div>
+        <div id="logo"></div>
     </div>
-</div>
+    <div class="buttons">
+        <input type="button" class="button homeButtons" value="Login" onclick="location.href='@Url.Action("Login", "Home")'" />
+        <input type="button" class="button homeButtons" value="Create Account" onclick="location.href='@Url.Action("CreateAccount", "Home")'" />
+    </div>
+</body>

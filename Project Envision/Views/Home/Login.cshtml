@@ -1,20 +1,27 @@
 ﻿@model Project_Envision.Models.LoginModel
-    @{
-        ViewData["Title"] = "Login";
-    }
+@{
+    ViewData["Title"] = "Login";
+}
 
-<form asp-action="Login" method="post">
-    <label>
-        Username:
-        <input type="text" name="username" />
-        <span asp-validation-for="Username" class="text-danger"></span>
-    </label>
-    <label>
-        Password:
-        <input type="text" name="password" />
-        <span asp-validation-for="password" class="text-danger"></span>
-    </label>
-    <input type="submit" value="Login" />
-    <input type="button" id="ForgotPassword" value="ForgotPassword" onclick="location.href='@Url.Action("ForgotPassword1")'" />
-    <input type="button" id="cancelButton" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
-</form>
+<link rel="stylesheet" href="~/css/Login.css" />
+
+<div class="box">
+    <form asp-action="Login" method="post">
+        <div id="loginLogo"></div>
+        <div class="loginContainer">
+            <input type="text" name="username" required =""/>
+            <label>Username</label>
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div class="loginContainer">
+            <input type="password" required=""  name="password"/>
+            <label>Password</label>
+            <span asp-validation-for="password" class="text-danger"></span>
+        </div>
+        <div class="buttons">
+            <input type="submit" class="button homeButtons" value="Login" />
+            <input type="button" class="button homeButtons" id="ForgotPassword" value="ForgotPassword" onclick="location.href='@Url.Action("ForgotPassword1")'" />
+            <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
+        </div>
+    </form>
+</div>
