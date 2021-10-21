@@ -21,6 +21,72 @@ namespace Project_Envision.Controllers
             return View();
         }
 
+        public IActionResult DeleteBoard (int Boardid)
+        {
+            BoardItems.m_gotBoard = false;
+
+
+            MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+
+            conn.Open();
+
+            MySqlCommand DeleteBoard = conn.CreateCommand();
+            DeleteBoard.CommandText = "Delete FROM createboard where user_id= @userID AND board_id = @boardId";
+            DeleteBoard.Parameters.AddWithValue("@userID", ModelItems.m_userid);
+            DeleteBoard.Parameters.AddWithValue("@boardId", Boardid);
+            DeleteBoard.Prepare();
+            DeleteBoard.ExecuteReader();
+            conn.Close();
+            return RedirectToAction("ChooseBoard");
+        }
+
+        public IActionResult GetBoarditems(ChooseBoardModel cbm)
+        {
+            BoardItems.m_gotBoard = true;
+            MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+
+            conn.Open();
+
+            MySqlCommand getBoards = conn.CreateCommand();
+            getBoards.CommandText = "SELECT board_name, board_id FROM createboard where user_id= @userID";
+            getBoards.Parameters.AddWithValue("@userID", ModelItems.m_userid);
+
+            MySqlDataReader reader = getBoards.ExecuteReader();
+
+            List<string> BoardsList = new List<string>();
+            List<int> BoardidsList = new List<int>();
+
+            while (reader.Read())
+            {
+                BoardsList.Add(Convert.ToString(reader[0]));
+                BoardidsList.Add(Convert.ToInt32(reader[1]));
+            }
+            reader.Close();
+
+            cbm.SetBoardlistListAttr(BoardsList);
+            cbm.SetBoardidlistListAttr(BoardidsList);
+
+
+            MySqlCommand getBoarddesc = conn.CreateCommand();
+            getBoarddesc.CommandText = "SELECT board_description FROM createboard where user_id= @userID";
+            getBoarddesc.Parameters.AddWithValue("@userID", ModelItems.m_userid);
+
+            MySqlDataReader dreader = getBoarddesc.ExecuteReader();
+
+            List<string> BoarddescList = new List<string>();
+
+            while (dreader.Read())
+            {
+                BoarddescList.Add(Convert.ToString(dreader[0]));
+            }
+            dreader.Close();
+
+            cbm.SetBoardDesclistListAttr(BoarddescList);
+
+            conn.Close();
+            return RedirectToAction("ChooseBoard");
+        }
+
         public IActionResult CreateBoard(CreateboardModel Cb)
         {
 
@@ -82,14 +148,19 @@ namespace Project_Envision.Controllers
                     cmd3.Prepare();
                     cmd3.ExecuteReader();
                     conn.Close();
-                    return RedirectToAction("ChooseBoard");
+                BoardItems.m_gotBoard = false;
+                return RedirectToAction("ChooseBoard");
             }
             
             return View("CreateBoard");
             }
 
-            public IActionResult ChooseBoard()
+            public IActionResult ChooseBoard(ChooseBoardModel cbm)
         {
+            if(BoardItems.m_gotBoard == false)
+            {
+                return RedirectToAction("GetBoarditems");
+            }
             return View();
         }
     }
