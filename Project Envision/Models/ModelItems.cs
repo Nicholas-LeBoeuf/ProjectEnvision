@@ -11,8 +11,6 @@ namespace Project_Envision.Models
         public static string m_username;
         public static string m_email;
         public static string code;
-       
-
 
         public string username
         {
@@ -34,7 +32,6 @@ namespace Project_Envision.Models
             get => code;
             set => code = value;
         }
-
 
     }
 }

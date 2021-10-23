@@ -9,12 +9,12 @@
     <form asp-action="Login" method="post">
         <div id="loginLogo"></div>
         <div class="loginContainer">
-            <input type="text" name="username" required =""/>
+            <input type="text" name="username" required="" />
             <label>Username</label>
             <span asp-validation-for="Username" class="text-danger"></span>
         </div>
         <div class="loginContainer">
-            <input type="password" required=""  name="password"/>
+            <input type="password" required="" name="password" />
             <label>Password</label>
             <span asp-validation-for="password" class="text-danger"></span>
         </div>
@@ -25,3 +25,13 @@
         </div>
     </form>
 </div>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+    window.onload = function () {
+        alert("@ViewBag.Message");
+    };
+    </script>
+}
+
