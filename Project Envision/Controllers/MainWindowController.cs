@@ -97,34 +97,9 @@ namespace Project_Envision.Controllers
 
                 conn.Open();
 
-                string counttxt = $"SELECT * FROM createboard Where user_id = '" + ModelItems.m_userid + "'";
-                MySqlCommand countcmd = new MySqlCommand(counttxt, conn);
-                
-                MySqlDataReader tRead;
-
-                int count = 0;
-
-                using (tRead = countcmd.ExecuteReader())
-                {
-                    if (tRead.HasRows)
-                    {
-
-                        while (tRead.Read())
-                        {
-                            count++;
-                        }
-                    }
-                }
-                if (count >= 5)
-                {
-                    ViewBag.message = "You Have Max Boards";
-                    tRead.Close();
-                    conn.Close();
-                    return View("CreateBoard");
-                }
                 string txtcmd = $"SELECT* FROM createboard where board_name = '" + Cb.board_name + "' AND user_id = '" + ModelItems.m_userid + "'";
                 MySqlCommand textcmd = new MySqlCommand(txtcmd, conn);
-                
+                 MySqlDataReader tRead;
 
                     using (tRead = textcmd.ExecuteReader())
                     {

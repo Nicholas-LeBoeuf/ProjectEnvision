@@ -12,6 +12,10 @@
             {
                 <button class="button homeButtons" onclick="location.href='@Url.Action("CreateBoard")'">Create Board</button>
             }
+            else
+            {
+                <button class="button homeButtons" onclick="location.href='@Url.Action("CreateBoard")'" disabled ="True">Create Board</button>
+            }
 
         }
     <table style="color: white;">

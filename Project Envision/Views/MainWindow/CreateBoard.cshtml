@@ -9,10 +9,15 @@
     <form>
         <div>
             <input type="text" name="board_name" asp-for="board_name" placeholder="Board Name" required="" />
+           
+        </div>
+        <div>
             <span asp-validation-for="board_name" class="text-danger"></span>
         </div>
         <div>
             <textarea cols="25" rows="4" placeholder="Board Description" id="description" asp-for="board_Description" maxlength="100"></textarea>
+            </div>
+        <div>
             <span asp-validation-for="board_Description" class="text-danger"></span>
         </div>
         <div class="buttons">
