@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "Board";
+}
+
+<link rel="stylesheet" href="~/css/ChooseBoard.css" />
+
+<div class="box">
+    <button class="button homeButtons" onclick="location.href='@Url.Action("Login", "Home")'">LogOut</button>
+    <button class="button homeButtons" onclick="location.href='@Url.Action("CreateTask")'">Create Task</button>
+
+    <table style="color: white;">
+        <tr>
+            <th>Backlog</th>
+            <th>In Progress</th>
+            <th>Testing</th>
+            <th>Done</th>
+        </tr>
+
+
+
+        @{
+            if (BoardModel.m_Tasklist.Count != 0)
+            {
+                for (int i = 0; i < BoardModel.m_Tasklist.Count; i++)
+                {
+                    if (BoardModel.m_TaskLocationlist[i] == "Backlog")
+                    {
+                        <tr>
+                            <td>@BoardModel.m_Tasklist[i]   <input type="submit" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" /> Delete</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+
+                    else if (BoardModel.m_TaskLocationlist[i] == "In Progress")
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@BoardModel.m_Tasklist[i]   <input type="submit" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" /> Delete</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                    }
+
+                    else if (BoardModel.m_TaskLocationlist[i] == "Testing")
+                    {
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>@BoardModel.m_Tasklist[i]   <input type="submit" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" /> Delete</td>
+                            <td></td>
+                        </tr>
+                    }
+
+                    else if (BoardModel.m_TaskLocationlist[i] == "Done")
+                    {
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>@BoardModel.m_Tasklist[i]   <input type="submit" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" />Delete </td>
+                        </tr>
+                            }
+
+
+                            }
+
+                            }
+                            }
+                            }
+                            }
+
+                    </table>
+</div>
