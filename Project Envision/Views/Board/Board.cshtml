@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Board";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
@@ -8,9 +7,6 @@
 
 
 <div class="box">
-    <button class="button homeButtons" onclick="location.href='@Url.Action("Login", "Home")'">LogOut</button>
-    <button class="button homeButtons" onclick="location.href='@Url.Action("CreateTask")'">Create Task</button>
-
     <table style="color: white;">
         <tr>
             <th>Backlog</th>
@@ -18,8 +14,6 @@
             <th>Testing</th>
             <th>Done</th>
         </tr>
-
-
 
         @{
             if (BoardModel.m_Tasklist.Count != 0)
@@ -44,7 +38,6 @@
                             <td></td>
                             <td></td>
                         </tr>
-
                     }
 
                     else if (BoardModel.m_TaskLocationlist[i] == "Testing")
@@ -66,8 +59,6 @@
                             <td>@BoardModel.m_Tasklist[i]   <input type="submit" value="Delete" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" /></td>
                         </tr>
                     }
-
-
                 }
             }
         }
