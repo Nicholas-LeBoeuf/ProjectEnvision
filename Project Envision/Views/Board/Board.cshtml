@@ -1,9 +1,11 @@
 ﻿
 @{
     ViewData["Title"] = "Board";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
 
 <link rel="stylesheet" href="~/css/ChooseBoard.css" />
+
 
 <div class="box">
     <button class="button homeButtons" onclick="location.href='@Url.Action("Login", "Home")'">LogOut</button>
