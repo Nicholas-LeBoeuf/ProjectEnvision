@@ -27,7 +27,7 @@
                     if (BoardModel.m_TaskLocationlist[i] == "Backlog")
                     {
                         <tr>
-                            <td>@BoardModel.m_Tasklist[i]   <input type="submit" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" /> Delete</td>
+                            <td>@BoardModel.m_Tasklist[i]   <input type="submit" value="Delete" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" /> </td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -38,7 +38,7 @@
                     {
                         <tr>
                             <td></td>
-                            <td>@BoardModel.m_Tasklist[i]   <input type="submit" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" /> Delete</td>
+                            <td>@BoardModel.m_Tasklist[i]   <input type="submit" value="Delete" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" /> </td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -50,7 +50,7 @@
                         <tr>
                             <td></td>
                             <td></td>
-                            <td>@BoardModel.m_Tasklist[i]   <input type="submit" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" /> Delete</td>
+                            <td>@BoardModel.m_Tasklist[i]   <input type="submit" value="Delete" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" /> </td>
                             <td></td>
                         </tr>
                     }
@@ -61,17 +61,13 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>@BoardModel.m_Tasklist[i]   <input type="submit" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" />Delete </td>
+                            <td>@BoardModel.m_Tasklist[i]   <input type="submit" value="Delete" class="button homeButtons" onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'" /></td>
                         </tr>
-                            }
+                    }
 
 
-                            }
-
-                            }
-                            }
-                            }
-                            }
-
-                    </table>
+                }
+            }
+        }
+    </table>
 </div>
