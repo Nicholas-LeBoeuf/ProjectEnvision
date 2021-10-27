@@ -130,6 +130,13 @@ namespace Project_Envision.Controllers
             }
             return View();
         }
-
+        public IActionResult ProductBacklog()
+        {
+            return View();
+        }
+        public IActionResult BurndownChart()
+        {
+            return View();
+        }
     }
 }
