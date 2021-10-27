@@ -2,3 +2,26 @@
     ViewData["Title"] = "Product Backlog";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
+
+<link rel="stylesheet" href="~/css/ProductBacklog.css" />
+
+<div class="box">
+    <button class="button homeButtons" onclick="location.href='@Url.Action("CreateTask")'">Create Task</button>
+
+    <table style="color: white;">
+        <tr>
+            <th>Task Name</th>
+            <th>Task Description</th>
+            <th>Assigned To</th>
+            <th>Story Points</th>
+            <th>Edit Task</th>
+        </tr>      
+        <tr>
+            <td>Test</td>
+            <td>Test2</td>
+            <td>Test3</td>
+            <td>Test4</td>
+            <td><button onclick="location.href='@Url.Action("EditTask")'">Edit</button></td>
+        </tr>
+    </table>
+</div>

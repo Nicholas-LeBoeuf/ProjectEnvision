@@ -138,5 +138,10 @@ namespace Project_Envision.Controllers
         {
             return View();
         }
+
+        public IActionResult EditTask()
+        {
+            return View();
+        }
     }
 }
