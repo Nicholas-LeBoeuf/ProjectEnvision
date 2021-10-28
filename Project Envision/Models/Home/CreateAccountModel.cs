@@ -28,15 +28,13 @@ namespace Project_Envision.Models
 
         [Required(ErrorMessage = "Required field. *")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password:")]
         [StringLength(20, MinimumLength = 0)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Confirm Password is required. *")]
+        [Required(ErrorMessage = "Confirm Password is required")]
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm Password:")]
         [StringLength(20, MinimumLength = 0)]
-        [Compare("Password", ErrorMessage = "Passwords are not the same. *")]
+        [Compare("Password", ErrorMessage = "Passwords do not match!")]
         public string confirmPassword { get; set; }      
     }
 }
