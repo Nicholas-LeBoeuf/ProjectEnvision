@@ -12,11 +12,11 @@ namespace Project_Envision.Models
 {
     public class LoginModel : ModelItems
     {
-        [Required(ErrorMessage = "*")]
+        [Required(ErrorMessage = " ")]
         [Display(Name = "UserName")]
         public string Username { get => username; set => m_username = value; }
   
-        [Required(ErrorMessage = "*")]
+        [Required(ErrorMessage = " ")]
         [DataType(DataType.Password)]
         [Display(Name = "Pass")]
         public string password { get; set; }

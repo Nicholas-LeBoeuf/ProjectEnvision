@@ -9,18 +9,18 @@
     <form asp-action="Login" method="post">
         <div id="loginLogo"></div>
         <div class="loginContainer">
-            <input type="text" name="username" required="" />
+            <input type="text" name="username" required="" autocomplete="off"/>
             <label>Username</label>
             <span asp-validation-for="Username" class="text-danger"></span>
         </div>
         <div class="loginContainer">
-            <input type="password" required="" name="password" />
+            <input type="password" required="" name="password" autocomplete="off"/>
             <label>Password</label>
             <span asp-validation-for="password" class="text-danger"></span>
+            <a href='@Url.Action("ForgotPassword1")'>Forgot Password?</a>
         </div>
         <div class="buttons">
             <input type="submit" class="button homeButtons" value="Login" />
-            <input type="button" class="button homeButtons" id="ForgotPassword" value="ForgotPassword" onclick="location.href='@Url.Action("ForgotPassword1")'" />
             <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
         </div>
     </form>
