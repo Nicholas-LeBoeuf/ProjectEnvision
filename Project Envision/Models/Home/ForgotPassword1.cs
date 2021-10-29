@@ -8,11 +8,11 @@ namespace Project_Envision.Models
 {
     public class ForgotPassword1
     {
-        [Required(ErrorMessage = "*")]
+        [Required(ErrorMessage = " ")]
         [Display(Name = "Username:")]
         public string username { get; set; }
 
-        [Required(ErrorMessage = "*")]
+        [Required(ErrorMessage = " ")]
         [Display(Name = "Email:")]
         [EmailAddress]
         public string email { get; set; }

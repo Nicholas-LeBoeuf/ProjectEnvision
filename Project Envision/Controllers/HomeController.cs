@@ -109,7 +109,7 @@ namespace Project_Envision.Controllers
                     if (dRead.Read())
                     {
                         conn.Close();
-                        ViewBag.message = "username has already been taken";
+                        ViewBag.message = "Username has already been taken!";
                         return View("CreateAccount");
 
                     }
@@ -118,8 +118,8 @@ namespace Project_Envision.Controllers
 
                 if (Ca.Password != Ca.confirmPassword)
                 {
-
                     conn.Close();
+                    ViewBag.message = "Passwords do not match!";
                     return View("CreateAccount");
                 }
 
