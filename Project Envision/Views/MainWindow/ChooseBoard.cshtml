@@ -3,6 +3,7 @@
 }
 
 <link rel="stylesheet" href="~/css/ChooseBoard.css" />
+<script src="https://kit.fontawesome.com/1e6384ea85.js" crossorigin="anonymous"></script>
 
 <div class="box">
     <button class="button homeButtons" onclick="location.href='@Url.Action("Index","Home")'">LogOut</button>
@@ -29,7 +30,11 @@
         for (int i = 0; i < ChooseBoardModel.m_Boardlist.Count; i++)
         {
             <tr>
-                <td><button class="button homeButtons" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("Board", "Board", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'" /></td>
+                <td>
+                    <button type="button" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("Board", "Board", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
+                        <i class="fas fa-arrow-circle-right"></i>
+                    </button>
+                </td>
                 <td>@ChooseBoardModel.m_Boardlist[i]</td>
 
                 <td> @ChooseBoardModel.m_BoardDesclist[i]</td>
