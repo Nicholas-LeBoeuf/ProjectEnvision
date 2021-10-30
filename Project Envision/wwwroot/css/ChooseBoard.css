@@ -10,6 +10,8 @@
 
 table, th, td {
     border: 1px solid white;
+    border-left: none;
+    border-right: none;
 
 }
 
@@ -19,4 +21,12 @@ th, td {
     padding-right: 100px;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.fa-arrow-circle-right {
+    color: green;
+}
+
+.fa-trash {
+    color: red;
 }

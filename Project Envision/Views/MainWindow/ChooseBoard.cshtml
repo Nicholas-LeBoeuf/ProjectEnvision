@@ -31,15 +31,19 @@
         {
             <tr>
                 <td>
-                    <button type="button" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("Board", "Board", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
-                        <i class="fas fa-arrow-circle-right"></i>
-                    </button>
+                    <a class="goButton" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("Board", "Board", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
+                        <i class="fas fa-arrow-circle-right fa-3x"></i>
+                    </a>
                 </td>
                 <td>@ChooseBoardModel.m_Boardlist[i]</td>
 
                 <td> @ChooseBoardModel.m_BoardDesclist[i]</td>
 
-                <td><input type="submit" class="button homeButtons" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("DeleteBoard", "MainWindow", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'" /></td>
+                <td>
+                    <a class="button homeButtons" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("DeleteBoard", "MainWindow", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
+                        <i class="fas fa-trash fa-3x"></i>
+                    </a>
+                </td>
             </tr>
 
         }
