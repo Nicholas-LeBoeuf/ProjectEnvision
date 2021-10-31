@@ -1,6 +1,7 @@
 ﻿@model Project_Envision.Models.TaskPropertiesModel
 @{
-    ViewData["Title"] = "CreateTask";
+    ViewData["Title"] = "Create Task";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
 
 <link rel="stylesheet" href="~/css/CreateBoard.css" />
@@ -35,7 +36,7 @@
 
         <div class="buttons">
             <input type="submit" class="button homeButtons" value="Create Task" />
-            <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("Board")'" />
+            <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("ProductBacklog")'" />
         </div>
     </form>
 </div>
