@@ -1,9 +1,84 @@
 ﻿.box {
     position: absolute;
+    height: 500px;
+    width: 500px;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
-    padding: 15px 75px;
+    padding: 50px
+}
+
+.createBoardContainer {
+    height: 400px;
+    width: 400px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+form {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+ input[type="text"] {
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width:400px;
+    padding: 6px 15px 6px 35px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin:3px 12px;
+    direction:ltr;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+}
+
+input[type="text"]:focus {
+    background:#ccc;
+    color: #6a6f75;
+    width: 410px;
+    outline: none;
+}
+
+input:before {
+    content: '\A';
+    white-space: pre;
+}
+
+textarea {
+    resize: none;
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width: 50px;
+    padding: 6px 15px 6px 35px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin: 3px 12px;
+    direction: rtl;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+}
+
+textarea:focus {
+    background:#ccc;
+    color: #6a6f75;
+    width: 120px;    
+    margin:3px 12px;
+    outline: none;
 }
