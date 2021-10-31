@@ -7,43 +7,43 @@
 
 <div class="box">
     <button class="button homeButtons" onclick="location.href='@Url.Action("Index","Home")'">LogOut</button>
-    
-        @{ 
-            if(ChooseBoardModel.m_Boardlist.Count < 5)
-            {
-                <button class="button homeButtons" onclick="location.href='@Url.Action("CreateBoard")'">Create Board</button>
-            }
-            else
-            {
-                <button class="button homeButtons" onclick="location.href='@Url.Action("CreateBoard")'" disabled ="True">Create Board </button>
-            }
 
-        }
-    <table style="color: white;">
-    <tr>
-        <th>Go To Board</th>
-        <th>Board Name</th>
-        <th>Board Description</th>
-        <th>Delete</th>
-    </tr>
     @{
-        for (int i = 0; i < ChooseBoardModel.m_Boardlist.Count; i++)
+        if (ChooseBoardModel.m_Boardlist.Count < 5)
         {
-            <tr>
-                <td>
-                    <button type="button" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("Board", "Board", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
-                        <i class="fas fa-arrow-circle-right"></i>
-                    </button>
-                </td>
-                <td>@ChooseBoardModel.m_Boardlist[i]</td>
-
-                <td> @ChooseBoardModel.m_BoardDesclist[i]</td>
-
-                <td><input type="submit" class="button homeButtons" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("DeleteBoard", "MainWindow", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'" /></td>
-            </tr>
-
+            <button class="button homeButtons" onclick="location.href='@Url.Action("CreateBoard")'">Create Board</button>
         }
-    }
+        else
+        {
+            <button class="button homeButtons" onclick="location.href='@Url.Action("CreateBoard")'" disabled>Create Board </button>
+        }
 
-</table>
+    }
+    <table style="color: white;">
+        <tr>
+            <th>Go To Board</th>
+            <th>Board Name</th>
+            <th>Board Description</th>
+            <th>Delete</th>
+        </tr>
+        @{
+            for (int i = 0; i < ChooseBoardModel.m_Boardlist.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <button type="button" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("Board", "Board", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
+                            <i class="fas fa-arrow-circle-right"></i>
+                        </button>
+                    </td>
+                    <td>@ChooseBoardModel.m_Boardlist[i]</td>
+
+                    <td> @ChooseBoardModel.m_BoardDesclist[i]</td>
+
+                    <td><input type="submit" class="button homeButtons" value="❌" onclick="location.href='@Url.Action("DeleteBoard", "MainWindow", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'" /></td>
+                </tr>
+
+            }
+        }
+
+    </table>
 </div>

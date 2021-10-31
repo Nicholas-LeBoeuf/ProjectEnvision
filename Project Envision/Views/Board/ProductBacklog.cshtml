@@ -15,13 +15,22 @@
             <th>Assigned To</th>
             <th>Story Points</th>
             <th>Edit Task</th>
-        </tr>      
-        <tr>
-            <td>Test</td>
-            <td>Test2</td>
-            <td>Test3</td>
-            <td>Test4</td>
-            <td><button onclick="location.href='@Url.Action("EditTask")'">Edit</button></td>
+            <th>Delete Task</th>
         </tr>
+
+        @{ for (int i = 0; i < BoardModel.m_TaskIdlist.Count(); i++)
+            {
+                <tr>
+
+                    <td>@BoardModel.m_Tasklist[i]</td>
+                    <td>@BoardModel.m_Taskdescriptlist[i]</td>
+                    <td>@BoardModel.m_Assigneelist[i]</td>
+                    <td>@BoardModel.m_TaskPointslist[i]</td>
+                    <td><button onclick="location.href='@Url.Action("collect_task_info", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'">🖋️</button></td>
+                    <td><button onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'">❌</button></td>
+                </tr>
+            }
+        }
+
     </table>
 </div>

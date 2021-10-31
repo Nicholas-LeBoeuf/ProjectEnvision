@@ -10,7 +10,15 @@ namespace Project_Envision.Models
         public static bool m_gotBoard;
         public static int m_Boardid;
 
+        public static int m_Taskid;
 
+
+
+        public int taskId
+        {
+            get => m_Taskid;
+            set => m_Taskid = value;
+        }
 
         public bool gotBoard
         {
