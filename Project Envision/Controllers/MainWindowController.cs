@@ -30,7 +30,7 @@ namespace Project_Envision.Controllers
 
             MySqlCommand DeleteBoardpart = conn.CreateCommand();
 
-            DeleteBoardpart.CommandText = "Delete FROM createboard where user_id= @userID AND board_id = @boardId";
+            DeleteBoardpart.CommandText = "Delete FROM " + tableName + " where user_id= @userID AND board_id = @boardId";
             
             DeleteBoardpart.Parameters.AddWithValue("@userID", ModelItems.m_userid);
             DeleteBoardpart.Parameters.AddWithValue("@boardId", Boardid);
