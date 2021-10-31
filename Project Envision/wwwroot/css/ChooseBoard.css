@@ -1,7 +1,7 @@
 ﻿.box {
     position: absolute;
     height: 75%;
-    width: 75%;
+    width: 90%;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
@@ -18,6 +18,10 @@ table, th, td {
     border-right: none;
     font-family: 'Lucida Bright';
     font-weight: bold;
+}
+
+table {
+    margin: auto;
 }
 
 th, td {
@@ -107,6 +111,12 @@ img {
 .imageContainer {
     flex-grow: 1;
     width: 25%;
+}
+
+.tableContainer {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .createButton {

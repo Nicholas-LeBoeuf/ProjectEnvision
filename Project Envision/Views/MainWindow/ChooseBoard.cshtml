@@ -26,34 +26,36 @@
             <button class="button homeButtons logoutButton" onclick="location.href='@Url.Action("Index","Home")'">LogOut</button>
         </div>
     </div>
-    <table style="color: white;">
-        <tr>
-            <th> </th>
-            <th>Board Name</th>
-            <th>Board Description</th>
-            <th> </th>
-        </tr>
-        @{
-            for (int i = 0; i < ChooseBoardModel.m_Boardlist.Count; i++)
-            {
-                <tr>
-                    <td>
-                        <a class="goButton" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("Board", "Board", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
-                            <i class="fas fa-arrow-circle-right fa-3x"></i>
-                        </a>
-                    </td>
-                    <td>@ChooseBoardModel.m_Boardlist[i]</td>
+    <div class="tableContainer">
+        <table style="color: white;">
+            <tr>
+                <th> </th>
+                <th>Board Name</th>
+                <th>Board Description</th>
+                <th> </th>
+            </tr>
+            @{
+                for (int i = 0; i < ChooseBoardModel.m_Boardlist.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            <a class="goButton" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("Board", "Board", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
+                                <i class="fas fa-arrow-circle-right fa-3x"></i>
+                            </a>
+                        </td>
+                        <td>@ChooseBoardModel.m_Boardlist[i]</td>
 
-                    <td> @ChooseBoardModel.m_BoardDesclist[i]</td>
+                        <td> @ChooseBoardModel.m_BoardDesclist[i]</td>
 
-                    <td>
-                        <a value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("DeleteBoard", "MainWindow", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
-                            <i class="fas fa-trash fa-3x"></i>
-                        </a>
-                    </td>
-                </tr>
+                        <td>
+                            <a value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("DeleteBoard", "MainWindow", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
+                                <i class="fas fa-trash fa-3x"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
             }
-        }
 
-    </table>
+        </table>
+    </div>
 </div>
