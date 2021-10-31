@@ -8,14 +8,16 @@
 <div class="box" method="post">
     <div class="createBoardContainer">
         <form>
-
-            <input type="text" name="board_name" asp-for="board_name" required="" />
-
+            <img src="~/images/logo2.png" />
+            <label>Board Name</label>
+            <input type="text" name="board_name" asp-for="board_name" placeholder="Board Name" autocomplete="off" required="" />
+            <br />
+            <label>Board Description</label>
             <textarea cols="25" rows="4" placeholder="Board Description" id="description" asp-for="board_Description" maxlength="100"></textarea>
 
             <div class="buttons">
-                <input type="submit" class="button homeButtons" value="Create" />
-                <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("ChooseBoard")'" />
+                <input type="submit" class="button homeButtons createButton" value="Create" />
+                <input type="button" class="button homeButtons cancelButton" value="Cancel" onclick="location.href='@Url.Action("ChooseBoard")'" />
             </div>
 
         </form>
