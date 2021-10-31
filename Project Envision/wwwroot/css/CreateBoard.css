@@ -1,9 +1,154 @@
 ﻿.box {
     position: absolute;
+    height: 575px;
+    width: 500px;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
-    padding: 15px 75px;
+    padding: 50px
+}
+
+.createBoardContainer {
+    height: 400px;
+    width: 400px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+form {
+    margin: 0;
+    height: 400px;
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+ input[type="text"] {
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width: 380px;
+    padding: 6px 15px 6px 15px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    margin-left: 12px;
+    margin-right: 12px;
+    direction:ltr;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    text-align: center;
+}
+
+input[type="text"]:focus {
+    background:#ccc;
+    color: #6a6f75;
+    width: 385px;
+    outline: none;
+}
+
+input:before {
+    content: '\A';
+    white-space: pre;
+}
+
+textarea {
+    resize: none;
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width: 380px;
+    padding: 6px 15px 6px 15px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin: 3px 12px;
+    direction: ltr;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    text-align: center;
+}
+
+textarea:focus {
+    background:#ccc;
+    color: #6a6f75;
+    width: 385px;    
+    margin:3px 12px;
+    outline: none;
+}
+
+input, label {
+    display: block;
+}
+
+text, label {
+    display: block;
+}
+
+label {
+    text-align: center;
+    color: #e16e12;
+    font-family: 'Lucida Bright';
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+img {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transform: scale(1.5, 1.5);
+    margin-bottom: 50px;
+}
+
+.button {
+    font-family: 'Lucida Bright';
+    font-weight: bold;
+    width: 100px;
+    height: 50px;
+    border: none;
+    color: white;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 30px;
+}
+
+.homeButtons {
+    background-color: #e16e12;
+    color: black;
+    border: 2px solid #000;
+}
+
+.homeButtons:hover {
+    background-color: #696969;
+    color: #ff9036;
+}
+
+.createButton {
+    float: left;
+}
+
+.cancelButton {
+    float: right;
 }
