@@ -19,6 +19,7 @@ table, th, td {
     font-family: 'Lucida Bright';
     font-weight: bold;
     table-layout: fixed;
+    border-collapse: collapse;
 }
 
 table {
