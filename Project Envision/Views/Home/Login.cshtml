@@ -20,7 +20,7 @@
             <a href='@Url.Action("ForgotPassword1")'>Forgot Password?</a>
         </div>
         <div class="buttons">
-            <input type="submit" class="button homeButtons" value="Login" />
+            <input type="submit" class="button homeButtons" value="Login" onclick="location.href='@Url.Action("GetBoardItems", "Board")'"/>
             <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
         </div>
     </form>
