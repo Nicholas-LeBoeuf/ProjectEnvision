@@ -1,13 +1,13 @@
-﻿﻿.box {
+﻿.box {
     position: absolute;
-    height: 575px;
+    height: 576px;
     width: 500px;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
-    padding: 50px
+    padding: 50px;
 }
 
 .createBoardContainer {
