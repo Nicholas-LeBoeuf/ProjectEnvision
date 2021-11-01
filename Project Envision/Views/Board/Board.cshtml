@@ -26,9 +26,9 @@
                 {
                     if (BoardModel.m_TaskLocationlist[i] == "Backlog")
                     {
-                        <tr>
+                        <tr id="Backlog" ondrop="drop(event)" ondragover="allowDrop(event)">
                             <td>
-                                <div class="boardCard">
+                                <div class="boardCard" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_Tasklist[i]>
                                     <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
                                 </div>
                             </td>
@@ -40,9 +40,13 @@
 
                     else if (BoardModel.m_TaskLocationlist[i] == "In Progress")
                     {
-                        <tr>
+                        <tr id="In Progress" ondrop="drop(event)" ondragover="allowDrop(event)">
                             <td></td>
-                            <td>@BoardModel.m_Tasklist[i]</td>
+                            <td>
+                                <div class="boardCard" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_Tasklist[i] v>
+                                    <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
+                                </div>
+                            </td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -50,21 +54,29 @@
 
                     else if (BoardModel.m_TaskLocationlist[i] == "Testing")
                     {
-                        <tr>
+                        <tr id="Testing" ondrop="drop(event)" ondragover="allowDrop(event)">
                             <td></td>
                             <td></td>
-                            <td>@BoardModel.m_Tasklist[i] </td>
+                            <td>
+                                <div class="boardCard" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_Tasklist[i]>
+                                    <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
+                                </div>
+                            </td>
                             <td></td>
                         </tr>
                     }
 
                     else if (BoardModel.m_TaskLocationlist[i] == "Done")
                     {
-                        <tr>
+                        <tr id="Done" ondrop="drop(event)" ondragover="allowDrop(event)">
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>@BoardModel.m_Tasklist[i]</td>
+                            <td>
+                                <div class="boardCard" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_Tasklist[i]>
+                                    <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
+                                </div>
+                            </td>
                         </tr>
                     }
                 }
@@ -72,3 +84,19 @@
         }
     </table>
 </div>
+
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+</script>
