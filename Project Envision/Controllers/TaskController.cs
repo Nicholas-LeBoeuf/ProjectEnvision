@@ -103,7 +103,7 @@ namespace Project_Envision.Controllers
             conn.Open();
 
             MySqlCommand getTasks = conn.CreateCommand();
-            getTasks.CommandText = "SELECT username FROM Createboard where board_id= @boardID";
+            getTasks.CommandText = "SELECT username FROM createboard where board_id= @boardID";
             getTasks.Parameters.AddWithValue("@boardID", bm.Boardid);
 
             MySqlDataReader reader = getTasks.ExecuteReader();
