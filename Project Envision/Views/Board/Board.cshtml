@@ -3,12 +3,16 @@
     Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
 
-<link rel="stylesheet" href="~/css/ChooseBoard.css" />
+<link rel="stylesheet" href="~/css/Board.css" />
 
+<div class="logoContainer">
+    <div id="circle"></div>
+    <div id="logo"></div>
+</div>
 
 <div class="box">
     <table style="color: white;">
-        <tr>
+        <tr padding: 20px;>
             <th>Backlog</th>
             <th>In Progress</th>
             <th>Testing</th>
@@ -23,7 +27,11 @@
                     if (BoardModel.m_TaskLocationlist[i] == "Backlog")
                     {
                         <tr>
-                            <td>@BoardModel.m_Tasklist[i]</td>
+                            <td>
+                                <div class="boardCard">
+                                    <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
+                                </div>
+                            </td>
                             <td></td>
                             <td></td>
                             <td></td>

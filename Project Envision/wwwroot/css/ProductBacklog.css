@@ -1,21 +1,107 @@
 ﻿.box {
     position: absolute;
+    height: 80%;
+    width: 85%;
+    margin-left: 25px;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     padding: 15px 75px;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 table, th, td {
     border: 1px solid white;
+    font-family: 'Lucida Bright';
+    font-weight: bold;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+table {
+    margin: 0 auto;
+    margin: 0px;
+}
+
+th {
+    color: #e16e12;
 }
 
 th, td {
     text-align: center;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 75px;
+    padding-right: 75px;
     padding-top: 20px;
     padding-bottom: 20px;
+    min-width: 50px;
+}
+
+.button {
+    font-family: 'Lucida Bright';
+    font-weight: bold;
+    width: 165px;
+    height: 50px;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.homeButtons {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: #e16e12;
+    color: black;
+    border: 2px solid #000;
+}
+
+.homeButtons:hover {
+    background-color: #696969;
+    color: #ff9036;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E16500;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #C35700;
+}
+
+.fa-pen {
+    color: #52280b;
+    cursor: pointer;
+}
+
+.fa-pen:hover {
+    color: #8B4513;
+}
+
+.fa-trash {
+    color: #9E0000;
+    cursor: pointer;
+}
+
+.fa-trash:hover {
+    color: #FF2323;
 }

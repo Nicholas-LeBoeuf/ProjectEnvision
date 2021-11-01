@@ -26,8 +26,16 @@
                     <td>@BoardModel.m_Taskdescriptlist[i]</td>
                     <td>@BoardModel.m_Assigneelist[i]</td>
                     <td>@BoardModel.m_TaskPointslist[i]</td>
-                    <td><button onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @BoardModel.m_TaskIdlist[i] })'">🖋️</button></td>
-                    <td><button onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @BoardModel.m_TaskIdlist[i] })'">❌</button></td>
+                    <td>
+                        <a onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @BoardModel.m_TaskIdlist[i] })'">
+                            <i class="fas fa-pen fa-2x"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @BoardModel.m_TaskIdlist[i] })'">
+                            <i class="fas fa-trash fa-2x"></i>
+                        </a>
+                    </td>
                 </tr>
             }
         }

@@ -7,22 +7,20 @@
     transform: translate(-50%,-50%);
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
-    padding: 50px
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .createTaskContainer {
-    height: 400px;
-    width: 400px;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    height: 500px;
+    width: 400px; 
 }
 
 form {
     margin: 0;
-    height: 400px;
+    height: 500px;
     width: 400px;
     position: absolute;
     top: 50%;
@@ -53,7 +51,32 @@ form {
 input[type="text"]:focus {
     background:#ccc;
     color: #6a6f75;
-    width: 385px;
+    outline: none;
+}
+
+input[type="number"] {
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width: 380px;
+    padding: 6px 15px 6px 15px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    margin-left: 12px;
+    margin-right: 12px;
+    direction: ltr;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    text-align: center;
+}
+
+input[type="number"]:focus {
+    background: #ccc;
+    color: #6a6f75;
     outline: none;
 }
 
@@ -79,12 +102,12 @@ textarea {
     -o-transition: all 0.7s ease 0s;
     transition: all 0.7s ease 0s;
     text-align: center;
+    font-family: Arial;
 }
 
 textarea:focus {
     background:#ccc;
     color: #6a6f75;
-    width: 385px;    
     margin:3px 12px;
     outline: none;
 }
@@ -118,7 +141,7 @@ img {
 .button {
     font-family: 'Lucida Bright';
     font-weight: bold;
-    width: 100px;
+    width: 125px;
     height: 50px;
     border: none;
     color: white;
@@ -151,4 +174,33 @@ img {
 
 .cancelButton {
     float: right;
+}
+
+select {
+    background-color: #444;
+    width: 380px;
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    background-size: auto 50%;
+    border-radius: 2px;
+    border: none;
+    color: #ffffff;
+    padding: 10px 30px 10px 10px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    text-align: center;
+    border-radius: 20px;
+    display: block;
+    margin: 0 auto;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+}
+
+select:focus {
+    background: #ccc;
+    color: #6a6f75;
+    width: 385px;
+    outline: none;
 }
