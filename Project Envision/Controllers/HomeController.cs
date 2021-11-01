@@ -67,7 +67,7 @@ namespace Project_Envision.Controllers
                         }
                         conn.Close();
                         dRead.Close();
-                        return RedirectToAction("Chooseboard", "MainWindow");
+                        return RedirectToAction("Chooseboard", "Board");
                     }
                     else
                     {
@@ -109,7 +109,7 @@ namespace Project_Envision.Controllers
                     if (dRead.Read())
                     {
                         conn.Close();
-                        ViewBag.message = "Username has already been taken!";
+                        ViewBag.message = "username has already been taken";
                         return View("CreateAccount");
 
                     }
@@ -118,8 +118,8 @@ namespace Project_Envision.Controllers
 
                 if (Ca.Password != Ca.confirmPassword)
                 {
+
                     conn.Close();
-                    ViewBag.message = "Passwords do not match!";
                     return View("CreateAccount");
                 }
 
@@ -191,7 +191,7 @@ namespace Project_Envision.Controllers
                         codemail.Body = new TextPart("plain")
                         {
 
-                            Text = @"ForgotPassword Securitycode:" + ModelItems.code.ToString()
+                            Text = @"Forgot-Password Security-code: " + ModelItems.code.ToString()
                         };
 
                         client.Send(codemail);

@@ -1,0 +1,38 @@
+﻿@model Project_Envision.Models.CreateboardModel
+@{
+    ViewData["Title"] = "Create Board";
+}
+
+<link rel="stylesheet" href="~/css/CreateBoard.css" />
+
+<div class="box" method="post">
+    <form>
+        <div>
+            <input type="text" name="board_name" asp-for="board_name" placeholder="Board Name" required="" />
+           
+        </div>
+        <div>
+            <span asp-validation-for="board_name" class="text-danger"></span>
+        </div>
+        <div>
+            <textarea cols="25" rows="4" placeholder="Board Description" id="description" asp-for="board_Description" maxlength="100"></textarea>
+            </div>
+        <div>
+            <span asp-validation-for="board_Description" class="text-danger"></span>
+        </div>
+        <div class="buttons">
+            <input type="submit" class="button homeButtons" value="Create" />
+            <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("ChooseBoard")'" />
+        </div>
+    </form>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+    window.onload = function () {
+        alert("@ViewBag.Message");
+    };
+    </script>
+}
+
