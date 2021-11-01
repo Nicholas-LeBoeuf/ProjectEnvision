@@ -9,12 +9,12 @@
     <form asp-action="Login" method="post">
         <div id="loginLogo"></div>
         <div class="loginContainer">
-            <input type="text" name="username" required="" autocomplete="off"/>
+            <input type="text" name="username" required="" autocomplete="off" />
             <label>Username</label>
             <span asp-validation-for="Username" class="text-danger"></span>
         </div>
         <div class="loginContainer">
-            <input type="password" required="" name="password" autocomplete="off"/>
+            <input type="password" required="" name="password" autocomplete="off" />
             <label>Password</label>
             <span asp-validation-for="password" class="text-danger"></span>
             <a href='@Url.Action("ForgotPassword1")'>Forgot Password?</a>
@@ -34,4 +34,3 @@
     };
     </script>
 }
-
