@@ -1,16 +1,16 @@
 ﻿.box {
     position: absolute;
-    height: 576px;
+    height: 575px;
     width: 500px;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
-    padding: 50px;
+    padding: 50px
 }
 
-.createBoardContainer {
+.createTaskContainer {
     height: 400px;
     width: 400px;
     margin: 0;
@@ -30,7 +30,7 @@ form {
     transform: translateY(-50%);
 }
 
-input[type="text"] {
+ input[type="text"] {
     background: #444;
     border: 0 none;
     color: #d7d7d7;
@@ -42,7 +42,7 @@ input[type="text"] {
     margin-bottom: 5px;
     margin-left: 12px;
     margin-right: 12px;
-    direction: ltr;
+    direction:ltr;
     -webkit-transition: all 0.7s ease 0s;
     -moz-transition: all 0.7s ease 0s;
     -o-transition: all 0.7s ease 0s;
@@ -50,12 +50,12 @@ input[type="text"] {
     text-align: center;
 }
 
-    input[type="text"]:focus {
-        background: #ccc;
-        color: #6a6f75;
-        width: 385px;
-        outline: none;
-    }
+input[type="text"]:focus {
+    background:#ccc;
+    color: #6a6f75;
+    width: 385px;
+    outline: none;
+}
 
 input:before {
     content: '\A';
@@ -81,13 +81,13 @@ textarea {
     text-align: center;
 }
 
-    textarea:focus {
-        background: #ccc;
-        color: #6a6f75;
-        width: 385px;
-        margin: 3px 12px;
-        outline: none;
-    }
+textarea:focus {
+    background:#ccc;
+    color: #6a6f75;
+    width: 385px;    
+    margin:3px 12px;
+    outline: none;
+}
 
 input, label {
     display: block;
@@ -140,10 +140,10 @@ img {
     border: 2px solid #000;
 }
 
-    .homeButtons:hover {
-        background-color: #696969;
-        color: #ff9036;
-    }
+.homeButtons:hover {
+    background-color: #696969;
+    color: #ff9036;
+}
 
 .createButton {
     float: left;
