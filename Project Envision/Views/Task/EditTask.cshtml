@@ -10,7 +10,7 @@
         <form>
             <img src="~/images/logo2.png" />
             <label id="TaskNameLabel" asp-for="Task_name">Task Name:</label>
-            <input type="text" name="Task_name" asp-for="Task_name" value=@TaskPropertiesModel.getTask_name required="" />
+            <input type="text" name="Task_name" asp-for="Task_name" value=@TaskPropertiesModel.getTask_name autocomplete="off" required="" />
 
             <br />
             <label for="Task_Description" asp-for="Task_Description">Description:</label>
