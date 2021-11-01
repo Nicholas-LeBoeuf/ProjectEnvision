@@ -6,69 +6,53 @@
 <link rel="stylesheet" href="~/css/EditTask.css" />
 
 <div class="box" method="post">
-    <form>
-        <div>
+    <div class="editTaskContainer">
+        <form>
+            <img src="~/images/logo2.png" />
             <label id="TaskNameLabel" asp-for="Task_name">Task Name:</label>
             <input type="text" name="Task_name" asp-for="Task_name" value=@TaskPropertiesModel.getTask_name required="" />
 
-        </div>
-
-        <div>
-            <span asp-validation-for="Task_name" class="text-danger"></span>
-        </div>
-
-        <br />
-        <label for="Task_Description" asp-for="Task_Description">Description:</label>
-        <br />
-
-        <div>
+            <br />
+            <label for="Task_Description" asp-for="Task_Description">Description:</label>
             <textarea id="Task_Description" name="Task_Description" rows="4" cols="25">@TaskPropertiesModel.getTask_Description</textarea>
-        </div>
 
-        <br />
-        <div>
-            <span asp-validation-for="Task_Description" class="text-danger"></span>
-        </div>
+            <br />
+            <br />
 
-        <div>
             <label id="TaskPointsLabel" asp-for="Task_points">Task Points:</label>
             <input type="number" min="0" max="100" name="Task_points" asp-for="Task_points" value=@TaskPropertiesModel.getTask_points required="" />
 
-        </div>
-        <div>
+            <br />
 
-            <span asp-validation-for="Task_points" class="text-danger"></span>
-        </div>
+            <label for="Assignee" asp-for="Assignee">Choose a Assignee:</label>
 
-        <br />
-        <label for="Assignee" asp-for="Assignee">Choose a Assignee:</label>
+            <select name="Assignee" id="Assignee" asp-for="Assignee">
 
-        <select name="Assignee" id="Assignee" asp-for="Assignee">
+                @{
+                    <option value=@TaskPropertiesModel.getAssignee> @TaskPropertiesModel.getAssignee </option>
 
-            @{
-                <option value=@TaskPropertiesModel.getAssignee> @TaskPropertiesModel.getAssignee </option>
-                
-                if (TaskPropertiesModel.getAssignee != "None")
-                {
-                    <option value="None"> None</option>
-                }
-
-                for (int i = 0; i < BoardModel.m_usernamelist.Count(); i++)
-                {
-                    if (BoardModel.m_usernamelist[i] != TaskPropertiesModel.getAssignee && BoardModel.m_usernamelist[i] != null)
+                    if (TaskPropertiesModel.getAssignee != "None")
                     {
+                        <option value="None"> None</option>
+                    }
 
-                        <option value=@BoardModel.m_usernamelist[i]> @BoardModel.m_usernamelist[i]</option>
+                    for (int i = 0; i < BoardModel.m_usernamelist.Count(); i++)
+                    {
+                        if (BoardModel.m_usernamelist[i] != TaskPropertiesModel.getAssignee && BoardModel.m_usernamelist[i] != null)
+                        {
+
+                            <option value=@BoardModel.m_usernamelist[i]> @BoardModel.m_usernamelist[i]</option>
+                        }
                     }
                 }
-            }
-        </select>
+            </select>
 
-        <div class="buttons">
-            <input type="submit" class="button homeButtons" value="Edit Task" />
-            <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("Board", "Board")'" />
-        </div>
-    </form>
+            <div class="buttons">
+                <input type="submit" class="button homeButtons editButton" value="Edit Task" />
+                <input type="button" class="button homeButtons cancelButton" value="Cancel" onclick="location.href='@Url.Action("Board", "Board")'" />
+            </div>
+        </form>
+    </div>
 </div>
 
 @if (ViewBag.Message != null)
