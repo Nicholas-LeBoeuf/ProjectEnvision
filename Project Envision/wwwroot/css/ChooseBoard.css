@@ -38,18 +38,18 @@ th, td {
     cursor: pointer;
 }
 
-.fa-arrow-circle-right:hover {
-    color: #34C700;
-}
+    .fa-arrow-circle-right:hover {
+        color: #34C700;
+    }
 
 .fa-trash {
     color: #9E0000;
     cursor: pointer;
 }
 
-.fa-trash:hover {
-    color: #FF2323;
-}
+    .fa-trash:hover {
+        color: #FF2323;
+    }
 
 .button {
     font-family: 'Lucida Bright';
@@ -114,7 +114,7 @@ img {
 }
 
 .tableContainer {
-    display:block;
+    display: block;
     margin-left: auto;
     margin-right: auto;
 }
@@ -145,6 +145,6 @@ img {
     border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #C35700;
-}
+    ::-webkit-scrollbar-thumb:hover {
+        background: #C35700;
+    }

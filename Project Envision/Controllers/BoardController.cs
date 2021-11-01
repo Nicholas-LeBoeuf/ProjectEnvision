@@ -16,6 +16,11 @@ namespace Project_Envision.Controllers
             return View();
         }
 
+        public IActionResult Main()
+        {
+            return View();
+        }
+
         public IActionResult Board(int Boardid)
         {
             if (Boardid != 0)
@@ -25,86 +30,87 @@ namespace Project_Envision.Controllers
 
             if (BoardModel.m_gotTask == false)
             {
-                return RedirectToAction("GetTask");
+                return RedirectToAction("GetTask", "Task");
+            }
+            if (BoardModel.m_gotusers == false)
+            {
+                return RedirectToAction("Getusernames", "Task");
+
             }
             else
             {
-                return View();
+                return View("Board", "Board");
             }
         }
 
-        public IActionResult Deletetask(int taskid)
-        {
 
-
-            DeletetaskParts(taskid, "tasks");
-
-            BoardModel.m_gotTask = false;
-            
-            if (BoardModel.m_gotTask == false)
-            {
-                return RedirectToAction("GetTask");
-            }
-
-            return View();
-        }
-
-        void DeletetaskParts(int taskid, string tableName)
+        void DeleteboardParts(int Boardid, string tableName)
         {
 
             MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
 
             conn.Open();
 
-            MySqlCommand DeleteTaskpart = conn.CreateCommand();
+            MySqlCommand DeleteBoardpart = conn.CreateCommand();
 
-            DeleteTaskpart.CommandText = "Delete FROM " + tableName + " where board_id = @boardID AND task_id = @taskId";
-
-            DeleteTaskpart.Parameters.AddWithValue("@boardID", BoardModel.m_Boardid);
-            DeleteTaskpart.Parameters.AddWithValue("@taskId", taskid);
-
-            DeleteTaskpart.Prepare();
-            DeleteTaskpart.ExecuteReader();
+            DeleteBoardpart.CommandText = "Delete FROM " + tableName +  " where user_id= @userID AND board_id = @boardId";
+            
+            DeleteBoardpart.Parameters.AddWithValue("@userID", ModelItems.m_userid);
+            DeleteBoardpart.Parameters.AddWithValue("@boardId", Boardid);
+          
+            DeleteBoardpart.Prepare();
+            DeleteBoardpart.ExecuteReader();
             conn.Close();
         }
 
-        public IActionResult GetTask(BoardModel bm)
+        public IActionResult DeleteBoard (int Boardid)
         {
+            BoardItems.m_gotBoard = false;
+
+            DeleteboardParts(Boardid, "tasks");
+            DeleteboardParts(Boardid, "createboard");
+            
+            return RedirectToAction("ChooseBoard");
+        }
+
+        public IActionResult GetBoarditems(ChooseBoardModel cbm)
+        {
+            BoardItems.m_gotBoard = true;
             MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
 
             conn.Open();
 
-            MySqlCommand getTasks = conn.CreateCommand();
-            getTasks.CommandText = "SELECT taskname, location, task_id FROM tasks where board_id= @boardID";
-            getTasks.Parameters.AddWithValue("@boardID", bm.Boardid);
+            MySqlCommand getBoards = conn.CreateCommand();
+            getBoards.CommandText = "SELECT board_name, board_id, board_description FROM createboard where user_id= @userID";
+            getBoards.Parameters.AddWithValue("@userID", ModelItems.m_userid);
 
-            MySqlDataReader reader = getTasks.ExecuteReader();
+            MySqlDataReader reader = getBoards.ExecuteReader();
 
-            List<string> TaskList = new List<string>();
-            List<string> TaskLocationList = new List<string>();
-            List<int> task_id = new List<int>();
-
+            List<string> BoardsList = new List<string>();
+            List<int> BoardidsList = new List<int>();
+            List<string> BoarddescList = new List<string>();
+            
             while (reader.Read())
             {
-                TaskList.Add(Convert.ToString(reader[0]));
-                TaskLocationList.Add(Convert.ToString(reader[1]));
-                task_id.Add(Convert.ToInt32(reader[2]));
+                BoardsList.Add(Convert.ToString(reader[0]));
+                BoardidsList.Add(Convert.ToInt32(reader[1]));
+                BoarddescList.Add(Convert.ToString(reader[2]));
             }
             reader.Close();
 
-            bm.SetTasklistListAttr(TaskList);
-            bm.SetTaskLocationlistListAttr(TaskLocationList);
-            bm.SetTaskIdlistListAttr(task_id);
+            cbm.SetBoardlistListAttr(BoardsList);
+            cbm.SetBoardidlistListAttr(BoardidsList);
+            cbm.SetBoardDesclistListAttr(BoarddescList);
 
             conn.Close();
-            
-            BoardModel.m_gotTask = true;
-            
-            return RedirectToAction("Board");
+            return RedirectToAction("ChooseBoard");
         }
 
-        public IActionResult CreateTask(TaskPropertiesModel tpm)
+ 
+
+        public IActionResult CreateBoard(CreateboardModel Cb)
         {
+
             if (ModelState.IsValid)
             {
 
@@ -112,34 +118,66 @@ namespace Project_Envision.Controllers
 
                 conn.Open();
 
-                string txtcmd2 = $"Insert into tasks(taskname, taskdescription, board_id, location, task_points)" + $"values ( @taskname,@taskdescription,@board_id, @location, @Task_point) ";
-                MySqlCommand cmd = new MySqlCommand(txtcmd2, conn);
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@taskname", tpm.Task_name);
-                cmd.Parameters.AddWithValue("@taskdescription", tpm.Task_Description);
-                cmd.Parameters.AddWithValue("@board_id", BoardItems.m_Boardid);
-                cmd.Parameters.AddWithValue("@Task_point", tpm.Task_points);
-                cmd.Parameters.AddWithValue("@location", "Backlog");
+                string txtcmd = $"SELECT* FROM createboard where board_name = '" + Cb.board_name + "' AND user_id = '" + ModelItems.m_userid + "'";
+                MySqlCommand textcmd = new MySqlCommand(txtcmd, conn);
+                 MySqlDataReader tRead;
 
-                cmd.Prepare();
-                cmd.ExecuteReader();
-                conn.Close();
-                BoardModel.m_gotTask = false;
+                    using (tRead = textcmd.ExecuteReader())
+                    {
+                        if (tRead.Read())
+                        {
+                            ViewBag.message = "You already have board with that name";
+                            tRead.Close();
+                            conn.Close();
+                            return View("CreateBoard");
+                        }
+                    }
 
-                return RedirectToAction("Board");
+                    string txtcmd2 = $"Insert into createboard (board_name,user_id,username, board_description)" + $"values ( @board_name,@user_id,@username, @board_description) ";
+                    MySqlCommand cmd = new MySqlCommand(txtcmd2, conn);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@board_name", Cb.board_name);
+                    cmd.Parameters.AddWithValue("@board_description", Cb.board_Description);
+                    cmd.Parameters.AddWithValue("@user_id", ModelItems.m_userid);
+                    cmd.Parameters.AddWithValue("@username", ModelItems.m_username);
+
+                    cmd.Prepare();
+                    cmd.ExecuteReader();
+                    conn.Close();
+                BoardItems.m_gotBoard = false;
+                return RedirectToAction("ChooseBoard");
+            }
+            
+            return View("CreateBoard");
+            }
+        
+        public IActionResult ChooseBoard(ChooseBoardModel cbm)
+        {
+            if(BoardItems.m_gotBoard == false)
+            {
+                return RedirectToAction("GetBoarditems");
             }
             return View();
         }
-        public IActionResult ProductBacklog()
+
+        public IActionResult ProductBacklog(TaskPropertiesModel tpm, BoardModel bm)
         {
-            return View();
-        }
-        public IActionResult BurndownChart()
-        {
-            return View();
+            if (BoardModel.m_gotTask == false)
+            {
+                return RedirectToAction("GetTask", "Task");
+            }
+            if (BoardModel.m_gotusers == false)
+            {
+                return RedirectToAction("Getusernames", "Task");
+
+            }
+            else
+            {
+                return View();
+            }
         }
 
-        public IActionResult EditTask()
+        public IActionResult BurndownChart()
         {
             return View();
         }
