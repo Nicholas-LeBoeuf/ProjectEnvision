@@ -11,11 +11,11 @@
             @{
                 if (ChooseBoardModel.m_Boardlist.Count < 5)
                 {
-                    <button class="button homeButtons" onclick="location.href='@Url.Action("CreateBoard")'">Create Board</button>
+                    <button class="button homeButtons" onclick="location.href='@Url.Action("CreateBoard", "board")'">Create Board</button>
                 }
                 else
                 {
-                    <button class="button disabledButton" onclick="location.href='@Url.Action("CreateBoard")'" disabled="True">Create Board </button>
+                    <button class="button disabledButton" onclick="location.href='@Url.Action("CreateBoard", "Board")'" disabled>Create Board </button>
                 }
             }
         </div>
@@ -39,7 +39,7 @@
                 {
                     <tr>
                         <td>
-                            <a class="goButton" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("Board", "Board", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
+                            <a class="goButton" value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("GetTask", "Task", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
                                 <i class="fas fa-arrow-circle-right fa-3x"></i>
                             </a>
                         </td>
@@ -48,7 +48,7 @@
                         <td> @ChooseBoardModel.m_BoardDesclist[i]</td>
 
                         <td>
-                            <a value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("DeleteBoard", "MainWindow", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
+                            <a value=@ChooseBoardModel.m_Boardlist[i] onclick="location.href='@Url.Action("DeleteBoard", "Board", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'">
                                 <i class="fas fa-trash fa-3x"></i>
                             </a>
                         </td>
