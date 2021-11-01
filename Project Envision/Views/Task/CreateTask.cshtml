@@ -3,49 +3,31 @@
     Layout = "~/Views/Shared/_MainPageLayout.cshtml"; }
 
 <link rel="stylesheet" href="~/css/CreateTask.css" />
+<script src="~/js/site.js" type="text/javascript"></script>
 
 <div class="box" method="post">
     <div class="createTaskContainer">
         <form>
             <img src="~/images/logo2.png" />
-            <div>
-                <label id="TaskNameLabel" asp-for="Task_name">Task Name:</label>
-                <input type="text" name="Task_name" asp-for="Task_name" placeholder="Task Name" required="" />
-
-            </div>
-
-            <div>
-                <span asp-validation-for="Task_name" class="text-danger"></span>
-            </div>
+            <label id="TaskNameLabel" asp-for="Task_name">Task Name:</label>
+            <input type="text" name="Task_name" asp-for="Task_name" placeholder="Task Name" required="" />
 
             <br />
 
-            <div>
-                <label for="Task_Description" asp-for="Task_Description">Description:</label>
-                <textarea cols="25" rows="4" placeholder="Task Description" id="description" asp-for="Task_Description" maxlength="100"></textarea>
-            </div>
+            <label for="Task_Description" asp-for="Task_Description">Description:</label>
+            <textarea cols="25" rows="4" placeholder="Task Description" id="description" asp-for="Task_Description" maxlength="100"></textarea>
 
-            <div>
-                <span asp-validation-for="Task_Description" class="text-danger"></span>
-            </div>
+            <br />
+            <br />
+
+            <label id="TaskPointsLabel" asp-for="Task_points">Task Points:</label>
+            <input type="number" min="0" max="100" name="Task_points" asp-for="Task_points" placeholder="Task Points" required="" />
 
             <br />
 
-            <div>
-                <label id="TaskPointsLabel" asp-for="Task_points">Task Points:</label>
-                <input type="number" min="0" max="100" name="Task_points" asp-for="Task_points" placeholder="Task Points" required="" />
-            </div>
-
-            <div>
-                <span asp-validation-for="Task_points" class="text-danger"></span>
-            </div>
-
-            <br />
-
-            <label for="Assignee" asp-for="Assignee">Choose a Assignee:</label>
+            <label for="Assignee" asp-for="Assignee">Choose an Assignee:</label>
 
             <select name="Assignee" id="Assignee" asp-for="Assignee">
-
                 @{
 
                     if (TaskPropertiesModel.getAssignee != "None")
@@ -65,8 +47,8 @@
             </select>
 
             <div class="buttons">
-                <input type="submit" class="button homeButtons" value="Create Task" />
-                <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("ProductBacklog", "Board")'" />
+                <input type="submit" class="button homeButtons createButton" value="Create Task" />
+                <input type="button" class="button homeButtons cancelButton" value="Cancel" onclick="location.href='@Url.Action("ProductBacklog", "Board")'" />
             </div>
         </form>
     </div>

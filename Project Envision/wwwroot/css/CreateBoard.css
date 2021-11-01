@@ -50,12 +50,12 @@ input[type="text"] {
     text-align: center;
 }
 
-    input[type="text"]:focus {
-        background: #ccc;
-        color: #6a6f75;
-        width: 385px;
-        outline: none;
-    }
+input[type="text"]:focus {
+    background: #ccc;
+    color: #6a6f75;
+    width: 385px;
+    outline: none;
+}
 
 input:before {
     content: '\A';
