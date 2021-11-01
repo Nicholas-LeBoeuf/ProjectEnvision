@@ -1,0 +1,103 @@
+﻿.box {
+    position: absolute;
+    height: 61%;
+    width: 85%;
+    left: 50%;
+    top: 65%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 15px 75px;
+    margin-left: 25px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+table, th, td {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    font-family: 'Lucida Bright';
+    font-weight: bold;
+    table-layout: fixed;
+}
+
+table {
+    margin: auto;
+}
+
+th, td {
+    text-align: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+.boardCard {
+    height: 100px;
+    width: 175px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.cardContent {
+    font-size: 18px;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E16500;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #C35700;
+}
+
+.logoContainer {
+    position: relative;
+    text-align: center;
+    padding-top: 5px;
+}
+
+#circle,
+#logo {
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    left: 43%;
+}
+
+#circle {
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    background-color: black;
+    opacity: 50%;
+    z-index: 1;
+}
+
+#logo {
+    height: 250px;
+    width: 250px;
+    background-image: url(../images/logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: 2;
+    transform: scale(1.2, 1.2);
+}

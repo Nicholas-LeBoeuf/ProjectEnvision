@@ -1,5 +1,8 @@
 ﻿.box {
     position: absolute;
+    height: 80%;
+    width: 85%;
+    margin-left: 25px;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
