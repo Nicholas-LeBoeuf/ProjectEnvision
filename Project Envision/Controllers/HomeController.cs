@@ -67,7 +67,7 @@ namespace Project_Envision.Controllers
                         }
                         conn.Close();
                         dRead.Close();
-                        return RedirectToAction("Chooseboard", "MainWindow");
+                        return RedirectToAction("Chooseboard", "Board");
                     }
                     else
                     {

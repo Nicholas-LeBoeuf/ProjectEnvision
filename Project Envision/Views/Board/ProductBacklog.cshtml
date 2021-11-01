@@ -1,12 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Product Backlog";
+    ViewData["Title"] = "ProductBacklog";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
 
 <link rel="stylesheet" href="~/css/ProductBacklog.css" />
 
 <div class="box">
-    <button class="button homeButtons" onclick="location.href='@Url.Action("CreateTask")'">Create Task</button>
+    <button class="button homeButtons" onclick="location.href='@Url.Action("CreateTask", "Task")'">Create Task</button>
 
     <table style="color: white;">
         <tr>
@@ -26,8 +26,8 @@
                     <td>@BoardModel.m_Taskdescriptlist[i]</td>
                     <td>@BoardModel.m_Assigneelist[i]</td>
                     <td>@BoardModel.m_TaskPointslist[i]</td>
-                    <td><button onclick="location.href='@Url.Action("collect_task_info", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'">🖋️</button></td>
-                    <td><button onclick="location.href='@Url.Action("Deletetask", "Board", new { Taskid = @BoardModel.m_TaskIdlist[i] })'">❌</button></td>
+                    <td><button onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @BoardModel.m_TaskIdlist[i] })'">🖋️</button></td>
+                    <td><button onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @BoardModel.m_TaskIdlist[i] })'">❌</button></td>
                 </tr>
             }
         }

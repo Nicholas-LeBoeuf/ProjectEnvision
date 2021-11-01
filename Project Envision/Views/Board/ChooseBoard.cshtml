@@ -39,7 +39,7 @@
 
                     <td> @ChooseBoardModel.m_BoardDesclist[i]</td>
 
-                    <td><input type="submit" class="button homeButtons" value="❌" onclick="location.href='@Url.Action("DeleteBoard", "MainWindow", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'" /></td>
+                    <td><input type="submit" class="button homeButtons" value="❌" onclick="location.href='@Url.Action("DeleteBoard", "Board", new {boardid = ChooseBoardModel.m_Boardidlist[i]})'" /></td>
                 </tr>
 
             }
