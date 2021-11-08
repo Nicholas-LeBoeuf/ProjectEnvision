@@ -20,7 +20,7 @@
             <br />
 
             <label id="TaskPointsLabel" asp-for="Task_points">Task Points:</label>
-            <input type="number" min="0" max="100" name="Task_points" asp-for="Task_points" placeholder="Task Points" required="" />
+            <input type="number" min="1" max="21" name="Task_points" asp-for="Task_points" placeholder="Task Points" required="" />
 
             <br />
 
@@ -29,10 +29,7 @@
             <select name="Assignee" id="Assignee" asp-for="Assignee">
                 @{
 
-                    if (TaskPropertiesModel.getAssignee != "None")
-                    {
-                        <option value="None"> None</option>
-                    }
+                    <option value="None"> None</option>
 
                     for (int i = 0; i < BoardModel.m_usernamelist.Count(); i++)
                     {
