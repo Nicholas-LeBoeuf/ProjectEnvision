@@ -3,6 +3,7 @@
 }
 
 <link rel="stylesheet" href="~/css/Index.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
 
 <body>
     <div class="logoContainer">
@@ -10,7 +11,7 @@
         <div id="logo"></div>
     </div>
     <div class="buttons">
-        <input type="button" class="button homeButtons" value="Login" onclick="location.href='@Url.Action("Login", "Home")'" />
-        <input type="button" class="button homeButtons" value="Create Account" onclick="location.href='@Url.Action("CreateAccount", "Home")'" />
+        <input type="button" class="buttonStyle" value="Login" onclick="location.href='@Url.Action("Login", "Home")'" />
+        <input type="button" class="buttonStyle" value="Create Account" onclick="location.href='@Url.Action("CreateAccount", "Home")'" />
     </div>
 </body>

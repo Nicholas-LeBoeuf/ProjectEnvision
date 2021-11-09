@@ -1,4 +1,4 @@
-﻿.button {
+﻿.buttonStyle {
     font-family: 'Lucida Bright';
     font-weight: bold;
     width: 200px;
@@ -19,7 +19,7 @@
     border: 2px solid #000;
 }
 
-.button:hover {
+.buttonStyle:hover {
     background-color: #696969;
     color: #ff9036;
 }

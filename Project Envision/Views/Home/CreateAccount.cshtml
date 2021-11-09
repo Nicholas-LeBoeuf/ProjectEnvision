@@ -4,6 +4,7 @@
 }
 
 <link rel="stylesheet" href="~/css/CreateAccount.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
 
 <div class="box">
     <form id="FirstNameLabel" method="post">
@@ -59,10 +60,8 @@
         </table>
             <span style="display: flex; align-content: center; justify-content: space-around;" asp-validation-for="confirmPassword" class="text-danger"></span>
 
-        <div class="buttons">
-            <input type="submit" class="button homeButtons submitButton" value="Create Account" />
-            <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
-        </div>
+        <input type="submit" class="buttonStyle" value="Create Account" />
+        <input type="button" class="buttonStyle" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
     </form>
 </div>
 
