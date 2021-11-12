@@ -4,6 +4,7 @@
 }
 
 <link rel="stylesheet" href="~/css/CreateBoard.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
 
 <div class="box" method="post">
     <div class="createBoardContainer">
@@ -16,8 +17,8 @@
             <textarea cols="25" rows="4" placeholder="Board Description" id="description" asp-for="board_Description" maxlength="100"></textarea>
 
             <div class="buttons">
-                <input type="submit" class="button homeButtons createButton" value="Create" />
-                <input type="button" class="button homeButtons cancelButton" value="Cancel" onclick="location.href='@Url.Action("ChooseBoard", "Board")'" />
+                <input type="submit" class="buttonStyle createButton" value="Create" />
+                <input type="button" class="buttonStyle cancelButton" value="Cancel" onclick="location.href='@Url.Action("ChooseBoard", "Board")'" />
             </div>
 
         </form>

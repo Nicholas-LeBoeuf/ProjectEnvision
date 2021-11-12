@@ -62,3 +62,8 @@
 .right {
     padding-right: 30px;
 }
+
+.createAccountCancelButton {
+    width: 200px;
+    padding: 16px 32px;
+}

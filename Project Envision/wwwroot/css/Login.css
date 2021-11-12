@@ -58,3 +58,8 @@
     z-index: 3;
     transform: scale(1.5, 1.5);
 }
+
+.loginCancelButton {
+    width: 200px;
+    padding: 16px 32px;
+}

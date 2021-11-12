@@ -12,11 +12,11 @@
             @{
                 if (ChooseBoardModel.m_Boardlist.Count < 5)
                 {
-                    <button class="buttonStyle" onclick="location.href='@Url.Action("CreateBoard", "board")'">Create Board</button>
+                    <button class="buttonStyle chooseBoardButtons" onclick="location.href='@Url.Action("CreateBoard", "board")'">Create Board</button>
                 }
                 else
                 {
-                    <button class="disabledButton" onclick="location.href='@Url.Action("CreateBoard", "Board")'" disabled>Create Board </button>
+                    <button class="disabledButton chooseBoardButtons" onclick="location.href='@Url.Action("CreateBoard", "Board")'" disabled>Create Board </button>
                 }
             }
         </div>
@@ -24,7 +24,7 @@
         <img class="logo imageContainer" src="~/images/logo2.png" />
 
         <div class="logoutButton">
-            <button class="buttonStyle" onclick="location.href='@Url.Action("Index","Home")'">Logout</button>
+            <button class="buttonStyle chooseBoardButtons" onclick="location.href='@Url.Action("Index","Home")'">Logout</button>
         </div>
     </div>
     <div class="tableContainer">

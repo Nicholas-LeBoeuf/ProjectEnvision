@@ -36,3 +36,8 @@
     text-align: center;
     margin-top: 450px;
 }
+
+.loginCreateAccountButton {
+    width: 200px;
+    padding: 16px 32px;
+}

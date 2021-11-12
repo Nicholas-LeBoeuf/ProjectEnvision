@@ -112,3 +112,8 @@ img {
 ::-webkit-scrollbar-thumb:hover {
     background: #C35700;
 }
+
+.chooseBoardButtons {
+    width: 200px;
+    padding: 16px 32px;
+}

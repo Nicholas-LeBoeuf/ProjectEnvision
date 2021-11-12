@@ -60,8 +60,8 @@
         </table>
             <span style="display: flex; align-content: center; justify-content: space-around;" asp-validation-for="confirmPassword" class="text-danger"></span>
 
-        <input type="submit" class="buttonStyle" value="Create Account" />
-        <input type="button" class="buttonStyle" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
+        <input type="submit" class="buttonStyle createAccountCancelButton" value="Create Account" />
+        <input type="button" class="buttonStyle createAccountCancelButton" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
     </form>
 </div>
 
