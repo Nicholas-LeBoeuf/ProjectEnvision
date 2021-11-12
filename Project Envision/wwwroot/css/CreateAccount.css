@@ -64,6 +64,7 @@
 }
 
 .createAccountCancelButton {
-    width: 200px;
-    padding: 16px 32px;
+    width: 140px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
