@@ -8,44 +8,6 @@
     padding: 15px 75px;
 }
 
-.loginContainer {
-    position: relative;
-    margin-bottom: 25px;
-}
-
-.loginContainer label {
-    font-family: 'Lucida Bright';
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    font-size: 16px;
-    color: #fff;
-    pointer-events: none;
-    transition: all 0.5s ease-in-out;
-}
-
-.loginContainer input {
-    border: 0;
-    border-bottom: 1px solid #555;
-    background: transparent;
-    width: 100%;
-    padding: 8px 0 5px 0;
-    font-size: 16px;
-    color: #fff;
-}
-
-.loginContainer input:focus {
-    border: none;
-    outline: none;
-    border-bottom: 1px solid #e74c3c;
-}
-
-.loginContainer input:focus ~ label,
-.loginContainer input:valid ~ label {
-    top: -12px;
-    font-size: 12px;
-}
-
 #loginLogo {
     height: 400px;
     width: 400px;
@@ -59,7 +21,16 @@
     transform: scale(1.5, 1.5);
 }
 
-.loginCancelButton {
-    width: 200px;
-    padding: 16px 32px;
+.loginButton {
+    width: 175px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+}
+
+.cancelButton {
+    width: 175px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: right;
 }

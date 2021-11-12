@@ -140,14 +140,18 @@ img {
 
 .editCreateButton {
     float: left;
-    width: 125px;
+    width: 175px;
     height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .cancelButton {
     float: right;
-    width: 125px;
+    width: 175px;
     height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 select {
