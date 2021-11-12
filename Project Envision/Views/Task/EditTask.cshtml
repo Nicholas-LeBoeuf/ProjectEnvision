@@ -3,10 +3,11 @@
     ViewData["Title"] = "EditTask";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml"; }
 }
-<link rel="stylesheet" href="~/css/EditTask.css" />
+<link rel="stylesheet" href="~/css/Task.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
 
 <div class="box" method="post">
-    <div class="editTaskContainer">
+    <div class="taskContainer">
         <form>
             <img src="~/images/logo2.png" />
             <label id="TaskNameLabel" asp-for="Task_name">Task Name:</label>
@@ -46,10 +47,10 @@
                     }
                 }
             </select>
-
+            <br />
             <div class="buttons">
-                <input type="submit" class="button homeButtons editButton" value="Edit Task" />
-                <input type="button" class="button homeButtons cancelButton" value="Cancel" onclick="location.href='@Url.Action("Board", "Board")'" />
+                <input type="submit" class="buttonStyle editCreateButton" value="Edit Task" />
+                <input type="button" class="buttonStyle cancelButton" value="Cancel" onclick="location.href='@Url.Action("Board", "Board")'" />
             </div>
         </form>
     </div>

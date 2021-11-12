@@ -2,10 +2,11 @@
 @{ ViewData["Title"] = "CreateTask";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml"; }
 
-<link rel="stylesheet" href="~/css/CreateTask.css" />
+<link rel="stylesheet" href="~/css/Task.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
 
 <div class="box" method="post">
-    <div class="createTaskContainer">
+    <div class="taskContainer">
         <form>
             <img src="~/images/logo2.png" />
             <label id="TaskNameLabel" asp-for="Task_name">Task Name:</label>
@@ -41,10 +42,10 @@
                     }
                 }
             </select>
-
+            <br />
             <div class="buttons">
-                <input type="submit" class="button homeButtons createButton" value="Create Task" />
-                <input type="button" class="button homeButtons cancelButton" value="Cancel" onclick="location.href='@Url.Action("ProductBacklog", "Board")'" />
+                <input type="submit" class="buttonStyle editCreateButton" value="Create Task" />
+                <input type="button" class="buttonStyle cancelButton" value="Cancel" onclick="location.href='@Url.Action("ProductBacklog", "Board")'" />
             </div>
         </form>
     </div>

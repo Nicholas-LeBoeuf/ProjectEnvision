@@ -13,7 +13,7 @@
     align-items: center;
 }
 
-.editTaskContainer {
+.taskContainer {
     height: 500px;
     width: 400px;
 }
@@ -138,42 +138,20 @@ img {
     margin-bottom: 50px;
 }
 
-.button {
-    font-family: 'Lucida Bright';
-    font-weight: bold;
-    width: 125px;
-    height: 50px;
-    border: none;
-    color: white;
-    padding: 0;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 8px;
-    margin: 30px;
-}
-
-.homeButtons {
-    background-color: #e16e12;
-    color: black;
-    border: 2px solid #000;
-}
-
-.homeButtons:hover {
-    background-color: #696969;
-    color: #ff9036;
-}
-
-.editButton {
+.editCreateButton {
     float: left;
+    width: 175px;
+    height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .cancelButton {
     float: right;
+    width: 175px;
+    height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 select {
