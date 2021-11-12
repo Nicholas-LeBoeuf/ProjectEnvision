@@ -47,11 +47,11 @@ namespace Project_Envision.Controllers
         void DeleteboardParts(int Boardid, string tableName)
         {
 
-            MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+            MySqlConnection databaseConnection= new MySqlConnection(Database_connection.m_connection);
 
-            conn.Open();
+            databaseConnection.Open();
 
-            MySqlCommand DeleteBoardpart = conn.CreateCommand();
+            MySqlCommand DeleteBoardpart = databaseConnection.CreateCommand();
 
             DeleteBoardpart.CommandText = "Delete FROM " + tableName +  " where user_id= @userID AND board_id = @boardId";
             
@@ -60,7 +60,7 @@ namespace Project_Envision.Controllers
           
             DeleteBoardpart.Prepare();
             DeleteBoardpart.ExecuteReader();
-            conn.Close();
+            databaseConnection.Close();
         }
 
         public IActionResult DeleteBoard (int Boardid)
@@ -73,14 +73,14 @@ namespace Project_Envision.Controllers
             return RedirectToAction("ChooseBoard");
         }
 
-        public IActionResult GetBoarditems(ChooseBoardModel cbm)
+        public IActionResult GetBoarditems(ChooseBoardModel ChooseBoardModel)
         {
             BoardItems.m_gotBoard = true;
-            MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+            MySqlConnection databaseConnection= new MySqlConnection(Database_connection.m_connection);
 
-            conn.Open();
+            databaseConnection.Open();
 
-            MySqlCommand getBoards = conn.CreateCommand();
+            MySqlCommand getBoards = databaseConnection.CreateCommand();
             getBoards.CommandText = "SELECT board_name, board_id, board_description FROM createboard where user_id= @userID";
             getBoards.Parameters.AddWithValue("@userID", ModelItems.m_userid);
 
@@ -98,28 +98,28 @@ namespace Project_Envision.Controllers
             }
             reader.Close();
 
-            cbm.SetBoardlistListAttr(BoardsList);
-            cbm.SetBoardidlistListAttr(BoardidsList);
-            cbm.SetBoardDesclistListAttr(BoarddescList);
+            ChooseBoardModel.SetBoardlistListAttr(BoardsList);
+            ChooseBoardModel.SetBoardidlistListAttr(BoardidsList);
+            ChooseBoardModel.SetBoardDesclistListAttr(BoarddescList);
 
-            conn.Close();
+            databaseConnection.Close();
             return RedirectToAction("ChooseBoard");
         }
 
  
 
-        public IActionResult CreateBoard(CreateboardModel Cb)
+        public IActionResult createBoard(CreateboardModel createBoardModel)
         {
 
             if (ModelState.IsValid)
             {
 
-                MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+                MySqlConnection databaseConnection= new MySqlConnection(Database_connection.m_connection);
 
-                conn.Open();
+                databaseConnection.Open();
 
-                string txtcmd = $"SELECT* FROM createboard where board_name = '" + Cb.board_name + "' AND user_id = '" + ModelItems.m_userid + "'";
-                MySqlCommand textcmd = new MySqlCommand(txtcmd, conn);
+                string txtcmd = $"SELECT* FROM createboard where board_name = '" + createBoardModel.board_name + "' AND user_id = '" + ModelItems.m_userid + "'";
+                MySqlCommand textcmd = new MySqlCommand(txtcmd, databaseConnection);
                  MySqlDataReader tRead;
 
                     using (tRead = textcmd.ExecuteReader())
@@ -128,22 +128,22 @@ namespace Project_Envision.Controllers
                         {
                             ViewBag.message = "You already have board with that name";
                             tRead.Close();
-                            conn.Close();
+                            databaseConnection.Close();
                             return View("CreateBoard");
                         }
                     }
 
                     string txtcmd2 = $"Insert into createboard (board_name,user_id,username, board_description)" + $"values ( @board_name,@user_id,@username, @board_description) ";
-                    MySqlCommand cmd = new MySqlCommand(txtcmd2, conn);
+                    MySqlCommand cmd = new MySqlCommand(txtcmd2, databaseConnection);
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@board_name", Cb.board_name);
-                    cmd.Parameters.AddWithValue("@board_description", Cb.board_Description);
+                    cmd.Parameters.AddWithValue("@board_name", createBoardModel.board_name);
+                    cmd.Parameters.AddWithValue("@board_description", createBoardModel.board_Description);
                     cmd.Parameters.AddWithValue("@user_id", ModelItems.m_userid);
                     cmd.Parameters.AddWithValue("@username", ModelItems.m_username);
 
                     cmd.Prepare();
                     cmd.ExecuteReader();
-                    conn.Close();
+                    databaseConnection.Close();
                 BoardItems.m_gotBoard = false;
                 return RedirectToAction("ChooseBoard");
             }

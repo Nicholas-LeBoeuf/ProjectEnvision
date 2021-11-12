@@ -93,7 +93,17 @@ namespace Project_Envision.Controllers
             
             BoardModel.m_gotTask = true;
             
-            return RedirectToAction("ProductBacklog","Board");
+            if(DragNDropModel.returnboard == true)
+            {
+                DragNDropModel.returnboard = false;
+                return RedirectToAction("Board","Board");
+            }
+
+            else 
+            {
+                return RedirectToAction("ProductBacklog", "Board");
+            }
+            
         }
 
         public IActionResult Getusernames(BoardModel bm)

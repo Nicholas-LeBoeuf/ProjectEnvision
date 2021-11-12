@@ -19,73 +19,97 @@
             <th>Done</th>
         </tr>
 
+
         @{
-            if (BoardModel.m_Tasklist.Count != 0)
+            if (BoardModel.m_TaskIdlist.Count != 0)
             {
-                for (int i = 0; i < BoardModel.m_Tasklist.Count; i++)
+                for (int i = 0; i < BoardModel.m_TaskIdlist.Count; i++)
                 {
-                    if (BoardModel.m_TaskLocationlist[i] == "Backlog")
+                <tr>
+                    @if (BoardModel.m_TaskLocationlist[i] == "Backlog")
                     {
-                        <tr id="Backlog" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <td>
-                                <div class="boardCard" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_Tasklist[i]>
-                                    <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
-                                </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                    <td id="Backlog" ondrop="location.href='@Url.Action("setLocation", "DragNDrop", new { Location = "Backlog" })', drop(event)" ondragover="allowDrop(event)">
+                        <div>
+                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskId", "DragNDrop", new { taskid = @BoardModel.m_TaskIdlist[i] })'" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_TaskIdlist[i]>
+                                <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
+                            </div>
+                        </div>
+                    </td>
+                    }
+                    else
+                    {
+                    <td id="Backlog" ondrop="location.href='@Url.Action("setLocation", "DragNDrop", new { Location = "Backlog" })', drop(event)" ondragover="allowDrop(event)">
+                        <div>
+                        </div>
+                    </td>
                     }
 
-                    else if (BoardModel.m_TaskLocationlist[i] == "In Progress")
+                    @if (BoardModel.m_TaskLocationlist[i] == "In Progress")
                     {
-                        <tr id="In Progress" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <td></td>
-                            <td>
-                                <div class="boardCard" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_Tasklist[i] v>
-                                    <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
-                                </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                    <td id="In Progress" ondrop="location.href= '@Url.Action("setLocation", "DragNDrop", new { Location = "In Progress" })', drop(event)" ondragover="allowDrop(event)">
+                        <div>
+                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskId", "DragNDrop", new { taskid = @BoardModel.m_TaskIdlist[i] })'" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_TaskIdlist[i]>
+                                <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
+                            </div>
+                        </div>
+
+                    </td>
+                    }
+                    else
+                    {
+                    <td id="In Progress" ondrop="location.href= '@Url.Action("setLocation", "DragNDrop", new { Location = "In Progress" })', drop(event)" ondragover="allowDrop(event)">
+                        <div>
+                        </div>
+
+                    </td>
                     }
 
-                    else if (BoardModel.m_TaskLocationlist[i] == "Testing")
+                    @if (BoardModel.m_TaskLocationlist[i] == "Testing")
                     {
-                        <tr id="Testing" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <div class="boardCard" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_Tasklist[i]>
-                                    <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
-                                </div>
-                            </td>
-                            <td></td>
-                        </tr>
+                    <td id="Testing" ondrop="location.href= '@Url.Action("setLocation", "DragNDrop", new { location = "Testing" })', drop(event)" ondragover="allowDrop(event)">
+                        <div>
+                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskId", "DragNDrop", new { taskid = @BoardModel.m_TaskIdlist[i] })'" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_TaskIdlist[i]>
+                                <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
+                            </div>
+                        </div>
+                    </td>
+                    }
+                    else
+                    {
+                    <td id="Testing" ondrop="location.href= '@Url.Action("setLocation", "DragNDrop", new { location = "Testing" })', drop(event)" ondragover="allowDrop(event)">
+                        <div>
+                        </div>
+                    </td>
                     }
 
-                    else if (BoardModel.m_TaskLocationlist[i] == "Done")
+                    @if (BoardModel.m_TaskLocationlist[i] == "Done")
                     {
-                        <tr id="Done" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <div class="boardCard" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_Tasklist[i]>
-                                    <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
-                                </div>
-                            </td>
-                        </tr>
+                    <td id="Done" ondrop="location.href = '@Url.Action("setLocation", "DragNDrop", new { location = "Done" })', drop(event)" ondragover="allowDrop(event)">
+                        <div>
+                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskId", "DragNDrop", new { taskid = @BoardModel.m_TaskIdlist[i] })'" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_TaskIdlist[i]>
+                                <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
+                            </div>
+                        </div>
+                    </td>
                     }
+                    else
+                    {
+                    <td id="Done" ondrop="location.href = '@Url.Action("setLocation", "DragNDrop", new { location = "Done" })', drop(event)" ondragover="allowDrop(event)">
+                        <div>
+                        </div>
+                    </td>
+                    }
+                    
+                </tr>
                 }
             }
-        }
-    </table>
+            }
+
+                </table>
 </div>
 
 <script>
+
     function allowDrop(ev) {
         ev.preventDefault();
     }
@@ -96,7 +120,8 @@
 
     function drop(ev) {
         ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
+         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
     }
+
 </script>
