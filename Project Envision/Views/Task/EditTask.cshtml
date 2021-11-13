@@ -5,48 +5,59 @@
 }
 <link rel="stylesheet" href="~/css/Task.css" />
 <link rel="stylesheet" href="~/css/Buttons.css" />
+<link rel="stylesheet" href="~/css/Inputs.css" />
 
 <div class="box" method="post">
     <div class="taskContainer">
         <form>
             <img src="~/images/logo2.png" />
-            <label id="TaskNameLabel" asp-for="Task_name">Task Name:</label>
-            <input type="text" name="Task_name" asp-for="Task_name" value=@TaskPropertiesModel.getTask_name autocomplete="off" required="" />
 
-            <br />
-            <label for="Task_Description" asp-for="Task_Description">Description:</label>
-            <textarea id="Task_Description" name="Task_Description" rows="4" cols="25">@TaskPropertiesModel.getTask_Description</textarea>
-
-            <br />
-            <br />
-
-            <label id="TaskPointsLabel" asp-for="Task_points">Task Points:</label>
-            <input type="number" min="0" max="100" name="Task_points" asp-for="Task_points" value=@TaskPropertiesModel.getTask_points required="" />
+            <div class="secondaryInput">
+                <label id="TaskNameLabel" asp-for="Task_name">Task Name:</label>
+                <input type="text" name="Task_name" asp-for="Task_name" value=@TaskPropertiesModel.getTask_name autocomplete="off" required="" />
+            </div>
 
             <br />
 
-            <label for="Assignee" asp-for="Assignee">Choose a Assignee:</label>
+            <div class="secondaryInput">
+                <label for="Task_Description" asp-for="Task_Description">Description:</label>
+                <textarea id="Task_Description" name="Task_Description" rows="4" cols="25">@TaskPropertiesModel.getTask_Description</textarea>
+            </div>
 
-            <select name="Assignee" id="Assignee" asp-for="Assignee">
+            <br />
+            <br />
 
-                @{
-                    <option value=@TaskPropertiesModel.getAssignee> @TaskPropertiesModel.getAssignee </option>
+            <div class="secondaryInput">
+                <label id="TaskPointsLabel" asp-for="Task_points">Task Points:</label>
+                <input type="number" min="0" max="100" name="Task_points" asp-for="Task_points" value=@TaskPropertiesModel.getTask_points required="" />
+            </div>
 
-                    if (TaskPropertiesModel.getAssignee != "None")
-                    {
-                        <option value="None"> None</option>
-                    }
+            <br />
 
-                    for (int i = 0; i < BoardModel.m_usernamelist.Count(); i++)
-                    {
-                        if (BoardModel.m_usernamelist[i] != TaskPropertiesModel.getAssignee && BoardModel.m_usernamelist[i] != null)
+            <div class="secondaryInput">
+                <label for="Assignee" asp-for="Assignee">Choose a Assignee:</label>
+
+                <select name="Assignee" id="Assignee" asp-for="Assignee">
+
+                    @{
+                        <option value=@TaskPropertiesModel.getAssignee> @TaskPropertiesModel.getAssignee </option>
+
+                        if (TaskPropertiesModel.getAssignee != "None")
                         {
+                            <option value="None"> None</option>
+                        }
 
-                            <option value=@BoardModel.m_usernamelist[i]> @BoardModel.m_usernamelist[i]</option>
+                        for (int i = 0; i < BoardModel.m_usernamelist.Count(); i++)
+                        {
+                            if (BoardModel.m_usernamelist[i] != TaskPropertiesModel.getAssignee && BoardModel.m_usernamelist[i] != null)
+                            {
+
+                                <option value=@BoardModel.m_usernamelist[i]> @BoardModel.m_usernamelist[i]</option>
+                            }
                         }
                     }
-                }
-            </select>
+                </select>
+            </div>
             <br />
             <div class="buttons">
                 <input type="submit" class="buttonStyle editCreateButton" value="Edit Task" />
