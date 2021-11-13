@@ -35,3 +35,106 @@
     top: -12px;
     font-size: 12px;
 }
+
+
+
+.secondaryInput input[type="text"] {
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width: 380px;
+    padding: 6px 15px 6px 15px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    margin-left: 12px;
+    margin-right: 12px;
+    direction: ltr;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    text-align: center;
+}
+
+.secondaryInput input[type="text"]:focus {
+    background: #ccc;
+    color: #6a6f75;
+    outline: none;
+}
+
+.secondaryInput input[type="number"] {
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width: 380px;
+    padding: 6px 15px 6px 15px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    margin-left: 12px;
+    margin-right: 12px;
+    direction: ltr;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    text-align: center;
+}
+
+.secondaryInput input[type="number"]:focus {
+    background: #ccc;
+    color: #6a6f75;
+    outline: none;
+}
+
+.secondaryInput input:before {
+    content: '\A';
+    white-space: pre;
+}
+
+.secondaryInput textarea {
+    resize: none;
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width: 380px;
+    padding: 6px 15px 6px 15px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin: 3px 12px;
+    direction: ltr;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    text-align: center;
+    font-family: Arial;
+}
+
+.secondaryInput textarea:focus {
+    background: #ccc;
+    color: #6a6f75;
+    margin: 3px 12px;
+    outline: none;
+}
+
+.secondaryInput input, label {
+    display: block;
+}
+
+.secondaryInput text, label {
+    display: block;
+}
+
+.secondaryInput label {
+    text-align: center;
+    color: #e16e12;
+    font-family: 'Lucida Bright';
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 0;
+}
