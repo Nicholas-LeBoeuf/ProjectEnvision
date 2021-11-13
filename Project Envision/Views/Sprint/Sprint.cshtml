@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "Sprint";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Sprint.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
+<link rel="stylesheet" href="~/css/Inputs.css" />
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<div class="box">
+    <div class="tab"> @*For loop here to make buttons for each sprint the user has?*@
+        <button type="button" class="createSprintButton" data-toggle="modal" data-target="#exampleModal">Create Sprint</button>
+        <button class="tablinks" onclick="openTab(event, 'Sprint 1')">Sprint 1</button>
+        <button class="tablinks" onclick="openTab(event, 'Sprint 2')">Sprint 2</button>
+        <button class="tablinks" onclick="openTab(event, 'Sprint 3')">Sprint 3</button>
+    </div>
+
+    @*Have one div and have another for loop for each sprint to gather the tasks?*@
+    <div id="Sprint 1" class="tabcontent">
+        <p>Insert sprint description here</p>
+        <table style="color: white;">
+            <tr>
+                <th>Task Name</th>
+                <th>Task Description</th>
+                <th>Assigned To</th>
+                <th>Story Points</th>
+            </tr>
+            <tr>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="Sprint 2" class="tabcontent">
+
+    </div>
+
+    <div id="Sprint 3" class="tabcontent">
+
+    </div>
+</div>
+
+<form method="post" asp-action="Index" asp-controller="Home">
+    <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Sprint</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="secondaryInput">
+                        <label>Sprint Name:</label>
+                        <input class="secondaryInput" type="text" autocomplete="off" placeholder="Sprint Name" required="" />
+                    </div>
+
+                    <br />
+                    <div class="secondaryInput">
+                        <label>Sprint Description:</label>
+                        <textarea cols="25" rows="4" placeholder="Sprint Description" id="description" maxlength="100"></textarea>
+                    </div>
+
+                    <br />
+                    <div class="secondaryInput">
+                        <label>Sprint Start Time:</label>
+                        <input type="datetime-local" min="">
+                    </div>
+
+                    <br />
+
+                    <div class="secondaryInput">
+                        <label>Sprint End Time:</label>
+                        <input type="datetime-local" min="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="buttonStyle">Create Sprint</button>
+                        <button type="button" class="buttonStyle" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnclick").click(function () {
+            $("#login").modal('show');
+        });
+
+        $("#HidebtnModal").click(function () {
+            $("#login").modal('hide');
+        });
+    });
+</script>

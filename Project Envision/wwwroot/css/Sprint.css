@@ -1,0 +1,79 @@
+﻿.box {
+    position: absolute;
+    height: 75%;
+    width: 75%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 0px;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: #f1f1f1;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.tab button:hover {
+    background-color: #e16e12;
+}
+
+.tab button.active {
+    background-color: #e16e12;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.createSprintButton {
+    background-color: #e16e12;
+}
+
+table, th, td {
+    border: 1px solid white;
+    font-family: 'Lucida Bright';
+    font-weight: bold;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+table {
+    margin: 0 auto;
+    margin: 0px;
+}
+
+th {
+    color: #e16e12;
+}
+
+th, td {
+    text-align: center;
+    padding-left: 75px;
+    padding-right: 75px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    min-width: 50px;
+}
+
+p {
+    color: white;
+}

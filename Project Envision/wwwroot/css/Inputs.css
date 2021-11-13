@@ -1,0 +1,140 @@
+﻿.textInputContainer {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.textInputContainer label {
+    font-family: 'Lucida Bright';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: all 0.5s ease-in-out;
+}
+
+.textInputContainer input {
+    border: 0;
+    border-bottom: 1px solid #555;
+    background: transparent;
+    width: 100%;
+    padding: 8px 0 5px 0;
+    font-size: 16px;
+    color: #fff;
+}
+
+.textInputContainer input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #e74c3c;
+}
+
+.textInputContainer input:focus ~ label,
+.textInputContainer input:valid ~ label {
+    top: -12px;
+    font-size: 12px;
+}
+
+
+
+.secondaryInput input[type="text"] {
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width: 380px;
+    padding: 6px 15px 6px 15px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    margin-left: 12px;
+    margin-right: 12px;
+    direction: ltr;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    text-align: center;
+}
+
+.secondaryInput input[type="text"]:focus {
+    background: #ccc;
+    color: #6a6f75;
+    outline: none;
+}
+
+.secondaryInput input[type="number"] {
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width: 380px;
+    padding: 6px 15px 6px 15px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    margin-left: 12px;
+    margin-right: 12px;
+    direction: ltr;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    text-align: center;
+}
+
+.secondaryInput input[type="number"]:focus {
+    background: #ccc;
+    color: #6a6f75;
+    outline: none;
+}
+
+.secondaryInput input:before {
+    content: '\A';
+    white-space: pre;
+}
+
+.secondaryInput textarea {
+    resize: none;
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width: 380px;
+    padding: 6px 15px 6px 15px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin: 3px 12px;
+    direction: ltr;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    text-align: center;
+    font-family: Arial;
+}
+
+.secondaryInput textarea:focus {
+    background: #ccc;
+    color: #6a6f75;
+    margin: 3px 12px;
+    outline: none;
+}
+
+.secondaryInput input, label {
+    display: block;
+}
+
+.secondaryInput text, label {
+    display: block;
+}
+
+.secondaryInput label {
+    text-align: center;
+    color: #e16e12;
+    font-family: 'Lucida Bright';
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 0;
+}

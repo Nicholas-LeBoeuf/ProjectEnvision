@@ -39,37 +39,6 @@ th, td {
     min-width: 50px;
 }
 
-.button {
-    font-family: 'Lucida Bright';
-    font-weight: bold;
-    width: 165px;
-    height: 50px;
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 8px;
-}
-
-.homeButtons {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    background-color: #e16e12;
-    color: black;
-    border: 2px solid #000;
-}
-
-.homeButtons:hover {
-    background-color: #696969;
-    color: #ff9036;
-}
-
 ::-webkit-scrollbar {
     width: 20px;
 }
@@ -104,4 +73,10 @@ th, td {
 
 .fa-trash:hover {
     color: #FF2323;
+}
+
+.createTaskButton {
+    width: 165px;
+    height: 50px;
+    padding: 13px 32px;
 }
