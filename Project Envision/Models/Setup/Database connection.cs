@@ -7,6 +7,6 @@ namespace Project_Envision.Models
 {
     public class Database_connection
     {
-        public static string m_connection = "server=project-database.czn4vxjqskvq.us-east-2.rds.amazonaws.com; Username= admin; Password = Ivz8116unnet!; persistsecurityinfo=True;database= project";
+        public static string m_connection = "server=localhost; Username= root; Password = password; persistsecurityinfo=True;database= project";
     }
 }

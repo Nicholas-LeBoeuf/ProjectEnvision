@@ -4,25 +4,25 @@
 }
 
 <link rel="stylesheet" href="~/css/Login.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
+<link rel="stylesheet" href="~/css/Inputs.css" />
 
 <div class="box">
     <form asp-action="Login" method="post">
         <div id="loginLogo"></div>
-        <div class="loginContainer">
+        <div class="textInputContainer">
             <input type="text" name="username" required="" autocomplete="off" />
             <label>Username</label>
             <span asp-validation-for="Username" class="text-danger"></span>
         </div>
-        <div class="loginContainer">
+        <div class="textInputContainer">
             <input type="password" required="" name="password" autocomplete="off" />
             <label>Password</label>
             <span asp-validation-for="password" class="text-danger"></span>
             <a href='@Url.Action("ForgotPassword1")'>Forgot Password?</a>
         </div>
-        <div class="buttons">
-            <input type="submit" class="button homeButtons" value="Login" onclick="location.href='@Url.Action("GetBoardItems", "Board")'"/>
-            <input type="button" class="button homeButtons" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
-        </div>
+        <input type="submit" class="buttonStyle loginButton" value="Login" onclick="location.href='@Url.Action("GetBoardItems", "Board")'"/>
+        <input type="button" class="buttonStyle cancelButton" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
     </form>
 </div>
 

@@ -2,10 +2,11 @@
 @{ ViewData["Title"] = "CreateTask";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml"; }
 
-<link rel="stylesheet" href="~/css/CreateTask.css" />
+<link rel="stylesheet" href="~/css/Task.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
 
 <div class="box" method="post">
-    <div class="createTaskContainer">
+    <div class="taskContainer">
         <form>
             <img src="~/images/logo2.png" />
             <label id="TaskNameLabel" asp-for="Task_name">Task Name:</label>
@@ -20,7 +21,7 @@
             <br />
 
             <label id="TaskPointsLabel" asp-for="Task_points">Task Points:</label>
-            <input type="number" min="0" max="100" name="Task_points" asp-for="Task_points" placeholder="Task Points" required="" />
+            <input type="number" min="1" max="21" name="Task_points" asp-for="Task_points" placeholder="Task Points" required="" />
 
             <br />
 
@@ -29,10 +30,7 @@
             <select name="Assignee" id="Assignee" asp-for="Assignee">
                 @{
 
-                    if (TaskPropertiesModel.getAssignee != "None")
-                    {
-                        <option value="None"> None</option>
-                    }
+                    <option value="None"> None</option>
 
                     for (int i = 0; i < BoardModel.m_usernamelist.Count(); i++)
                     {
@@ -44,10 +42,10 @@
                     }
                 }
             </select>
-
+            <br />
             <div class="buttons">
-                <input type="submit" class="button homeButtons createButton" value="Create Task" />
-                <input type="button" class="button homeButtons cancelButton" value="Cancel" onclick="location.href='@Url.Action("ProductBacklog", "Board")'" />
+                <input type="submit" class="buttonStyle editCreateButton" value="Create Task" />
+                <input type="button" class="buttonStyle cancelButton" value="Cancel" onclick="location.href='@Url.Action("ProductBacklog", "Board")'" />
             </div>
         </form>
     </div>
