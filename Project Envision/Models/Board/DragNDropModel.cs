@@ -7,6 +7,7 @@ namespace Project_Envision.Models
 {
     public class DragNDropModel
     {
+        public static string currentLocation;
         public static string location;
         public static int taskid;
         public static bool returnboard;

@@ -133,16 +133,16 @@ namespace Project_Envision.Controllers
                         }
                     }
 
-                    string txtcmd2 = $"Insert into createboard (board_name,user_id,username, board_description)" + $"values ( @board_name,@user_id,@username, @board_description) ";
-                    MySqlCommand cmd = new MySqlCommand(txtcmd2, databaseConnection);
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@board_name", createBoardModel.board_name);
-                    cmd.Parameters.AddWithValue("@board_description", createBoardModel.board_Description);
-                    cmd.Parameters.AddWithValue("@user_id", ModelItems.m_userid);
-                    cmd.Parameters.AddWithValue("@username", ModelItems.m_username);
+                    string insetcommand = $"Insert into createboard (board_name,user_id,username, board_description)" + $"values ( @board_name,@user_id,@username, @board_description) ";
+                    MySqlCommand command = new MySqlCommand(insetcommand, databaseConnection);
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@board_name", createBoardModel.board_name);
+                    command.Parameters.AddWithValue("@board_description", createBoardModel.board_Description);
+                    command.Parameters.AddWithValue("@user_id", ModelItems.m_userid);
+                    command.Parameters.AddWithValue("@username", ModelItems.m_username);
 
-                    cmd.Prepare();
-                    cmd.ExecuteReader();
+                    command.Prepare();
+                    command.ExecuteReader();
                     databaseConnection.Close();
                 BoardItems.m_gotBoard = false;
                 return RedirectToAction("ChooseBoard");

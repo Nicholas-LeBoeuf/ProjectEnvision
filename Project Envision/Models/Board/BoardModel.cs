@@ -15,6 +15,7 @@ namespace Project_Envision.Models
         public static List<int> m_TaskPointslist;
         public static bool m_gotTask;
 
+
         public void SetAsigneeListAttr(List<string> Assigneelist)
         {
             m_Assigneelist = Assigneelist;
