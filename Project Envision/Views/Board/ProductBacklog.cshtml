@@ -19,21 +19,21 @@
             <th>Delete Task</th>
         </tr>
 
-        @{ for (int i = 0; i < BoardModel.m_TaskIdlist.Count(); i++)
+        @{ for (int i = 0; i < boardModel.m_TaskIdList.Count(); i++)
             {
                 <tr>
 
-                    <td>@BoardModel.m_Tasklist[i]</td>
-                    <td>@BoardModel.m_Taskdescriptlist[i]</td>
-                    <td>@BoardModel.m_Assigneelist[i]</td>
-                    <td>@BoardModel.m_TaskPointslist[i]</td>
+                    <td>@boardModel.m_TaskList[i]</td>
+                    <td>@boardModel.m_TaskDescriptList[i]</td>
+                    <td>@boardModel.m_AssigneeList[i]</td>
+                    <td>@boardModel.m_TaskPointsList[i]</td>
                     <td>
-                        <a onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @BoardModel.m_TaskIdlist[i] })'">
+                        <a onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
                             <i class="fas fa-pen fa-2x"></i>
                         </a>
                     </td>
                     <td>
-                        <a onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @BoardModel.m_TaskIdlist[i] })'">
+                        <a onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
                             <i class="fas fa-trash fa-2x"></i>
                         </a>
                     </td>

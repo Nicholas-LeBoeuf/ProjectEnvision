@@ -8,40 +8,40 @@ namespace Project_Envision.Models.Board
     public class GetTaskProperties
     {
 
-        public static string getTask_name { get; set; }
-        public void SetgetTaskname(string getTaskName)
+        public static string getTask_Name { get; set; }
+        public void setGetTaskName(string getTaskName)
         {
-            getTask_name = getTaskName;
+            getTask_Name = getTaskName;
         }
 
         public static string getTask_Description { get; set; }
-        public void SetTaskDescript(string getTaskDescript)
+        public void setTaskDescript(string getTaskDescript)
         {
             getTask_Description = getTaskDescript;
         }
 
-        public static int getTask_points { get; set; }
-        public void SetTaskPoints(int getTaskPoints)
+        public static int getTask_Points { get; set; }
+        public void setTaskPoints(int getTaskPoints)
         {
-            getTask_points = getTaskPoints;
+            getTask_Points = getTaskPoints;
         }
 
         public static string getAssignee { get; set; }
-        public void SetgetAssignee(string Assignee)
+        public void setGetAssignee(string assignee)
         {
-            getAssignee = Assignee;
+            getAssignee = assignee;
         }
 
-        public static string getusername { get; set; }
-        public void Setgetusername(string Getusername)
+        public static string getUsername { get; set; }
+        public void setGetUsername(string Username)
         {
-            getusername = Getusername;
+            getUsername = Username;
         }
 
-        public static string getlocation { get; set; }
-        public void Setlocation(string getLocation)
+        public static string getLocation { get; set; }
+        public void setLocation(string location)
         {
-            getlocation = getLocation;
+            getLocation = location;
         }
 
     }

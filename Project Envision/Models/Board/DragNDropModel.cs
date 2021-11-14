@@ -9,7 +9,7 @@ namespace Project_Envision.Models
     {
         public static string currentLocation;
         public static string location;
-        public static int taskid;
-        public static bool returnboard;
+        public static int taskId;
+        public static bool returnBoard;
     }
 }

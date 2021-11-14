@@ -21,17 +21,17 @@
 
 
         @{
-            if (BoardModel.m_TaskIdlist.Count != 0)
+            if (boardModel.m_TaskIdList.Count != 0)
             {
-                for (int i = 0; i < BoardModel.m_TaskIdlist.Count; i++)
+                for (int i = 0; i < boardModel.m_TaskIdList.Count; i++)
                 {
                 <tr>
-                    @if (BoardModel.m_TaskLocationlist[i] == "Backlog")
+                    @if (boardModel.m_TaskLocationList[i] == "Backlog")
                     {
                     <td id="Backlog" ondrop="location.href='@Url.Action("setLocation", "DragNDrop", new { Location = "Backlog" })', drop(event)" ondragover="allowDrop(event)">
                         <div>
-                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskId", "DragNDrop", new { taskid = @BoardModel.m_TaskIdlist[i] })', location.href='@Url.Action("setCurrentLocation", "DragNDrop", new { CurrentLocation = "Backlog"})'" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_TaskIdlist[i]>
-                                <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
+                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskId", "DragNDrop", new { taskid = @boardModel.m_TaskIdList[i] })', location.href='@Url.Action("setCurrentLocation", "DragNDrop", new { CurrentLocation = "Backlog"})'" draggable="true" ondragstart="drag(event)" id=@boardModel.m_TaskIdList[i]>
+                                <p class="cardContent">@boardModel.m_TaskList[i]</p>
                             </div>
                         </div>
                     </td>
@@ -44,12 +44,12 @@
                     </td>
                     }
 
-                    @if (BoardModel.m_TaskLocationlist[i] == "In Progress")
+                    @if (boardModel.m_TaskLocationList[i] == "In Progress")
                     {
                     <td id="In Progress" ondrop="location.href= '@Url.Action("setLocation", "DragNDrop", new { Location = "In Progress" })', drop(event)" ondragover="allowDrop(event)">
                         <div>
-                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskId", "DragNDrop", new { taskid = @BoardModel.m_TaskIdlist[i] })', location.href='@Url.Action("setCurrentLocation", "DragNDrop", new { CurrentLocation = "In Progress"})'" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_TaskIdlist[i]>
-                                <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
+                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskId", "DragNDrop", new { taskid = @boardModel.m_TaskIdList[i] })', location.href='@Url.Action("setCurrentLocation", "DragNDrop", new { CurrentLocation = "In Progress"})'" draggable="true" ondragstart="drag(event)" id=@boardModel.m_TaskIdList[i]>
+                                <p class="cardContent">@boardModel.m_TaskList[i]</p>
                             </div>
                         </div>
 
@@ -64,12 +64,12 @@
                     </td>
                     }
 
-                    @if (BoardModel.m_TaskLocationlist[i] == "Testing")
+                    @if (boardModel.m_TaskLocationList[i] == "Testing")
                     {
                     <td id="Testing" ondrop="location.href= '@Url.Action("setLocation", "DragNDrop", new { location = "Testing" })', drop(event)" ondragover="allowDrop(event)">
                         <div>
-                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskId", "DragNDrop", new { taskid = @BoardModel.m_TaskIdlist[i] })', location.href='@Url.Action("setCurrentLocation", "DragNDrop", new { CurrentLocation = "Testing"})'" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_TaskIdlist[i]>
-                                <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
+                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskId", "DragNDrop", new { taskid = @boardModel.m_TaskIdList[i] })', location.href='@Url.Action("setCurrentLocation", "DragNDrop", new { CurrentLocation = "Testing"})'" draggable="true" ondragstart="drag(event)" id=@boardModel.m_TaskIdList[i]>
+                                <p class="cardContent">@boardModel.m_TaskList[i]</p>
                             </div>
                         </div>
                     </td>
@@ -82,12 +82,12 @@
                     </td>
                     }
 
-                    @if (BoardModel.m_TaskLocationlist[i] == "Done")
+                    @if (boardModel.m_TaskLocationList[i] == "Done")
                     {
                     <td id="Done" ondrop="location.href = '@Url.Action("setLocation", "DragNDrop", new { location = "Done" })', drop(event)" ondragover="allowDrop(event)">
                         <div>
-                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskId", "DragNDrop", new { taskid = @BoardModel.m_TaskIdlist[i] })', location.href='@Url.Action("setCurrentLocation", "DragNDrop", new { CurrentLocation = "Done"})'" draggable="true" ondragstart="drag(event)" id=@BoardModel.m_TaskIdlist[i]>
-                                <p class="cardContent">@BoardModel.m_Tasklist[i]</p>
+                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskId", "DragNDrop", new { taskid = @boardModel.m_TaskIdList[i] })', location.href='@Url.Action("setCurrentLocation", "DragNDrop", new { CurrentLocation = "Done"})'" draggable="true" ondragstart="drag(event)" id=@boardModel.m_TaskIdList[i]>
+                                <p class="cardContent">@boardModel.m_TaskList[i]</p>
                             </div>
                         </div>
                     </td>

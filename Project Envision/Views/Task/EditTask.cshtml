@@ -13,31 +13,31 @@
             <img src="~/images/logo2.png" />
 
             <div class="secondaryInput">
-                <label id="TaskNameLabel" asp-for="Task_name">Task Name:</label>
-                <input type="text" name="Task_name" asp-for="Task_name" value=@TaskPropertiesModel.getTask_name autocomplete="off" required="" />
+                <label id="TaskNameLabel" asp-for="task_Name">Task Name:</label>
+                <input type="text" name="task_Name" asp-for="task_Name" value=@TaskPropertiesModel.getTask_Name autocomplete="off" required="" />
             </div>
 
             <br />
 
             <div class="secondaryInput">
-                <label for="Task_Description" asp-for="Task_Description">Description:</label>
-                <textarea id="Task_Description" name="Task_Description" rows="4" cols="25">@TaskPropertiesModel.getTask_Description</textarea>
+                <label for="task_Description" asp-for="task_Description">Description:</label>
+                <textarea id="task_Description" name="task_Description" rows="4" cols="25">@TaskPropertiesModel.getTask_Description</textarea>
             </div>
 
             <br />
             <br />
 
             <div class="secondaryInput">
-                <label id="TaskPointsLabel" asp-for="Task_points">Task Points:</label>
-                <input type="number" min="0" max="100" name="Task_points" asp-for="Task_points" value=@TaskPropertiesModel.getTask_points required="" />
+                <label id="TaskPointsLabel" asp-for="task_Points">Task Points:</label>
+                <input type="number" min="0" max="100" name="task_Points" asp-for="task_Points" value=@TaskPropertiesModel.getTask_Points required="" />
             </div>
 
             <br />
 
             <div class="secondaryInput">
-                <label for="Assignee" asp-for="Assignee">Choose a Assignee:</label>
+                <label for="Assignee" asp-for="assignee">Choose a assignee:</label>
 
-                <select name="Assignee" id="Assignee" asp-for="Assignee">
+                <select name="Assignee" id="Assignee" asp-for="assignee">
 
                     @{
                         <option value=@TaskPropertiesModel.getAssignee> @TaskPropertiesModel.getAssignee </option>
@@ -47,12 +47,12 @@
                             <option value="None"> None</option>
                         }
 
-                        for (int i = 0; i < BoardModel.m_usernamelist.Count(); i++)
+                        for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
                         {
-                            if (BoardModel.m_usernamelist[i] != TaskPropertiesModel.getAssignee && BoardModel.m_usernamelist[i] != null)
+                            if (boardModel.m_UsernameList[i] != TaskPropertiesModel.getAssignee && boardModel.m_UsernameList[i] != null)
                             {
 
-                                <option value=@BoardModel.m_usernamelist[i]> @BoardModel.m_usernamelist[i]</option>
+                                <option value=@boardModel.m_UsernameList[i]> @boardModel.m_UsernameList[i]</option>
                             }
                         }
                     }

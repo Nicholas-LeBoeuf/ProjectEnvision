@@ -5,25 +5,25 @@ using System.Threading.Tasks;
 
 namespace Project_Envision.Models
 {
-    public class ChooseBoardModel : BoardItems
+    public class ChooseBoardModel : boardItems
     {
-        public static List<int> m_Boardidlist;
-        public static List<string> m_Boardlist;
-        public static List<string> m_BoardDesclist;
+        public static List<int> m_BoardIdList;
+        public static List<string> m_BoardList;
+        public static List<string> m_BoardDescList;
 
-        public void SetBoardidlistListAttr(List<int> Boardidlist)
+        public void setBoardIdListAttr(List<int> boardIdList)
         {
-            m_Boardidlist = Boardidlist;
+            m_BoardIdList = boardIdList;
         }
 
-        public void SetBoardlistListAttr(List<string> Boardlist)
+        public void setBoardListAttr(List<string> boardList)
         {
-            m_Boardlist = Boardlist;
+            m_BoardList = boardList;
         }
 
-        public void SetBoardDesclistListAttr(List<string> BoardDesclist)
+        public void setBoardDescListAttr(List<string> boardDescList)
         {
-            m_BoardDesclist = BoardDesclist;
+            m_BoardDescList = boardDescList;
         }
 
     }
