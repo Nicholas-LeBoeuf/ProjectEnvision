@@ -218,10 +218,8 @@ namespace Project_Envision.Controllers
             return View();
         }
 
-        public IActionResult ForgotPassword2(ForgotPassword2 forgotPassword2)
+     /*   public IActionResult ForgotPassword2(ForgotPassword2 forgotPassword2)
         {
-
-
             if (forgotPassword2.SecurityCode == ModelItems.code)
             {
                 return View("ForgotPassword3");
@@ -231,6 +229,11 @@ namespace Project_Envision.Controllers
                 ViewBag.message = "Incorrect Code";
                 return View();
             }
+        }*/
+
+        public IActionResult ForgotPassword2()
+        {
+            return View("ForgotPassword2");
         }
 
         public IActionResult ForgotPassword3(ForgotPassword3 forgotPassword3)
