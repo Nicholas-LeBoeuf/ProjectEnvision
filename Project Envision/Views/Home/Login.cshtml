@@ -21,7 +21,7 @@
             <span asp-validation-for="password" class="text-danger"></span>
             <a href='@Url.Action("ForgotPassword1")'>Forgot Password?</a>
         </div>
-        <input type="submit" class="buttonStyle loginButton" value="Login" onclick="location.href='@Url.Action("GetBoardItems", "Board")'"/>
+        <input type="submit" class="buttonStyle loginButton" value="Login" onclick="location.href='@Url.Action("login", "Home")'"/>
         <input type="button" class="buttonStyle cancelButton" value="Cancel" onclick="location.href='@Url.Action("Index")'" />
     </form>
 </div>

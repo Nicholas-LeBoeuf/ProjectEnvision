@@ -32,6 +32,8 @@ namespace Project_Envision.Controllers
             string username = loginModel.username;
             string password = loginModel.password;
 
+            if(username != null || password != null)
+            { 
             connection.Open();
             string selectCommand = $"SELECT* FROM users where username = '" + username + "' AND password = '" + password + "'"; // the command
             MySqlCommand command = new MySqlCommand(selectCommand, connection);
@@ -80,6 +82,7 @@ namespace Project_Envision.Controllers
 
                 }
 
+            }
             }
             return View("Login");
         }
