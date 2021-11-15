@@ -14,14 +14,14 @@ namespace Project_Envision.Models
     {
         [Required(ErrorMessage = " ")]
         [Display(Name = "UserName")]
-        public string Username { get => username; set => m_username = value; }
+        public string usernameInput { get => username; set => m_Username = value; }
   
         [Required(ErrorMessage = " ")]
         [DataType(DataType.Password)]
         [Display(Name = "Pass")]
         public string password { get; set; }
 
-        public int id { get => Id; set => m_userid = value; }
+        public int idInput { get => id; set => m_UserId = value; }
     }
 
 }

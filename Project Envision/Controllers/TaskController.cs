@@ -16,95 +16,105 @@ namespace Project_Envision.Controllers
             return View();
         }
 
-        public IActionResult Deletetask(int taskid)
+        public IActionResult deleteTask(int taskId)
         {
-            DeletetaskParts(taskid, "tasks");
+            deleteTaskParts(taskId, "tasks");
 
-            BoardModel.m_gotTask = false;
+            boardModel.m_GotTask = false;
             
-            if (BoardModel.m_gotTask == false)
+            if (boardModel.m_GotTask == false)
             {
-                return RedirectToAction("GetTask");
+                return RedirectToAction("getTask");
             }
 
             return View();
         }
 
-        void DeletetaskParts(int taskid, string tableName)
+        void deleteTaskParts(int taskId, string tableName)
         {
 
-            MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
-            conn.Open();
+            connection.Open();
 
-            MySqlCommand DeleteTaskpart = conn.CreateCommand();
+            MySqlCommand deleteTaskpart = connection.CreateCommand();
 
-            DeleteTaskpart.CommandText = "Delete FROM " + tableName + " where board_id = @boardID AND task_id = @taskId";
+            deleteTaskpart.CommandText = "Delete FROM " + tableName + " where board_id = @boardID AND task_id = @taskId";
 
-            DeleteTaskpart.Parameters.AddWithValue("@boardID", BoardModel.m_Boardid);
-            DeleteTaskpart.Parameters.AddWithValue("@taskId", taskid);
+            deleteTaskpart.Parameters.AddWithValue("@boardID", boardModel.m_BoardId);
+            deleteTaskpart.Parameters.AddWithValue("@taskId", taskId);
 
-            DeleteTaskpart.Prepare();
-            DeleteTaskpart.ExecuteReader();
-            conn.Close();
+            deleteTaskpart.Prepare();
+            deleteTaskpart.ExecuteReader();
+            connection.Close();
         }
 
-        public IActionResult GetTask(BoardModel bm)
+        public IActionResult getTask(boardModel boardModel)
         {
-            MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
-            conn.Open();
+            connection.Open();
 
-            MySqlCommand getTasks = conn.CreateCommand();
-            getTasks.CommandText = "SELECT taskname, location, task_id, taskdescription, task_points, user_id FROM tasks where board_id= @boardID";
-            getTasks.Parameters.AddWithValue("@boardID", bm.Boardid);
+            MySqlCommand getTasks = connection.CreateCommand();
+            getTasks.CommandText = "SELECT taskname, location, task_id, taskdescription, task_Points, user_id FROM tasks where board_id= @boardID";
+            getTasks.Parameters.AddWithValue("@boardID", boardModel.boardid);
 
             MySqlDataReader reader = getTasks.ExecuteReader();
 
-            List<string> TaskList = new List<string>();
-            List<string> TaskLocationList = new List<string>();
-            List<string> TaskDescriptList = new List<string>();
-            List<string> AssigneeList = new List<string>();
-            List<int> task_id = new List<int>();
-            List<int> task_points = new List<int>();
-            List<int> user_id = new List<int>();
+            List<string> taskList = new List<string>();
+            List<string> taskLocationList = new List<string>();
+            List<string> taskDescriptList = new List<string>();
+            List<string> assigneeList = new List<string>();
+            List<int> task_Id = new List<int>();
+            List<int> task_Points = new List<int>();
+            List<int> user_Id = new List<int>();
 
             while (reader.Read())
             {
-                TaskList.Add(Convert.ToString(reader[0]));
-                TaskLocationList.Add(Convert.ToString(reader[1]));
-                task_id.Add(Convert.ToInt32(reader[2]));
-                TaskDescriptList.Add(Convert.ToString(reader[3]));
-                task_points.Add(Convert.ToInt32(reader[4]));
+                taskList.Add(Convert.ToString(reader[0]));
+                taskLocationList.Add(Convert.ToString(reader[1]));
+                task_Id.Add(Convert.ToInt32(reader[2]));
+                taskDescriptList.Add(Convert.ToString(reader[3]));
+                task_Points.Add(Convert.ToInt32(reader[4]));
                 getUsername(Convert.ToInt32(reader[5]));
-                AssigneeList.Add(TaskPropertiesModel.getAssignee);
+                assigneeList.Add(TaskPropertiesModel.getAssignee);
 
             }
             reader.Close();
 
-            bm.SetTasklistListAttr(TaskList);
-            bm.SetTaskLocationlistListAttr(TaskLocationList);
-            bm.SetTaskIdlistListAttr(task_id);
-            bm.SetTaskDescriptlistListAttr(TaskDescriptList);
-            bm.SetTaskPointsListAttr(task_points);
-            bm.SetAsigneeListAttr(AssigneeList);
+            boardModel.setTaskListAttr(taskList);
+            boardModel.setTaskLocationListAttr(taskLocationList);
+            boardModel.setTaskIdListAttr(task_Id);
+            boardModel.setTaskDescriptListAttr(taskDescriptList);
+            boardModel.setTaskPointsListAttr(task_Points);
+            boardModel.setAsigneeListAttr(assigneeList);
 
-            conn.Close();
+            connection.Close();
             
-            BoardModel.m_gotTask = true;
+            boardModel.m_GotTask = true;
             
-            return RedirectToAction("ProductBacklog","Board");
+            if(DragNDropModel.returnBoard == true)
+            {
+                DragNDropModel.returnBoard = false;
+                return RedirectToAction("Board","Board");
+            }
+
+            else 
+            {
+                return RedirectToAction("ProductBacklog", "Board");
+            }
+            
         }
 
-        public IActionResult Getusernames(BoardModel bm)
+        public IActionResult getUsernames(boardModel boardModel)
         {
-            MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
-            conn.Open();
+            connection.Open();
 
-            MySqlCommand getTasks = conn.CreateCommand();
-            getTasks.CommandText = "SELECT username FROM createboard where board_id= @boardID";
-            getTasks.Parameters.AddWithValue("@boardID", bm.Boardid);
+            MySqlCommand getTasks = connection.CreateCommand();
+            getTasks.CommandText = "SELECT username FROM Createboard where board_id= @boardID";
+            getTasks.Parameters.AddWithValue("@boardID", boardModel.boardid);
 
             MySqlDataReader reader = getTasks.ExecuteReader();
 
@@ -116,52 +126,52 @@ namespace Project_Envision.Controllers
             }
             reader.Close();
 
-            bm.SetusernamelistListAttr(usernameList);
+            boardModel.setUsernameListAttr(usernameList);
 
-            conn.Close();
+            connection.Close();
 
-            BoardModel.m_gotusers = true;
+            boardModel.m_GotUsers = true;
 
             return RedirectToAction("Board", "Board");
         }
 
         int getUserId( string username)
         {
-            int userid = 0;
+            int userId = 0;
             if (username != "None")
             {
-                MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+                MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
-                conn.Open();
+                connection.Open();
 
-                MySqlCommand getuserid = conn.CreateCommand();
-                getuserid.CommandText = "SELECT user_id FROM users where username= @username";
-                getuserid.Parameters.AddWithValue("@username", username);
+                MySqlCommand getUserId = connection.CreateCommand();
+                getUserId.CommandText = "SELECT user_id FROM users where username= @username";
+                getUserId.Parameters.AddWithValue("@username", username);
 
-                MySqlDataReader reader = getuserid.ExecuteReader();
+                MySqlDataReader reader = getUserId.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    userid = Convert.ToInt32(reader[0]);
+                    userId = Convert.ToInt32(reader[0]);
                 }
             }
 
-            return userid;
+            return userId;
         }
 
-        void getUsername(int userid)
+        void getUsername(int userId)
         {
-            if (userid != 0)
+            if (userId != 0)
             {
-                MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+                MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
-                conn.Open();
+                connection.Open();
 
-                MySqlCommand getusername = conn.CreateCommand();
-                getusername.CommandText = "SELECT username FROM users where user_id= @userId";
-                getusername.Parameters.AddWithValue("@userId", userid);
+                MySqlCommand getUsername = connection.CreateCommand();
+                getUsername.CommandText = "SELECT username FROM users where user_id= @userId";
+                getUsername.Parameters.AddWithValue("@userId", userId);
 
-                MySqlDataReader reader = getusername.ExecuteReader();
+                MySqlDataReader reader = getUsername.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -175,107 +185,107 @@ namespace Project_Envision.Controllers
             }
         }
 
-        public IActionResult CreateTask(TaskPropertiesModel tpm)
+        public IActionResult createTask(TaskPropertiesModel taskPropertiesModel)
         {
             
             if (ModelState.IsValid)
             {
-                int userid = getUserId(tpm.Assignee);
+                int userId = getUserId(taskPropertiesModel.assignee);
 
-                string txtcmd2 = " ";
+                string insertCommand = " ";
 
-                if (userid == 0)
+                if (userId == 0)
                 {
-                    userid = -1;
+                    userId = -1;
                 }
 
-                    txtcmd2 = $"Insert into tasks(taskname, taskdescription, board_id, location, task_points, user_id)" + $"values ( @taskname,@taskdescription,@board_id, @location, @Task_point, @user_id)";
-                MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+                insertCommand = $"Insert into tasks(taskname, taskdescription, board_id, location, task_Points, user_id)" + $"values ( @taskname,@taskdescription,@board_id, @location, @Task_point, @user_id)";
+                MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
-                conn.Open();
+                connection.Open();
 
                
-                MySqlCommand cmd = new MySqlCommand(txtcmd2, conn);
+                MySqlCommand command = new MySqlCommand(insertCommand, connection);
                
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@taskname", tpm.Task_name);
-                cmd.Parameters.AddWithValue("@taskdescription", tpm.Task_Description);
-                cmd.Parameters.AddWithValue("@board_id", BoardItems.m_Boardid);
-                cmd.Parameters.AddWithValue("@Task_point", tpm.Task_points);
-                cmd.Parameters.AddWithValue("@user_id", userid);
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@taskname", taskPropertiesModel.task_Name);
+                command.Parameters.AddWithValue("@taskdescription", taskPropertiesModel.task_Description);
+                command.Parameters.AddWithValue("@board_id", boardItems.m_BoardId);
+                command.Parameters.AddWithValue("@Task_point", taskPropertiesModel.task_Points);
+                command.Parameters.AddWithValue("@user_id", userId);
                 
 
-                cmd.Parameters.AddWithValue("@location", "Backlog");
+                command.Parameters.AddWithValue("@location", "Backlog");
 
-                cmd.Prepare();
-                cmd.ExecuteReader();
-                conn.Close();
-                BoardModel.m_gotTask = false;
+                command.Prepare();
+                command.ExecuteReader();
+                connection.Close();
+                boardModel.m_GotTask = false;
 
                 return RedirectToAction("ProductBacklog", "Board");
             }
             return View();
         }
 
-        public IActionResult collect_task_info (TaskPropertiesModel tpm, int taskid)
+        public IActionResult collect_Task_Info (TaskPropertiesModel taskPropertiesModel, int taskId)
         {
-            MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
-            conn.Open();
+            connection.Open();
 
-            int userid = 0;
+            int userId = 0;
 
-            MySqlCommand getInfo = conn.CreateCommand();
-            getInfo.CommandText = "SELECT taskname, taskdescription, user_id, task_points  FROM tasks where task_id= @taskID";
-            getInfo.Parameters.AddWithValue("@taskID", taskid);
+            MySqlCommand getInfo = connection.CreateCommand();
+            getInfo.CommandText = "SELECT taskname, taskdescription, user_id, task_Points  FROM tasks where task_id= @taskId";
+            getInfo.Parameters.AddWithValue("@taskId", taskId);
 
             MySqlDataReader reader = getInfo.ExecuteReader();
 
             while (reader.Read())
             {
-                    tpm.SetgetTaskname(Convert.ToString(reader[0]));
-                    tpm.SetTaskDescript(Convert.ToString(reader[1]));
-                    userid = Convert.ToInt32(reader[2]);
-                    tpm.SetTaskPoints(Convert.ToInt16(reader[3]));
+                    taskPropertiesModel.setGetTaskName(Convert.ToString(reader[0]));
+                    taskPropertiesModel.setTaskDescript(Convert.ToString(reader[1]));
+                    userId = Convert.ToInt32(reader[2]);
+                    taskPropertiesModel.setTaskPoints(Convert.ToInt16(reader[3]));
             }
          
             reader.Close();
 
-            getUsername(userid);
+            getUsername(userId);
 
-            conn.Close();
+            connection.Close();
 
-            BoardItems.m_Taskid = taskid;
+            boardItems.m_TaskId = taskId;
 
-            BoardModel.m_gotTask = false;
+            boardModel.m_GotTask = false;
 
-            return RedirectToAction("EditTask");
+            return RedirectToAction("editTask");
         }
 
 
-        public IActionResult EditTask(TaskPropertiesModel tpm)
+        public IActionResult editTask(TaskPropertiesModel taskPropertiesModel)
         {
             if (ModelState.IsValid)
             {
-                int userid = getUserId(tpm.Assignee);
+                int userId = getUserId(taskPropertiesModel.assignee);
 
-                string txtcmd2 = " ";
+                string insertCommand = " ";
 
 
-                  txtcmd2 = $"Update tasks SET taskname ='" + tpm.Task_name + "', taskdescription ='" + tpm.Task_Description + "', board_id ='" + BoardItems.m_Boardid + "', task_points ='" + tpm.Task_points + "', user_id ='" + userid + "' where task_id ='" + BoardItems.m_Taskid + "'";
+                  insertCommand = $"Update tasks set taskname ='" + taskPropertiesModel.task_Name + "', taskdescription ='" + taskPropertiesModel.task_Description + "', board_id ='" + boardItems.m_BoardId + "', task_Points ='" + taskPropertiesModel.task_Points + "', user_id ='" + userId + "' where task_id ='" + boardItems.m_TaskId + "'";
 
 
                
-                MySqlConnection conn = new MySqlConnection(Database_connection.m_connection);
+                MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
-                conn.Open();
+                connection.Open();
 
-                MySqlCommand cmd = new MySqlCommand(txtcmd2, conn);
+                MySqlCommand command = new MySqlCommand(insertCommand, connection);
 
-                cmd.Prepare();
-                cmd.ExecuteReader();
-                conn.Close();
-                BoardModel.m_gotTask = false;
+                command.Prepare();
+                command.ExecuteReader();
+                connection.Close();
+                boardModel.m_GotTask = false;
 
                 return RedirectToAction("ProductBacklog", "Board");
             }

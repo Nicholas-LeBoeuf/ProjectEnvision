@@ -12,41 +12,41 @@
             <img src="~/images/logo2.png" />
 
             <div class="secondaryInput">
-                <label id="TaskNameLabel" asp-for="Task_name">Task Name:</label>
-                <input type="text" name="Task_name" asp-for="Task_name" autocomplete="off" placeholder="Task Name" required="" />
+                <label id="TaskNameLabel" asp-for="task_Name">Task Name:</label>
+                <input type="text" name="task_Name" asp-for="task_Name" autocomplete="off" placeholder="Task Name" required="" />
             </div>
 
             <br />
 
             <div class="secondaryInput">
-                <label for="Task_Description" asp-for="Task_Description">Description:</label>
-                <textarea cols="25" rows="4" placeholder="Task Description" id="description" asp-for="Task_Description" maxlength="100"></textarea>
+                <label for="task_Description" asp-for="task_Description">Description:</label>
+                <textarea cols="25" rows="4" placeholder="Task Description" id="description" asp-for="task_Description" maxlength="100"></textarea>
             </div>
 
             <br />
             <br />
 
             <div class="secondaryInput">
-                <label id="TaskPointsLabel" asp-for="Task_points">Task Points:</label>
-                <input type="number" min="1" max="21" name="Task_points" asp-for="Task_points" placeholder="Task Points" required="" />
+                <label id="TaskPointsLabel" asp-for="task_Points">Task Points:</label>
+                <input type="number" min="1" max="21" name="task_Points" asp-for="task_Points" placeholder="Task Points" required="" />
             </div>
 
             <br />
 
             <div class="secondaryInput">
-                <label for="Assignee" asp-for="Assignee">Choose an Assignee:</label>
+                <label for="Assignee" asp-for="assignee">Choose an assignee:</label>
 
-                <select name="Assignee" id="Assignee" asp-for="Assignee">
+                <select name="assignee" id="Assignee" asp-for="assignee">
                     @{
 
                         <option value="None"> None</option>
 
-                        for (int i = 0; i < BoardModel.m_usernamelist.Count(); i++)
+                        for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
                         {
-                            if (BoardModel.m_usernamelist[i] != null)
+                            if (boardModel.m_UsernameList[i] != null)
                             {
 
-                                <option value=@BoardModel.m_usernamelist[i]> @BoardModel.m_usernamelist[i]</option>
+                                <option value=@boardModel.m_UsernameList[i]> @boardModel.m_UsernameList[i]</option>
                             }
                         }
                     }

@@ -11,14 +11,14 @@ namespace Project_Envision.Models
     {
 
         [Required(ErrorMessage = "Required field. *")]
-        public string Task_name { get; set; }
+        public string task_Name { get; set; }
 
-        public string Task_Description { get; set; }
+        public string task_Description { get; set; }
 
         [Required(ErrorMessage = "Required field. *")]
-        public int Task_points { get; set; }
+        public int task_Points { get; set; }
 
-        public string Assignee { get; set; }
+        public string assignee { get; set; }
 
         public string username { get; set; }
 

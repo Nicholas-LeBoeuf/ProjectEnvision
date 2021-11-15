@@ -5,31 +5,30 @@ using System.Threading.Tasks;
 
 namespace Project_Envision.Models
 {
-    public class BoardItems
+    public class boardItems
     {
-        public static bool m_gotBoard;
-        public static int m_Boardid;
-
-        public static int m_Taskid;
+        public static bool m_GotBoard;
+        public static int m_BoardId;
+        public static int m_TaskId;
 
 
 
         public int taskId
         {
-            get => m_Taskid;
-            set => m_Taskid = value;
+            get => m_TaskId;
+            set => m_TaskId = value;
         }
 
         public bool gotBoard
         {
-            get => m_gotBoard;
-            set => m_gotBoard = value;
+            get => m_GotBoard;
+            set => m_GotBoard = value;
         }
 
-        public int Boardid
+        public int boardid
         {
-            get => m_Boardid;
-            set => m_Boardid = value;
+            get => m_BoardId;
+            set => m_BoardId = value;
         }
 
     }

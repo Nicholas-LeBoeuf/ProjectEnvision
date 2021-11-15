@@ -5,86 +5,85 @@ using System.Threading.Tasks;
 
 namespace Project_Envision.Models
 {
-    public class BoardModel : BoardItems
+    public class boardModel : boardItems
     {
-        public static List<string> m_Tasklist;
-        public static List<string> m_Taskdescriptlist;
-        public static List<string> m_TaskLocationlist;
-        public static List<int> m_TaskIdlist;
-        public static List<string> m_Assigneelist;
-        public static List<int> m_TaskPointslist;
-        public static bool m_gotTask;
+        public static List<string> m_TaskList;
+        public static List<string> m_TaskDescriptList;
+        public static List<string> m_TaskLocationList;
+        public static List<int> m_TaskIdList;
+        public static List<string> m_AssigneeList;
+        public static List<int> m_TaskPointsList;
+        public static bool m_GotTask;
 
-        public void SetAsigneeListAttr(List<string> Assigneelist)
+
+        public void setAsigneeListAttr(List<string> assigneeList)
         {
-            m_Assigneelist = Assigneelist;
+            m_AssigneeList = assigneeList;
         }
 
-        public void SetTaskPointsListAttr(List<int> TaskPointslist)
+        public void setTaskPointsListAttr(List<int> taskPointslist)
         {
-            m_TaskPointslist = TaskPointslist;
+            m_TaskPointsList = taskPointslist;
         }
 
-        public void SetTasklistListAttr(List<string> Tasklist)
+        public void setTaskListAttr(List<string> taskList)
         {
-            m_Tasklist = Tasklist;
+            m_TaskList = taskList;
         }
 
-        public void SetTaskLocationlistListAttr(List<string> TaskLocationlist)
+        public void setTaskLocationListAttr(List<string> taskLocationList)
         {
-            m_TaskLocationlist = TaskLocationlist;
+            m_TaskLocationList = taskLocationList;
         }
 
-        public void SetTaskIdlistListAttr(List<int> TaskIdlist)
+        public void setTaskIdListAttr(List<int> taskIdList)
         {
-            m_TaskIdlist = TaskIdlist;
+            m_TaskIdList = taskIdList;
         }
 
         public bool gotTask
         {
-            get => m_gotTask;
-            set => m_gotTask = value;
+            get => m_GotTask;
+            set => m_GotTask = value;
         }
 
-        public static List<string> m_locationlist;
-
-        public void SetTaskDescriptlistListAttr(List<string> Taskdescriptlist)
+        public void setTaskDescriptListAttr(List<string> taskDescriptList)
         {
-            m_Taskdescriptlist = Taskdescriptlist;
+            m_TaskDescriptList = taskDescriptList;
         }
 
-        public static List<string> m_sprintNamelist;
-        public static List<int> m_sprintIdlist;
-        public static bool m_gotSprint;
+        public static List<string> m_SprintNameList;
+        public static List<int> m_SprintIdList;
+        public static bool m_GotSprint;
         
-        public void SetsprintNamelistListAttr(List<string> sprintNamelist)
+        public void setSprintNameListAttr(List<string> sprintNameList)
         {
-            m_sprintNamelist = sprintNamelist;
+            m_SprintNameList = sprintNameList;
         }
 
-        public void SetsprintIdlistListAttr(List<int> sprintIdlist)
+        public void setSprintIdListAttr(List<int> sprintIdList)
         {
-            m_sprintIdlist = sprintIdlist;
+            m_SprintIdList = sprintIdList;
         }
 
         public bool gotSprint
         {
-            get => m_gotSprint;
-            set => m_gotSprint = value;
+            get => m_GotSprint;
+            set => m_GotSprint = value;
         }
 
-        public static List<string> m_usernamelist;
-        public static bool m_gotusers;
+        public static List<string> m_UsernameList;
+        public static bool m_GotUsers;
 
-        public void SetusernamelistListAttr(List<string> usernamelist)
+        public void setUsernameListAttr(List<string> usernameList)
         {
-            m_usernamelist = usernamelist;
+            m_UsernameList = usernameList;
         }
 
-        public bool gotusers
+        public bool gotUsers
         {
-            get => m_gotusers;
-            set => m_gotusers = value;
+            get => m_GotUsers;
+            set => m_GotUsers = value;
         }
 
 

@@ -8,7 +8,7 @@ namespace Project_Envision.Controllers
 {
     public class SprintController : Controller
     {
-        public IActionResult Sprint()
+        public IActionResult sprint()
         {
             return View();
         }

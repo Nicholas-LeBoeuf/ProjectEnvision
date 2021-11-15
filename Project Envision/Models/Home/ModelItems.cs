@@ -7,27 +7,27 @@ namespace Project_Envision.Models
 {
     public class ModelItems
     { 
-        public static int m_userid;
-        public static string m_username;
-        public static string m_email;
+        public static int m_UserId;
+        public static string m_Username;
+        public static string m_Email;
         public static string code;
 
         public string username
         {
-            get => m_username;
-            set => m_username = value;
+            get => m_Username;
+            set => m_Username = value;
         }
         public string email
         {
-            get => m_email;
-            set => m_email = value;
+            get => m_Email;
+            set => m_Email = value;
         }
-        public int Id
+        public int id
         {
-            get => m_userid;
-            set => m_userid = value;
+            get => m_UserId;
+            set => m_UserId = value;
         }
-        public string RandCode
+        public string randCode
         {
             get => code;
             set => code = value;
