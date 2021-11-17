@@ -189,6 +189,14 @@ namespace Project_Envision.Controllers
 
         public IActionResult BurndownChart()
         {
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+
+            connection.Open();
+
+            string selectCommand = $"SELECT task_points FROM burndownchart where board_id = '" + boardItems.m_BoardId +  "' AND user_id = '" + ModelItems.m_UserId + "'";
+
+
+
             return View();
         }
     }
