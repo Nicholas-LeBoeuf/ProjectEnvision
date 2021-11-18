@@ -28,8 +28,6 @@
             <th>Testing</th>
             <th>Done</th>
         </tr>
-
-
         @{
             if (boardModel.m_TaskIdList.Count != 0)
             {
@@ -157,11 +155,12 @@
                 <div class="modal-body">
                     <div class="secondaryInput">
                         <label>Choose Friend to Remove</label>
-
-                        <select>
-                            <option>test</option>
-                            <option>test2</option>
-                        </select>
+                        <div class="selectionStyle">
+                            <select>
+                                <option>test</option>
+                                <option>test2</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="buttonStyle">Remove Friend</button>
