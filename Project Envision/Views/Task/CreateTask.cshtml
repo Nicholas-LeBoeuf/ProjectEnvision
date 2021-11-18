@@ -35,22 +35,22 @@
 
             <div class="secondaryInput">
                 <label for="Assignee" asp-for="assignee">Choose an assignee:</label>
+                <div class="selectionStyle">
+                    <select name="assignee" id="Assignee" asp-for="assignee">
+                        @{
+                            <option value="None"> None</option>
 
-                <select name="assignee" id="Assignee" asp-for="assignee">
-                    @{
-
-                        <option value="None"> None</option>
-
-                        for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
-                        {
-                            if (boardModel.m_UsernameList[i] != null)
+                            for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
                             {
+                                if (boardModel.m_UsernameList[i] != null)
+                                {
 
-                                <option value=@boardModel.m_UsernameList[i]> @boardModel.m_UsernameList[i]</option>
+                                    <option value=@boardModel.m_UsernameList[i]> @boardModel.m_UsernameList[i]</option>
+                                }
                             }
                         }
-                    }
-                </select>
+                    </select>
+                </div>
             </div>
             <br />
             <div class="buttons">

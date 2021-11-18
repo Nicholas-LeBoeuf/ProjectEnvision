@@ -36,27 +36,28 @@
 
             <div class="secondaryInput">
                 <label for="Assignee" asp-for="assignee">Choose a assignee:</label>
+                <div class="selectionStyle">
+                    <select name="Assignee" id="Assignee" asp-for="assignee">
 
-                <select name="Assignee" id="Assignee" asp-for="assignee">
+                        @{
+                            <option value=@TaskPropertiesModel.getAssignee> @TaskPropertiesModel.getAssignee </option>
 
-                    @{
-                        <option value=@TaskPropertiesModel.getAssignee> @TaskPropertiesModel.getAssignee </option>
-
-                        if (TaskPropertiesModel.getAssignee != "None")
-                        {
-                            <option value="None"> None</option>
-                        }
-
-                        for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
-                        {
-                            if (boardModel.m_UsernameList[i] != TaskPropertiesModel.getAssignee && boardModel.m_UsernameList[i] != null)
+                            if (TaskPropertiesModel.getAssignee != "None")
                             {
+                                <option value="None"> None</option>
+                            }
 
-                                <option value=@boardModel.m_UsernameList[i]> @boardModel.m_UsernameList[i]</option>
+                            for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
+                            {
+                                if (boardModel.m_UsernameList[i] != TaskPropertiesModel.getAssignee && boardModel.m_UsernameList[i] != null)
+                                {
+
+                                    <option value=@boardModel.m_UsernameList[i]> @boardModel.m_UsernameList[i]</option>
+                                }
                             }
                         }
-                    }
-                </select>
+                    </select>
+                </div>
             </div>
             <br />
             <div class="buttons">
