@@ -69,6 +69,14 @@ namespace Project_Envision.Controllers
             }
         }
 
+        public IActionResult setTaskInfo(int taskId, string currentLocation)
+        {
+
+            setTaskId(taskId);
+            setCurrentLocation(currentLocation);
+
+            return RedirectToAction("dragNDropUpdate", new { location = currentLocation });
+        }
         
 
         public IActionResult setLocation(string location)
@@ -77,16 +85,16 @@ namespace Project_Envision.Controllers
             return RedirectToAction("dragNDropUpdate");
         }
 
-        public IActionResult setCurrentLocation(string currentLocation)
+        void setCurrentLocation(string currentLocation)
         {
             DragNDropModel.currentLocation = currentLocation;
-            return RedirectToAction("dragNDropUpdate", new {location = currentLocation});
+            
         }
 
-        public IActionResult setTaskId(int taskId)
+        void setTaskId(int taskId)
         {
             DragNDropModel.taskId = taskId;
-            return RedirectToAction("dragNDropUpdate", new { taskId = taskId });
+           // return RedirectToAction("dragNDropUpdate", new { taskId = taskId });
         }
 
         public IActionResult dragNDropUpdate()

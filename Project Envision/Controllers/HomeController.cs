@@ -32,6 +32,8 @@ namespace Project_Envision.Controllers
             string username = loginModel.username;
             string password = loginModel.password;
 
+            if(username != null || password != null)
+            { 
             connection.Open();
             string selectCommand = $"SELECT* FROM users where username = '" + username + "' AND password = '" + password + "'"; // the command
             MySqlCommand command = new MySqlCommand(selectCommand, connection);
@@ -80,6 +82,7 @@ namespace Project_Envision.Controllers
 
                 }
 
+            }
             }
             return View("Login");
         }
@@ -217,8 +220,6 @@ namespace Project_Envision.Controllers
 
         public IActionResult ForgotPassword2(ForgotPassword2 forgotPassword2)
         {
-
-
             if (forgotPassword2.SecurityCode == ModelItems.code)
             {
                 return View("ForgotPassword3");
