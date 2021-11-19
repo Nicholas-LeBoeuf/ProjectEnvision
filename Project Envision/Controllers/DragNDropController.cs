@@ -94,7 +94,6 @@ namespace Project_Envision.Controllers
         void setTaskId(int taskId)
         {
             DragNDropModel.taskId = taskId;
-           // return RedirectToAction("dragNDropUpdate", new { taskId = taskId });
         }
 
         public IActionResult dragNDropUpdate()

@@ -113,7 +113,7 @@ namespace Project_Envision.Controllers
             connection.Open();
 
             MySqlCommand getTasks = connection.CreateCommand();
-            getTasks.CommandText = "SELECT username FROM Createboard where board_id= @boardID";
+            getTasks.CommandText = "SELECT inviteduser FROM invitedboard where board_id= @boardID";
             getTasks.Parameters.AddWithValue("@boardID", boardModel.boardid);
 
             MySqlDataReader reader = getTasks.ExecuteReader();
@@ -125,6 +125,15 @@ namespace Project_Envision.Controllers
                 usernameList.Add(Convert.ToString(reader[0]));
             }
             reader.Close();
+
+            getTasks.CommandText = "SELECT username FROM Createboard where board_id= @boardID";
+
+            MySqlDataReader sreader = getTasks.ExecuteReader();
+            while (sreader.Read())
+            {
+                boardModel.setCreatorUsername(Convert.ToString(sreader[0]));
+            }
+            sreader.Close();
 
             boardModel.setUsernameListAttr(usernameList);
 

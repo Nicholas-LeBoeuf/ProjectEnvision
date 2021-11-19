@@ -22,21 +22,45 @@
         @{ for (int i = 0; i < boardModel.m_TaskIdList.Count(); i++)
             {
                 <tr>
-
+                    @{ 
                     <td>@boardModel.m_TaskList[i]</td>
                     <td>@boardModel.m_TaskDescriptList[i]</td>
                     <td>@boardModel.m_AssigneeList[i]</td>
                     <td>@boardModel.m_TaskPointsList[i]</td>
-                    <td>
-                        <a onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                        if (@boardModel.m_TaskLocationList[i] != "Done")
+                        {
+                            <td>
+                        <button onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
                             <i class="fas fa-pen fa-2x"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                        </button>
+                            </td>
+                        }
+                        else
+                        {
+                        <td>
+                        <button disabled="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                            <i class="fas fa-pen fa-2x"></i>
+                        </button>
+                        </td>
+                        }
+                        if(@boardModel.m_TaskLocationList[i] != "Done")
+                        {
+                        <td>
+                        <button onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
                             <i class="fas fa-trash fa-2x"></i>
-                        </a>
-                    </td>
+
+                        </button>
+                            </td>
+                        }
+                        else
+                        {
+                          <td>
+                        <button disabled onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                            <i class="fas fa-trash fa-2x"></i>
+                        </button>
+                        </td>
+                        }
+                    }
                 </tr>
             }
         }

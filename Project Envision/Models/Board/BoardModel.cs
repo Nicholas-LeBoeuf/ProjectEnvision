@@ -73,11 +73,17 @@ namespace Project_Envision.Models
         }
 
         public static List<string> m_UsernameList;
+        public static string m_CreatorUsername;
         public static bool m_GotUsers;
 
         public void setUsernameListAttr(List<string> usernameList)
         {
             m_UsernameList = usernameList;
+        }
+
+        public void setCreatorUsername(string username)
+        {
+            m_CreatorUsername = username;
         }
 
         public bool gotUsers

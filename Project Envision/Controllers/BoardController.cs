@@ -39,7 +39,7 @@ namespace Project_Envision.Controllers
             }
             else
             {
-                return View("Board", "Board");
+                return View("Board");
             }
         }
 
@@ -107,6 +107,30 @@ namespace Project_Envision.Controllers
                 boardDescList.Add(Convert.ToString(reader[2]));
             }
             reader.Close();
+        
+            int boardid = 0;
+            
+            getBoards.CommandText = "SELECT board_id FROM invitedboard where user_id= @userID";
+            MySqlDataReader sReader = getBoards.ExecuteReader();
+            while (sReader.Read())
+            {
+                boardid = Convert.ToInt32(sReader[0]);
+            }
+
+            sReader.Close();
+
+            getBoards.CommandText = "SELECT board_Name, board_id, board_description FROM createboard where board_id= @board_Id";
+            getBoards.Parameters.AddWithValue("@board_Id", boardid);
+
+            MySqlDataReader sReader2 = getBoards.ExecuteReader();
+
+            while (sReader2.Read())
+            {
+                boardsList.Add(Convert.ToString(sReader2[0]));
+                boardIdsList.Add(Convert.ToInt32(sReader2[1]));
+                boardDescList.Add(Convert.ToString(sReader2[2]));
+            }
+            sReader2.Close();
 
             chooseBoardModel.setBoardListAttr(boardsList);
             chooseBoardModel.setBoardIdListAttr(boardIdsList);
@@ -191,5 +215,6 @@ namespace Project_Envision.Controllers
         {
             return View();
         }
+
     }
 }
