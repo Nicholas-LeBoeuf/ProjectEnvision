@@ -80,39 +80,37 @@
 
                         </div>
 
-                        <div class="box">
-                            <table style="color: white;">
-                                <tr padding: 20px;>
-                                    <th>Backlog</th>
-                                    <th>In Progress</th>
-                                    <th>Testing</th>
-                                    <th>Done</th>
-                                </tr>
-
-
-                                @{
-                                    if (boardModel.m_TaskIdList.Count != 0)
-                                    {
-                                        for (int i = 0; i < boardModel.m_TaskIdList.Count; i++)
-                                        {
-                                            <tr>
-                                                @if (boardModel.m_TaskLocationList[i] == "Backlog")
-                                                {
-                                                    <td id="Backlog" ondrop="location.href='@Url.Action("setLocation", "DragNDrop", new { Location = "Backlog" })', drop(event)" ondragover="allowDrop(event)">
-                                                        <div>
-                                                            <div class="boardCard" ondragend="location.href='@Url.Action("setTaskInfo", "DragNDrop", new { taskid = @boardModel.m_TaskIdList[i], CurrentLocation = "Backlog" })'" draggable="true" ondragstart="drag(event)" id=@boardModel.m_TaskIdList[i]>
-                                                                <p class="cardContent">@boardModel.m_TaskList[i]</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                }
-                                                else
-                                                {
-                                                    <td id="Backlog" ondrop="location.href='@Url.Action("setLocation", "DragNDrop", new { Location = "Backlog" })', drop(event)" ondragover="allowDrop(event)">
-                                                        <div>
-                                                        </div>
-                                                    </td>
-                                                }
+<div class="box">
+    <table style="color: white;">
+        <tr padding: 20px;>
+            <th>Backlog</th>
+            <th>In Progress</th>
+            <th>Testing</th>
+            <th>Done</th>
+        </tr>
+        @{
+            if (boardModel.m_TaskIdList.Count != 0)
+            {
+                for (int i = 0; i < boardModel.m_TaskIdList.Count; i++)
+                {
+                    <tr>
+                        @if (boardModel.m_TaskLocationList[i] == "Backlog")
+                        {
+                            <td id="Backlog" ondrop="location.href='@Url.Action("setLocation", "DragNDrop", new { Location = "Backlog" })', drop(event)" ondragover="allowDrop(event)">
+                                <div>
+                                    <div class="boardCard" ondragend="location.href='@Url.Action("setTaskInfo", "DragNDrop", new { taskid = @boardModel.m_TaskIdList[i], CurrentLocation = "Backlog" })'" draggable="true" ondragstart="drag(event)" id=@boardModel.m_TaskIdList[i]>
+                                        <p class="cardContent">@boardModel.m_TaskList[i]</p>
+                                    </div>
+                                </div>
+                            </td>
+                        }
+                        else
+                        {
+                            <td id="Backlog" ondrop="location.href='@Url.Action("setLocation", "DragNDrop", new { Location = "Backlog" })', drop(event)" ondragover="allowDrop(event)">
+                                <div>
+                                </div>
+                            </td>
+                        }
 
                                                 @if (boardModel.m_TaskLocationList[i] == "In Progress")
                                                 {
@@ -178,7 +176,38 @@
                             </table>
                         </div>
 
-                        <script>
+<form method="post" asp-action="Index" asp-controller="Home">
+    <div id="removeFriendModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Remove Friend</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="secondaryInput">
+                        <label>Choose Friend to Remove</label>
+                        <div class="selectionStyle">
+                            <select>
+                                <option>test</option>
+                                <option>test2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="buttonStyle">Remove Friend</button>
+                        <button type="button" class="buttonStyle" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script>
 
                             function allowDrop(ev) {
                                 ev.preventDefault();

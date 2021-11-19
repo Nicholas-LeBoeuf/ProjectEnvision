@@ -36,8 +36,8 @@
 
             <div class="secondaryInput">
                 <label for="Assignee" asp-for="assignee">Choose a assignee:</label>
-
-                <select name="Assignee" id="Assignee" asp-for="assignee">
+                <div class="selectionStyle">
+                    <select name="Assignee" id="Assignee" asp-for="assignee">
 
                     @{
                         <option value=@TaskPropertiesModel.getAssignee> @TaskPropertiesModel.getAssignee </option>
@@ -57,11 +57,12 @@
                             if (boardModel.m_UsernameList[i] != TaskPropertiesModel.getAssignee && boardModel.m_UsernameList[i] != null)
                             {
 
-                                <option value=@boardModel.m_UsernameList[i]> @boardModel.m_UsernameList[i]</option>
+                                    <option value=@boardModel.m_UsernameList[i]> @boardModel.m_UsernameList[i]</option>
+                                }
                             }
                         }
-                    }
-                </select>
+                    </select>
+                </div>
             </div>
             <br />
             <div class="buttons">
