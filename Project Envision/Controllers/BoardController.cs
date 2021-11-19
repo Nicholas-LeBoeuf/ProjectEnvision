@@ -193,9 +193,17 @@ namespace Project_Envision.Controllers
 
             connection.Open();
 
-            string selectCommand = $"SELECT task_points FROM burndownchart where board_id = '" + boardItems.m_BoardId +  "' AND user_id = '" + ModelItems.m_UserId + "'";
+            List<int> BurndownTaskPointsPlaceholder = new List<int>();
+            List<int> BurndownTaskDates = new List<int>();
+            List<int> BurndownTaskPoints = new List<int>();
 
+            MySqlCommand getPoints = connection.CreateCommand();
 
+            getPoints.CommandText = $"SELECT task_points FROM burndownchart where board_id = '" + boardItems.m_BoardId +  "' AND user_id = '" + ModelItems.m_UserId + "'";
+
+            MySqlDataReader reader = getPoints.ExecuteReader();
+
+            BurndownTaskPointsPlaceholder.Add(Convert.ToInt32(reader[0]));
 
             return View();
         }
