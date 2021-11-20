@@ -24,7 +24,7 @@
         <img class="logo imageContainer" src="~/images/logo2.png" />
 
         <div class="logoutButton">
-            <button class="buttonStyle chooseBoardButtons" onclick="location.href='@Url.Action("Index","Home")'">Logout</button>
+            <button class="buttonStyle chooseBoardButtons" onclick="location.href='@Url.Action("Index", "Home")'">Logout</button>
         </div>
     </div>
     <div class="tableContainer">
@@ -40,7 +40,7 @@
                 {
                     <tr>
                         <td>
-                            <a class="goButton" value=@ChooseBoardModel.m_BoardList[i] onclick="location.href='@Url.Action("GetTask", "Task", new {boardid = ChooseBoardModel.m_BoardIdList[i]})'">
+                            <a class="goButton" value=@ChooseBoardModel.m_BoardList[i] onclick="location.href='@Url.Action("GetTask", "Task", new { boardid = ChooseBoardModel.m_BoardIdList[i] })'">
                                 <i class="fas fa-arrow-circle-right fa-3x"></i>
                             </a>
                         </td>
@@ -49,13 +49,14 @@
                         <td> @ChooseBoardModel.m_BoardDescList[i]</td>
 
                         <td>
-                            <a value=@ChooseBoardModel.m_BoardList[i] onclick="location.href='@Url.Action("deleteBoard", "Board", new {boardid = ChooseBoardModel.m_BoardIdList[i]})'">
-                                <i class="fas fa-trash fa-3x"></i>
-                            </a>
+                                    <a value=@ChooseBoardModel.m_BoardList[i] onclick="location.href='@Url.Action("deleteBoard", "Board", new { boardid = ChooseBoardModel.m_BoardIdList[i] })'">
+                                        <i class="fas fa-trash fa-3x"></i>
+                                    </a>
                         </td>
                     </tr>
+
                 }
-            }
+           }
         </table>
     </div>
 </div>

@@ -116,7 +116,7 @@ namespace Project_Envision.Controllers
             return RedirectToAction("Board", "Board");
         }
 
-        public IActionResult removeGroupMember(GroupMembers groupMembers)
+        public IActionResult removeGroupMember(string username)
         {
             if(ModelState.IsValid)
             { 
@@ -129,12 +129,21 @@ namespace Project_Envision.Controllers
                 removeMember.CommandText = "Delete FROM invitedboard where board_id = @boardID AND inviteduser = @inviteduser";
 
                 removeMember.Parameters.AddWithValue("@boardID", boardModel.m_BoardId);
-                removeMember.Parameters.AddWithValue("@inviteduser", groupMembers);
+                removeMember.Parameters.AddWithValue("@inviteduser", username);
 
                 removeMember.Prepare();
                 removeMember.ExecuteReader();
                 connection.Close();
+                if(ModelItems.m_Username != username)
+                { 
                 return RedirectToAction("Board", "Board");
+                }
+                else
+                {
+                    boardItems.m_GotBoard = false;
+                    return RedirectToAction("ChooseBoard", "Board");
+                }
+                
             }
             else
             {

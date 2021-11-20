@@ -21,6 +21,26 @@ namespace Project_Envision.Controllers
             return View();
         }
 
+        public void creatorUsername(int boardId)
+        {
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+
+            connection.Open();
+
+            MySqlCommand getTasks = connection.CreateCommand();
+
+            getTasks.CommandText = "SELECT username FROM Createboard where board_id= @boardID";
+            getTasks.Parameters.AddWithValue("@boardID", boardId);
+
+            MySqlDataReader sreader = getTasks.ExecuteReader();
+            while (sreader.Read())
+            {
+                boardModel.m_CreatorUsername = (Convert.ToString(sreader[0]));
+            }
+            sreader.Close();
+            connection.Close();
+        }
+
         public IActionResult board(int boardId)
         {
             if (boardId != 0)
@@ -74,12 +94,19 @@ namespace Project_Envision.Controllers
         public IActionResult deleteBoard (int boardId)
         {
             boardItems.m_GotBoard = false;
-
+            creatorUsername(boardId);
+            if (boardModel.m_CreatorUsername == ModelItems.m_Username)
+            { 
             deleteBoardParts(boardId, "tasks");
             deleteBoardParts(boardId, "createboard");
             deleteBoardParts(boardId, "burndownchart");
             deleteBoardParts(boardId, "sprint");
-
+            }
+            else
+            {
+                boardModel.m_BoardId = boardId;
+                return RedirectToAction("removeGroupMember", "GroupMember", new { username = ModelItems.m_Username});
+            }
             return RedirectToAction("ChooseBoard");
         }
 
