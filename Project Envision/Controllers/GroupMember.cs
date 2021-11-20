@@ -151,5 +151,14 @@ namespace Project_Envision.Controllers
             }
         }
 
+        public IActionResult AddTeammate()
+        {
+            return View();
+        }
+
+        public IActionResult RemoveTeammate()
+        {
+            return View();
+        }
     }
 }
