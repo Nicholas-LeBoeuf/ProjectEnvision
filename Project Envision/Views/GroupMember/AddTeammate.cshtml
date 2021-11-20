@@ -1,0 +1,23 @@
+﻿@model Project_Envision.Models.GroupMembers
+@{
+    ViewData["Title"] = "Add Teammate";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/AddRemoveTeammates.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
+<link rel="stylesheet" href="~/css/Inputs.css" />
+
+<div class="box">
+    <form method="post" id="addMember" asp-action="inviteGroupMember" asp-controller="GroupMember">
+        <div class="secondaryInput">
+            <label asp-for="username">Group Member's Username:</label>
+            <input asp-for="username" class="secondaryInput" type="text" autocomplete="off" placeholder="Group Member's Username" required />
+            <span asp-validation-for="username" class="text-danger"></span>
+        </div>
+    </form>
+
+    <button type="submit" form="addMember" class="buttonStyle">Add GroupMember</button>
+    <button type="button" class="buttonStyle">Cancel</button>
+
+</div>

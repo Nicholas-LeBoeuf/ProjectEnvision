@@ -1,0 +1,30 @@
+﻿@model Project_Envision.Models.GroupMembers
+@{
+    ViewData["Title"] = "Remove Teammate";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/AddRemoveTeammates.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
+<link rel="stylesheet" href="~/css/Inputs.css" />
+
+<div class="box">
+    <div class="secondaryInput">
+        <form method="post" id="removeMember" asp-action="removeGroupMember" asp-controller="GroupMember">
+            <label>Choose Group Member to Remove</label>
+
+            <div class="selectionStyle">
+                <select asp-for="username">
+                    @{
+                        for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
+                        {
+                            <option>@boardModel.m_UsernameList[i]</option>
+                        }
+                    }
+                </select>
+            </div>
+        </form>
+        <button type="submit" class="buttonStyle" value="removeGroupMember">Remove Group Member</button>
+        <button type="button" class="buttonStyle" id="HidebtnModal">Close</button>
+    </div>
+</div>
