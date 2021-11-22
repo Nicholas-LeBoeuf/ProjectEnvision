@@ -52,32 +52,3 @@ img {
     padding-top: 10px;
     padding-bottom: 10px;
 }
-
-select {
-    background-color: #444;
-    width: 380px;
-    background-position: right 10px center;
-    background-repeat: no-repeat;
-    background-size: auto 50%;
-    border-radius: 2px;
-    border: none;
-    color: #ffffff;
-    padding: 10px 30px 10px 10px;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    text-align: center;
-    border-radius: 20px;
-    display: block;
-    margin: 0 auto;
-    -webkit-transition: all 0.7s ease 0s;
-    -moz-transition: all 0.7s ease 0s;
-    -o-transition: all 0.7s ease 0s;
-    transition: all 0.7s ease 0s;
-}
-
-select:focus {
-    background: #ccc;
-    color: #6a6f75;
-    width: 385px;
-    outline: none;
-}
