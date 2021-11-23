@@ -8,16 +8,13 @@ namespace Project_Envision.Models
 {
     public class GroupMembers
     {
-        public string username = "";
+        public string removeUsername { get; set; }
 
-        public GroupMembers(string usernameinput)
-        {
-            username = usernameinput;
-        }
+        [Required(ErrorMessage = "Required field. *")]
+        [Display(Name = "Username:")]
+        [StringLength(20, MinimumLength = 0)]
+        public string username { get; set; }
 
-        public string getUsername()
-        {
-            return username;
-        }
+
     }
 }

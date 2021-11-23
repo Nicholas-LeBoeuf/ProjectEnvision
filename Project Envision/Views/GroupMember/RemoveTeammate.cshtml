@@ -10,21 +10,23 @@
 
 <div class="box">
     <div class="secondaryInput">
-        <form method="post" id="removeMember" asp-action="removeGroupMember" asp-controller="GroupMember">
-            <label>Choose Group Member to Remove</label>
+        <form method="post" id="removeMember" asp-action="RemoveTeammate" asp-controller="GroupMember">
+            <label asp-for="removeUsername">Choose Group Member to Remove</label>
 
             <div class="selectionStyle">
-                <select asp-for="username">
+                <select asp-for="removeUsername">
+                    <option value="" disabled selected hidden> Select Group Member </option>
                     @{
                         for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
                         {
-                            <option>@boardModel.m_UsernameList[i]</option>
+                            <option value=@boardModel.m_UsernameList[i]>@boardModel.m_UsernameList[i]</option>
                         }
                     }
                 </select>
             </div>
         </form>
-        <button type="submit" class="buttonStyle" value="removeGroupMember">Remove Teammate</button>
+        <button type="submit" class="buttonStyle" form="removeMember">Remove Teammate</button>
         <button type="button" class="buttonStyle" id="HidebtnModal">Close</button>
     </div>
 </div>
+

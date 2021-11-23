@@ -62,7 +62,7 @@ namespace Project_Envision.Controllers
                 
                 if(userdatatable == true)
                 { 
-                    selectCommand = $"SELECT* FROM inviteboard where username = '" + username + "' AND board_id = '" + boardModel.m_BoardId + "'";
+                    selectCommand = $"SELECT* FROM invitedboard where inviteduser = '" + username + "' AND board_id = '" + boardModel.m_BoardId + "'";
                     command = new MySqlCommand(selectCommand, connection);
                     MySqlDataReader sRead;
                     using (sRead = command.ExecuteReader())
@@ -105,7 +105,7 @@ namespace Project_Envision.Controllers
                         command.CommandType = CommandType.Text;
                         command.Parameters.AddWithValue("@board_id", boardItems.m_BoardId);
                         command.Parameters.AddWithValue("@user_id", getUserId(groupMembers.username));
-                        command.Parameters.AddWithValue("@inviteduser", groupMembers.getUsername());
+                        command.Parameters.AddWithValue("@inviteduser", groupMembers.username);
                         command.Prepare();
                         command.ExecuteReader();
                         connection.Close();
@@ -118,8 +118,6 @@ namespace Project_Envision.Controllers
 
         public IActionResult removeGroupMember(string username)
         {
-            if(ModelState.IsValid)
-            { 
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
                 connection.Open();
@@ -134,6 +132,7 @@ namespace Project_Envision.Controllers
                 removeMember.Prepare();
                 removeMember.ExecuteReader();
                 connection.Close();
+
                 if(ModelItems.m_Username != username)
                 { 
                 return RedirectToAction("Board", "Board");
@@ -143,12 +142,6 @@ namespace Project_Envision.Controllers
                     boardItems.m_GotBoard = false;
                     return RedirectToAction("ChooseBoard", "Board");
                 }
-                
-            }
-            else
-            {
-                return RedirectToAction("Board", "Board");
-            }
         }
 
         public IActionResult AddTeammate()
@@ -156,8 +149,13 @@ namespace Project_Envision.Controllers
             return View();
         }
 
-        public IActionResult RemoveTeammate()
+        public IActionResult RemoveTeammate(GroupMembers groupMembers)
         {
+            if(groupMembers.removeUsername != null)
+            {
+                removeGroupMember(groupMembers.removeUsername);
+                return RedirectToAction("Board", "Board");
+            }
             return View();
         }
     }
