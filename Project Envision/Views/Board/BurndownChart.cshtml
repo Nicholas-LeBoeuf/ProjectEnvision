@@ -1,36 +1,52 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Burndown Chart";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
 
+<link rel="stylesheet" href="~/css/Inputs.css" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-<canvas id="burndown" style="width: 100%; max-width: 600px; padding: 0; margin: auto; display: block; 
+<div class="box">
+    <div class=" selectionStyle">
+        <select>
+            <option>@Burndown.m_BurndownTaskPoints</option>
+            <option>Sprint 2</option>
+            <option>Sprint 3</option>
+        </select>
+    </div>
+</div>
+
+<canvas id="burndown" style="width: 100%; max-width: 600px; padding: 0; margin: auto; display: block;
           width: 800px; height: 600px; position: absolute; top: 0; bottom: 0; left: 0; right: 0;"></canvas>
 
 
+
+
 <script>
-    var xValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+    var xValues = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
     new Chart("burndown", {
         type: "line",
         data: {
             labels: xValues,
             datasets: [{
-                data: [1000, 900, 800, 700, 600, 500, 400, 300, 200, 100, 0],
+                data: [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0],
                 name: "Target",
                 borderColor: "red",
                 fill: false
             }, {
-                data: [994, 837, 837, 279, 383, 283, 385, 938, 827],
+                data:[],
                 name: "Progress",
                 borderColor: "green",
                 fill: false
-            }, ]
+            },]
         },
         options: {
             legend: { display: true },
-            title: { display: true, text: "Sprint 1", color: "white" } 
+            title: { display: true, text: "Sprint 1", color: "white" }
         }
     });
 </script>
+
