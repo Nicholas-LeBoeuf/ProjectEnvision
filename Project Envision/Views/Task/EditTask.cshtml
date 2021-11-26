@@ -39,18 +39,23 @@
                 <div class="selectionStyle">
                     <select name="Assignee" id="Assignee" asp-for="assignee">
 
-                        @{
-                            <option value=@TaskPropertiesModel.getAssignee> @TaskPropertiesModel.getAssignee </option>
+                    @{
+                        <option value=@TaskPropertiesModel.getAssignee> @TaskPropertiesModel.getAssignee </option>
 
-                            if (TaskPropertiesModel.getAssignee != "None")
-                            {
-                                <option value="None"> None</option>
-                            }
+                        if(TaskPropertiesModel.getAssignee != "None")
+                        { 
+                        <option value="None"> None</option>
+                        }
 
-                            for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
+                        if (TaskPropertiesModel.getAssignee != boardModel.m_CreatorUsername)
+                        {
+                            <option value=@boardModel.m_CreatorUsername> @boardModel.m_CreatorUsername</option>
+                        }
+
+                        for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
+                        {
+                            if (boardModel.m_UsernameList[i] != TaskPropertiesModel.getAssignee && boardModel.m_UsernameList[i] != null)
                             {
-                                if (boardModel.m_UsernameList[i] != TaskPropertiesModel.getAssignee && boardModel.m_UsernameList[i] != null)
-                                {
 
                                     <option value=@boardModel.m_UsernameList[i]> @boardModel.m_UsernameList[i]</option>
                                 }

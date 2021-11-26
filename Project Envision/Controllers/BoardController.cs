@@ -21,6 +21,26 @@ namespace Project_Envision.Controllers
             return View();
         }
 
+        public void creatorUsername(int boardId)
+        {
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+
+            connection.Open();
+
+            MySqlCommand getTasks = connection.CreateCommand();
+
+            getTasks.CommandText = "SELECT username FROM Createboard where board_id= @boardID";
+            getTasks.Parameters.AddWithValue("@boardID", boardId);
+
+            MySqlDataReader sreader = getTasks.ExecuteReader();
+            while (sreader.Read())
+            {
+                boardModel.m_CreatorUsername = (Convert.ToString(sreader[0]));
+            }
+            sreader.Close();
+            connection.Close();
+        }
+
         public IActionResult board(int boardId)
         {
             if (boardId != 0)
@@ -39,7 +59,7 @@ namespace Project_Envision.Controllers
             }
             else
             {
-                return View("Board", "Board");
+                return View("Board");
             }
         }
 
@@ -74,12 +94,19 @@ namespace Project_Envision.Controllers
         public IActionResult deleteBoard (int boardId)
         {
             boardItems.m_GotBoard = false;
-
+            creatorUsername(boardId);
+            if (boardModel.m_CreatorUsername == ModelItems.m_Username)
+            { 
             deleteBoardParts(boardId, "tasks");
             deleteBoardParts(boardId, "createboard");
             deleteBoardParts(boardId, "burndownchart");
             deleteBoardParts(boardId, "sprint");
-
+            }
+            else
+            {
+                boardModel.m_BoardId = boardId;
+                return RedirectToAction("removeGroupMember", "GroupMember", new { username = ModelItems.m_Username});
+            }
             return RedirectToAction("ChooseBoard");
         }
 
@@ -107,6 +134,30 @@ namespace Project_Envision.Controllers
                 boardDescList.Add(Convert.ToString(reader[2]));
             }
             reader.Close();
+        
+            int boardid = 0;
+            
+            getBoards.CommandText = "SELECT board_id FROM invitedboard where user_id= @userID";
+            MySqlDataReader sReader = getBoards.ExecuteReader();
+            while (sReader.Read())
+            {
+                boardid = Convert.ToInt32(sReader[0]);
+            }
+
+            sReader.Close();
+
+            getBoards.CommandText = "SELECT board_Name, board_id, board_description FROM createboard where board_id= @board_Id";
+            getBoards.Parameters.AddWithValue("@board_Id", boardid);
+
+            MySqlDataReader sReader2 = getBoards.ExecuteReader();
+
+            while (sReader2.Read())
+            {
+                boardsList.Add(Convert.ToString(sReader2[0]));
+                boardIdsList.Add(Convert.ToInt32(sReader2[1]));
+                boardDescList.Add(Convert.ToString(sReader2[2]));
+            }
+            sReader2.Close();
 
             chooseBoardModel.setBoardListAttr(boardsList);
             chooseBoardModel.setBoardIdListAttr(boardIdsList);
@@ -192,7 +243,6 @@ namespace Project_Envision.Controllers
 
             return View();
         }
-
 
     }
 }

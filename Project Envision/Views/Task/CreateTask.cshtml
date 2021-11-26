@@ -34,11 +34,14 @@
             <br />
 
             <div class="secondaryInput">
-                <label for="Assignee" asp-for="assignee">Choose an assignee:</label>
                 <div class="selectionStyle">
+                    <label for="Assignee" asp-for="assignee">Choose an assignee:</label>
+
                     <select name="assignee" id="Assignee" asp-for="assignee">
                         @{
+
                             <option value="None"> None</option>
+                            <option value="@boardModel.m_CreatorUsername"> @boardModel.m_CreatorUsername</option>
 
                             for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
                             {
@@ -60,6 +63,8 @@
         </form>
     </div>
 </div>
+    
+
 
 @if (ViewBag.Message != null)
 {
