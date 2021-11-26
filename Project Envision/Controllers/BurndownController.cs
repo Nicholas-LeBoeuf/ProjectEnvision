@@ -12,7 +12,7 @@ namespace Project_Envision.Controllers
     public class BurndownController : Controller
     {
 
-        void getburndownpoints(Burndown Burndown)
+        List<int> getburndownpoints(Burndown burndown)
         {
             MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
@@ -53,10 +53,11 @@ namespace Project_Envision.Controllers
 
             }
 
-
             Burndown.m_BurndownTaskPoints = BurndownTaskPoints;
 
             connection.Close();
+
+            return BurndownTaskPoints;
 
         }
 
@@ -83,6 +84,7 @@ namespace Project_Envision.Controllers
             Burndown.m_Burndowndates = Burndowndates;
 
         }
+
 
 
     }
