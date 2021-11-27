@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Project_Envision.Models.SprintPropertiesModel
+@{
     ViewData["Title"] = "Sprint";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
@@ -13,42 +14,58 @@
 
 
 <div class="box">
-    <div class="tab"> @*For loop here to make buttons for each sprint the user has?*@
+    <div class="tab">
         <button type="button" class="createSprintButton" data-toggle="modal" data-target="#exampleModal">Create Sprint</button>
-        <button class="tablinks" onclick="openTab(event, 'Sprint 1')">Sprint 1</button>
-        <button class="tablinks" onclick="openTab(event, 'Sprint 2')">Sprint 2</button>
-        <button class="tablinks" onclick="openTab(event, 'Sprint 3')">Sprint 3</button>
+
+        @{
+            for (int i = 0; i < GetSprintProperties.getSprint_IdList.Count(); i++)
+            {
+                <button class="tablinks" onclick="openTab(event, '@GetSprintProperties.getSprint_NameList[i]')">@GetSprintProperties.getSprint_NameList[i]</button>
+            }
+        }
     </div>
 
-    @*Have one div and have another for loop for each sprint to gather the tasks?*@
-    <div id="Sprint 1" class="tabcontent">
-        <p>Insert sprint description here</p>
-        <table style="color: white;">
-            <tr>
-                <th>Task Name</th>
-                <th>Task Description</th>
-                <th>Assigned To</th>
-                <th>Story Points</th>
-            </tr>
-            <tr>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-            </tr>
-        </table>
-    </div>
+    @{
+        for (int i = 0; i < GetSprintProperties.getSprint_IdList.Count(); i++)
+        {
+        <div id=@GetSprintProperties.getSprint_NameList[i] class="tabcontent">
 
-    <div id="Sprint 2" class="tabcontent">
+            <button type="submit" class="createSprintButton" data-toggle="modal" onclick="location.href='@Url.Action("collect_Sprint_Info", "Sprint", new { taskId = @boardModel.m_TaskIdList[i]})'" data-target="#EditModal">Edit Sprint</button>
+            <button type="submit" class="createSprintButton" onclick="location.href='@Url.Action("deleteSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Delete Sprint</button>
+            <br />
+            <br />
 
-    </div>
+            <p>@GetSprintProperties.getSprint_DescriptionList[i]</p>
+            <table style="color: white;">
+                <tr>
+                    <th>Task Name</th>
+                    <th>Task Description</th>
+                    <th>Assigned To</th>
+                    <th>Story Points</th>
+                </tr>
 
-    <div id="Sprint 3" class="tabcontent">
+                @for (int j = 0; j < boardModel.m_TaskIdList.Count(); j++)
+                {
+                    if (GetSprintProperties.getSprint_IdList[i] == boardModel.m_SprintIdList[j])
+                    {
 
-    </div>
+                        <tr>
+                            <td>@boardModel.m_TaskList[j]</td>
+                            <td>@boardModel.m_TaskDescriptList[j]</td>
+                            <td>@boardModel.m_AssigneeList[j]</td>
+                            <td>@boardModel.m_TaskPointsList[j]</td>
+                        </tr>
+                    }
+                }
+
+            </table>
+        </div>
+        }
+    }
+
 </div>
 
-<form method="post" asp-action="Index" asp-controller="Home">
+<form method="post" asp-action="createSprint" asp-controller="Sprint">
     <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -60,27 +77,71 @@
                 </div>
                 <div class="modal-body">
                     <div class="secondaryInput">
-                        <label>Sprint Name:</label>
-                        <input class="secondaryInput" type="text" autocomplete="off" placeholder="Sprint Name" required="" />
+                        <label asp-for="sprint_Name">Sprint Name:</label>
+                        <input class="secondaryInput" type="text" autocomplete="off" asp-for="sprint_Name" placeholder="Sprint Name" required="" />
                     </div>
 
                     <br />
                     <div class="secondaryInput">
-                        <label>Sprint Description:</label>
-                        <textarea cols="25" rows="4" placeholder="Sprint Description" id="description" maxlength="100"></textarea>
+                        <label asp-for="sprint_Description">Sprint Description:</label>
+                        <textarea cols="25" rows="4" asp-for="sprint_Description" placeholder="Sprint Description" id="description" maxlength="100"></textarea>
                     </div>
 
                     <br />
                     <div class="secondaryInput">
-                        <label>Sprint Start Time:</label>
-                        <input type="datetime-local" min="">
+                        <label asp-for="start_Time">Sprint Start Time:</label>
+                        <input asp-for="start_Time" type="datetime-local" value=@DateTime.Now.ToString("yyyy-MM-ddThh:mm") min=@DateTime.Now.ToString("yyyy-MM-ddThh:mm")>
                     </div>
 
                     <br />
 
                     <div class="secondaryInput">
-                        <label>Sprint End Time:</label>
-                        <input type="datetime-local" min="">
+                        <label asp-for="end_Time">Sprint End Time:</label>
+                        <input asp-for="end_Time" type="datetime-local" value=@DateTime.Now.ToString("yyyy-MM-ddThh:mm") min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="buttonStyle">Create Sprint</button>
+                        <button type="button" class="buttonStyle" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form method="post" asp-action="EditSprint" asp-controller="Sprint">
+    <div id="EditModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Sprint</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="secondaryInput">
+                        <label asp-for="sprint_Name">Sprint Name:</label>
+                        <input class="secondaryInput" type="text" autocomplete="off" asp-for="sprint_Name" value="@GetSprintProperties.getSprint_Name" required="" />
+                    </div>
+
+                    <br />
+                    <div class="secondaryInput">
+                        <label asp-for="sprint_Description">Sprint Description:</label>
+                        <textarea cols="25" rows="4" asp-for="sprint_Description" id="description" maxlength="100">@GetSprintProperties.getSprint_Description</textarea>
+                    </div>
+
+                    <br />
+                    <div class="secondaryInput">
+                        <label asp-for="start_Time">Sprint Start Time:</label>
+                        <input asp-for="start_Time" type="datetime-local" value=@GetSprintProperties.getSprint_Start min=@DateTime.Now.ToString("yyyy-MM-ddThh:mm")>
+                    </div>
+
+                    <br />
+
+                    <div class="secondaryInput">
+                        <label asp-for="end_Time">Sprint End Time:</label>
+                        <input asp-for="end_Time" type="datetime-local" value=@GetSprintProperties.getSprint_End min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="buttonStyle">Create Sprint</button>
@@ -119,3 +180,13 @@
         });
     });
 </script>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+    window.onload = function () {
+        alert("@ViewBag.Message");
+    };
+    </script>
+}

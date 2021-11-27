@@ -14,7 +14,13 @@ namespace Project_Envision.Models
         public static List<string> m_AssigneeList;
         public static List<int> m_TaskPointsList;
         public static bool m_GotTask;
+        public static bool m_ReturnToBoard;
 
+        public bool returnToBoard
+        {
+            get => m_ReturnToBoard;
+            set => m_ReturnToBoard = value;
+        }
 
         public void setAsigneeListAttr(List<string> assigneeList)
         {
@@ -52,14 +58,8 @@ namespace Project_Envision.Models
             m_TaskDescriptList = taskDescriptList;
         }
 
-        public static List<string> m_SprintNameList;
         public static List<int> m_SprintIdList;
         public static bool m_GotSprint;
-        
-        public void setSprintNameListAttr(List<string> sprintNameList)
-        {
-            m_SprintNameList = sprintNameList;
-        }
 
         public void setSprintIdListAttr(List<int> sprintIdList)
         {
@@ -91,8 +91,6 @@ namespace Project_Envision.Models
             get => m_GotUsers;
             set => m_GotUsers = value;
         }
-
-
 
     }
 }

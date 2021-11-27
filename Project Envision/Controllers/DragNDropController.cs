@@ -12,6 +12,7 @@ namespace Project_Envision.Controllers
     public class DragNDropController : Controller
     {
 
+
         void updateTask(int taskId, string location)
         {
 
@@ -36,7 +37,7 @@ namespace Project_Envision.Controllers
         {
             if(DragNDropModel.location == "Done" || DragNDropModel.currentLocation == "Done")
             { 
-                string currentDate = DateTime.Now.ToString("MM-dd-yyyy");
+                string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
                 int points = 0;
 
                 for (int i = 0; i < boardModel.m_TaskPointsList.Count(); i++)
@@ -77,7 +78,6 @@ namespace Project_Envision.Controllers
 
             return RedirectToAction("dragNDropUpdate", new { location = currentLocation });
         }
-        
 
         public IActionResult setLocation(string location)
         {
@@ -113,5 +113,4 @@ namespace Project_Envision.Controllers
                 return RedirectToAction("GetTask", "Task");
             }
         }
-
     }

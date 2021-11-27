@@ -1,0 +1,96 @@
+﻿@model Project_Envision.Models.SprintPropertiesModel
+@{
+    ViewData["Title"] = "Sprint";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Sprint.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
+<link rel="stylesheet" href="~/css/Inputs.css" />
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<form method="post" asp-action="EditSprint" asp-controller="Sprint">
+    <div id="EditModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Sprint</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="secondaryInput">
+                        <label asp-for="sprint_Name">Sprint Name:</label>
+                        <input class="secondaryInput" type="text" autocomplete="off" asp-for="sprint_Name" value="@GetSprintProperties.getSprint_Name" required="" />
+                    </div>
+
+                    <br />
+                    <div class="secondaryInput">
+                        <label asp-for="sprint_Description">Sprint Description:</label>
+                        <textarea cols="25" rows="4" asp-for="sprint_Description" id="description" maxlength="100">@GetSprintProperties.getSprint_Description</textarea>
+                    </div>
+
+                    <br />
+                    <div class="secondaryInput">
+                        <label asp-for="start_Time">Sprint Start Time:</label>
+                        <input asp-for="start_Time" type="datetime-local" value=@GetSprintProperties.getSprint_Start min=@DateTime.Now.ToString("yyyy-MM-ddThh:mm")>
+                    </div>
+
+                    <br />
+
+                    <div class="secondaryInput">
+                        <label asp-for="end_Time">Sprint End Time:</label>
+                        <input asp-for="end_Time" type="datetime-local" value=@GetSprintProperties.getSprint_End min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="buttonStyle">Create Sprint</button>
+                        <button type="button" class="buttonStyle" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnclick").click(function () {
+            $("#login").modal('show');
+        });
+
+        $("#HidebtnModal").click(function () {
+            $("#login").modal('hide');
+        });
+    });
+</script>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+    window.onload = function () {
+        alert("@ViewBag.Message");
+    };
+    </script>
+}

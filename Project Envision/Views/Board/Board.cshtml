@@ -37,8 +37,11 @@
         @{
             if (boardModel.m_TaskIdList.Count != 0)
             {
+
                 for (int i = 0; i < boardModel.m_TaskIdList.Count; i++)
                 {
+                    if (GetSprintProperties.currentSprint_Id == boardModel.m_SprintIdList[i])
+                    { 
                     <tr>
                         @if (boardModel.m_TaskLocationList[i] == "Backlog")
                         {
@@ -56,7 +59,7 @@
                                 <div>
                                 </div>
                             </td>
-                        }
+                            }
 
                         @if (boardModel.m_TaskLocationList[i] == "In Progress")
                         {
@@ -115,6 +118,7 @@
                         }
 
                     </tr>
+                    }
                 }
             }
         }
@@ -162,13 +166,3 @@
         }
 
     </script>
-
-
-    @if (ViewBag.Message != null)
-    {
-        <script type="text/javascript">
-        window.onload = function () {
-            alert("@ViewBag.Message");
-        };
-        </script>
-    }

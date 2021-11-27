@@ -56,7 +56,7 @@ namespace Project_Envision.Controllers
             connection.Open();
 
             MySqlCommand getTasks = connection.CreateCommand();
-            getTasks.CommandText = "SELECT taskname, location, task_id, taskdescription, task_Points, user_id FROM tasks where board_id= @boardID";
+            getTasks.CommandText = "SELECT taskname, location, task_id, taskdescription, task_Points, user_id, Sprint_id FROM tasks where board_id= @boardID";
             getTasks.Parameters.AddWithValue("@boardID", boardModel.boardid);
 
             MySqlDataReader reader = getTasks.ExecuteReader();
@@ -67,7 +67,7 @@ namespace Project_Envision.Controllers
             List<string> assigneeList = new List<string>();
             List<int> task_Id = new List<int>();
             List<int> task_Points = new List<int>();
-            List<int> user_Id = new List<int>();
+            List<int> sprint_Id = new List<int>();
 
             while (reader.Read())
             {
@@ -77,6 +77,7 @@ namespace Project_Envision.Controllers
                 taskDescriptList.Add(Convert.ToString(reader[3]));
                 task_Points.Add(Convert.ToInt32(reader[4]));
                 getUsername(Convert.ToInt32(reader[5]));
+                sprint_Id.Add(Convert.ToInt32(reader[6]));
                 assigneeList.Add(TaskPropertiesModel.getAssignee);
 
             }
@@ -88,6 +89,7 @@ namespace Project_Envision.Controllers
             boardModel.setTaskDescriptListAttr(taskDescriptList);
             boardModel.setTaskPointsListAttr(task_Points);
             boardModel.setAsigneeListAttr(assigneeList);
+            boardModel.setSprintIdListAttr(sprint_Id);
 
             connection.Close();
             
@@ -208,7 +210,7 @@ namespace Project_Envision.Controllers
                     userId = -1;
                 }
 
-                insertCommand = $"Insert into tasks(taskname, taskdescription, board_id, location, task_Points, user_id)" + $"values ( @taskname,@taskdescription,@board_id, @location, @Task_point, @user_id)";
+                insertCommand = $"Insert into tasks(taskname, taskdescription, board_id, location, task_Points, user_id,Sprint_id )" + $"values ( @taskname,@taskdescription,@board_id, @location, @Task_point, @user_id, @sprint_Id)";
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
                 connection.Open();
@@ -222,7 +224,7 @@ namespace Project_Envision.Controllers
                 command.Parameters.AddWithValue("@board_id", boardItems.m_BoardId);
                 command.Parameters.AddWithValue("@Task_point", taskPropertiesModel.task_Points);
                 command.Parameters.AddWithValue("@user_id", userId);
-                
+                command.Parameters.AddWithValue("@sprint_Id", 0);
 
                 command.Parameters.AddWithValue("@location", "Backlog");
 

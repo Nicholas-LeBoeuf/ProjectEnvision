@@ -13,12 +13,21 @@
     overflow-x: hidden;
 }
 
-table, th, td {
+table, th, td{
     border: 1px solid white;
     font-family: 'Lucida Bright';
     font-weight: bold;
     table-layout: fixed;
     border-collapse: collapse;
+}
+
+text {
+    width: 85%;
+    color: #e16e12;
+    font-family: 'Lucida Bright';
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
 }
 
 table {
