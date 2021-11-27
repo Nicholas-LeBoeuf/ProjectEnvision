@@ -61,7 +61,7 @@ namespace Project_Envision.Controllers
                 command.Parameters.AddWithValue("@task_Points", points);
                 command.Parameters.AddWithValue("@completedDate", currentDate);
                 command.Parameters.AddWithValue("@board_Id", boardModel.m_BoardId);
-                command.Parameters.AddWithValue("@sprint_Id", 0);
+                command.Parameters.AddWithValue("@sprint_Id", GetSprintProperties.currentSprint_Id);
 
                 command.Prepare();
                 command.ExecuteReader();

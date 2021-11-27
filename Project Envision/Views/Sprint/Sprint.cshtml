@@ -29,8 +29,6 @@
         for (int i = 0; i < GetSprintProperties.getSprint_IdList.Count(); i++)
         {
         <div id=@GetSprintProperties.getSprint_NameList[i] class="tabcontent">
-
-            <button type="submit" class="createSprintButton" data-toggle="modal" onclick="location.href='@Url.Action("collect_Sprint_Info", "Sprint", new { taskId = @boardModel.m_TaskIdList[i]})'" data-target="#EditModal">Edit Sprint</button>
             <button type="submit" class="createSprintButton" onclick="location.href='@Url.Action("deleteSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Delete Sprint</button>
             <br />
             <br />
