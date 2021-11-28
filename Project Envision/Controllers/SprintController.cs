@@ -13,7 +13,6 @@ namespace Project_Envision.Controllers
     {
         public IActionResult sprint()
         {
-
             return View();
         }
 
@@ -179,7 +178,7 @@ namespace Project_Envision.Controllers
 
                 connection.Close();
 
-                return RedirectToAction("editSprint");
+                return RedirectToAction("Sprint");
             }
             return View("Sprint");
         }
