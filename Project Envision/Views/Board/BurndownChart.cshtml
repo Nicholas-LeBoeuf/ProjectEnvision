@@ -6,47 +6,75 @@
 
 <link rel="stylesheet" href="~/css/Inputs.css" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
 
 <div class="box">
     <div class=" selectionStyle">
         <select>
-            <option>@Burndown.m_BurndownTaskPoints</option>
+            <option>Sprint 1</option>
             <option>Sprint 2</option>
             <option>Sprint 3</option>
         </select>
     </div>
 </div>
 
-<canvas id="burndown" style="width: 100%; max-width: 600px; padding: 0; margin: auto; display: block;
-          width: 800px; height: 600px; position: absolute; top: 0; bottom: 0; left: 0; right: 0;"></canvas>
+<canvas id="canvas" style="width: 100%; max-width: 600px; padding: 0; margin: auto; display: block;
+          width: 800px; height: 600px; position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-color:black;"></canvas>
 
 
 
 
 <script>
-    var xValues = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
-    new Chart("burndown", {
-        type: "line",
+        var timeFormat = 'yyyy/MM/dd';
+        var config = {
+        type: 'line',
         data: {
-            labels: xValues,
-            datasets: [{
-                data: [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0],
-                name: "Target",
-                borderColor: "red",
-                fill: false
-            }, {
-                data:[],
-                name: "Progress",
-                borderColor: "green",
-                fill: false
-            },]
+            datasets: [
+                {
+                    label: "Sprint Progress",
+                    data: [],
+                    fill: false,
+                    borderColor: 'white'
+                },
+                {
+        label: "Target",
+                    data: [],
+                    fill: false,
+                    borderColor: 'orange'
+                }
+            ]
         },
         options: {
-            legend: { display: true },
-            title: { display: true, text: "Sprint 1", color: "white" }
+        responsive: true,
+           
+            scales: {
+            xAxes: [{
+                type: "time",
+                    time: {
+                    format: timeFormat,
+                        tooltipFormat: 'll'
+                    },
+                    scaleLabel: {
+                    display: true,
+                        labelString: 'Date'
+                    }
+                }],
+                yAxes: [{
+                scaleLabel: {
+                    display: true,
+                        labelString: 'value'
+                    }
+                }]
+            }
         }
-    });
+    };
+
+        window.onload = function () {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myLine = new Chart(ctx, config);
+        };
 </script>
 

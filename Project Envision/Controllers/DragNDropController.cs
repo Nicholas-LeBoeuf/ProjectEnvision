@@ -36,7 +36,7 @@ namespace Project_Envision.Controllers
         {
             if(DragNDropModel.location == "Done" || DragNDropModel.currentLocation == "Done")
             { 
-                string currentDate = DateTime.Now.ToString("MM-dd-yyyy");
+                string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
                 int points = 0;
 
                 for (int i = 0; i < boardModel.m_TaskPointsList.Count(); i++)

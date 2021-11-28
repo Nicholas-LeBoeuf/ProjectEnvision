@@ -240,6 +240,64 @@ namespace Project_Envision.Controllers
 
         public IActionResult BurndownChart()
         {
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+
+            connection.Open();
+
+
+            MySqlCommand getPoints = connection.CreateCommand();
+
+
+            getPoints.CommandText = $"SELECT task_points FROM burndownchart where board_id = '" + boardItems.m_BoardId + "' AND user_id = '" + ModelItems.m_UserId + "'";
+
+            MySqlDataReader reader = getPoints.ExecuteReader();
+
+
+            List<int> BurndownTaskPointsPlaceholder = new List<int>();
+            List<int> BurndownTaskPoints = new List<int>();
+
+
+            while (reader.Read())
+            {
+                BurndownTaskPointsPlaceholder.Add(Convert.ToInt32(reader[0]));
+            }
+            reader.Close();
+
+            List<string> Burndowndates = new List<string>();
+
+            MySqlCommand getDates = connection.CreateCommand();
+
+            getDates.CommandText = $"SELECT completedDate FROM burndownchart where board_id = '" + boardItems.m_BoardId + "' AND user_id = '" + ModelItems.m_UserId + "'";
+
+            MySqlDataReader reader2 = getDates.ExecuteReader();
+
+            while (reader2.Read())
+            {
+                Burndowndates.Add(Convert.ToString(reader2[0]));
+            }
+            reader2.Close();
+
+            /*
+            int length = BurndownTaskPointsPlaceholder.Count();
+            int temp, addpoint;
+            int sum = BurndownTaskPointsPlaceholder.Sum();
+            
+            for (int i = 0; i <= length; i++)
+            {
+                temp = BurndownTaskPointsPlaceholder[i];
+                addpoint = sum - temp;
+                BurndownTaskPoints.Add(addpoint);
+
+                sum = addpoint;
+
+            }
+            */
+
+            Burndown.m_BurndownTaskPoints = BurndownTaskPointsPlaceholder;
+            Burndown.m_Burndowndates = Burndowndates;
+
+            connection.Close();
+
 
             return View();
         }
