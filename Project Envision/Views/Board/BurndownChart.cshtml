@@ -27,21 +27,31 @@
 
 
 <script>
-
-        var timeFormat = 'yyyy/MM/dd';
+  
+        var timeFormat = 'YYYY/MM/DD';
         var config = {
         type: 'line',
         data: {
             datasets: [
                 {
                     label: "Sprint Progress",
-                    data: [],
+                    data: [{
+                        x: "2021/11/10", y: 60
+                    }, {
+                            x: "2021/11/20", y: 55
+                        }, {
+                            x: "2021/11/28", y: 20
+                        }],
                     fill: false,
                     borderColor: 'white'
                 },
                 {
         label: "Target",
-                    data: [],
+                    data: [{
+                        x: "2021/11/10", y: 60
+                    }, {
+                        x: "2021/11/30", y: 0
+                        }],
                     fill: false,
                     borderColor: 'orange'
                 }
@@ -65,7 +75,7 @@
                 yAxes: [{
                 scaleLabel: {
                     display: true,
-                        labelString: 'value'
+                        labelString: 'Points'
                     }
                 }]
             }
