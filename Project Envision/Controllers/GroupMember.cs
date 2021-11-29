@@ -69,7 +69,7 @@ namespace Project_Envision.Controllers
                     {
                         if (sRead.Read())
                         {
-                            ViewBag.message = "Already in board";
+                            ViewBag.Message = "Already in board";
                             sRead.Close();
                             return false;
             
@@ -110,10 +110,11 @@ namespace Project_Envision.Controllers
                         command.ExecuteReader();
                         connection.Close();
 
-                        return RedirectToAction("Board", "Board");
+                        ViewBag.Message = "User added successfully";
+                        return RedirectToAction("Teammates", "GroupMember");
                 }
             }
-            return RedirectToAction("Board", "Board");
+            return RedirectToAction("Teammates", "GroupMember");
         }
 
         public IActionResult removeGroupMember(string username)
@@ -134,8 +135,9 @@ namespace Project_Envision.Controllers
                 connection.Close();
 
                 if(ModelItems.m_Username != username)
-                { 
-                return RedirectToAction("Board", "Board");
+                {
+                    ViewBag.Message = "User removed successfully";
+                    return RedirectToAction("Teammates", "GroupMember");
                 }
                 else
                 {
@@ -154,8 +156,13 @@ namespace Project_Envision.Controllers
             if(groupMembers.removeUsername != null)
             {
                 removeGroupMember(groupMembers.removeUsername);
-                return RedirectToAction("Board", "Board");
+                ViewBag.Message = "User removed successfully";
+                return RedirectToAction("Teammates", "GroupMember");
             }
+            return View();
+        }
+        public IActionResult Teammates()
+        {
             return View();
         }
     }

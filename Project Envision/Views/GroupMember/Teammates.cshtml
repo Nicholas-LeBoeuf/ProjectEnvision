@@ -1,0 +1,64 @@
+﻿@model Project_Envision.Models.GroupMembers
+@{
+    ViewData["Title"] = "Teammates";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/AddRemoveTeammates.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
+<link rel="stylesheet" href="~/css/Inputs.css" />
+
+<div class="boxContainer">
+    <div class="box smallBoxes">
+        <h1>Add Teammate</h1>
+        <div class="addTeammateFormContainer">
+            <form method="post" id="addMember" asp-action="inviteGroupMember" asp-controller="GroupMember">
+                <div class="secondaryInput">
+                    <label asp-for="username">Group Member's Username:</label>
+                    <br />
+                    <input asp-for="username" class="secondaryInput" type="text" autocomplete="off" placeholder="Group Member's Username" required />
+                    <span asp-validation-for="username" class="text-danger"></span>
+                </div>
+                <div class="buttonContainer">
+                    <button type="submit" form="addMember" class="buttonStyle addTeammateButton">Add Teammate</button>
+                    <button type="button" class="buttonStyle cancelButton">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="box smallBoxes">
+        <h1>Remove Teammate</h1>
+        <div class="removeTeammateFormContainer">
+            <div class="secondaryInput">
+                <form method="post" class="removeTeammateForm" id="removeMember" asp-action="RemoveTeammate" asp-controller="GroupMember">
+                    <label asp-for="removeUsername">Choose Group Member to Remove</label>
+                    <br />
+                    <div class="selectionStyle">
+                        <select asp-for="removeUsername">
+                            <option value="" disabled selected hidden> Select Group Member </option>
+                            @{
+                                for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
+                                {
+                                    <option value=@boardModel.m_UsernameList[i]>@boardModel.m_UsernameList[i]</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="buttonContainer">
+                        <button type="submit" class="buttonStyle addTeammateButton" form="removeMember">Remove Teammate</button>
+                        <button type="button" class="buttonStyle cancelButton" id="HidebtnModal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <script>
+        $(document).ready(function ()) {
+            alert('@ViewBag.Message');
+        });
+    </script>
+}
