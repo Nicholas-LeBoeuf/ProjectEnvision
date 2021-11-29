@@ -145,6 +145,7 @@ namespace Project_Envision.Controllers
 
             boardModel.m_GotSprint = true;
             getCurrentSprint();
+            boardModel.m_ReturnToBoard = true;
 
                 return RedirectToAction("Board", "Board");
         }

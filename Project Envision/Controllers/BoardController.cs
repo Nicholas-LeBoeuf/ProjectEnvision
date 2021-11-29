@@ -66,6 +66,7 @@ namespace Project_Envision.Controllers
 
             if(boardModel.m_ReturnToBoard == true)
             {
+                boardModel.m_ReturnToBoard = false;
                 return RedirectToAction("Sprint", "Sprint");
             }
 
