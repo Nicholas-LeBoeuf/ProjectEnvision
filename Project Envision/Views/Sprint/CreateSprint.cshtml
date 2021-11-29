@@ -25,14 +25,14 @@
         <br />
         <div class="secondaryInput">
             <label asp-for="start_Time">Sprint Start Time:</label>
-            <input asp-for="start_Time" type="datetime-local" value=@DateTime.Now.ToString("yyyy-MM-ddThh:mm") min=@DateTime.Now.ToString("yyyy-MM-ddThh:mm")>
+            <input asp-for="start_Time" type="datetime-local" value=@DateTime.Now.ToString("yyyy-MM-ddThh:mm") min=@DateTime.Now.ToString("yyyy-MM-ddThh:mm").>
         </div>
 
         <br />
 
         <div class="secondaryInput">
             <label asp-for="end_Time">Sprint End Time:</label>
-            <input asp-for="end_Time" type="datetime-local" value=@DateTime.Now.ToString("yyyy-MM-ddThh:mm") min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")">
+            <input asp-for="end_Time" type="datetime-local" value=@DateTime.Now.ToString("yyyy-MM-ddThh:mm") min="@DateTime.Now.AddDays(7).ToString("yyyy-MM-ddThh:mm")">
         </div>
         <div class="buttonContainer">
             <button type="submit" class="buttonStyle createSprintFormButton">Create Sprint</button>

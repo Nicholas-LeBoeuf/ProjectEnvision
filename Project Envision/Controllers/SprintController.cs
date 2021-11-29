@@ -26,7 +26,7 @@ namespace Project_Envision.Controllers
     public IActionResult setSprintTaskId(int taskId)
         {
 
-            DragNDropModel.taskId= taskId;
+            DragNDropModel.taskId = taskId;
 
             return RedirectToAction("ProductBacklog", "Board");
         }
