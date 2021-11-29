@@ -35,8 +35,6 @@ namespace Project_Envision.Controllers
         {
             string updateCommand = $"Update tasks set Sprint_id ='" + sprintId + "' where task_id ='" + taskId + "'";
 
-
-
             MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
             connection.Open();
@@ -155,6 +153,8 @@ namespace Project_Envision.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                sprintProperties.setGetSprintId(sprintId);
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
                 connection.Open();
@@ -169,16 +169,15 @@ namespace Project_Envision.Controllers
                 {
                     sprintProperties.setGetSprintName(Convert.ToString(reader[0]));
                     sprintProperties.setSprintDescript(Convert.ToString(reader[1]));
-                    sprintProperties.setSprintStart(Convert.ToString(reader[2]));
-                    sprintProperties.setSprintEnd(Convert.ToString(reader[3]));
+                    sprintProperties.setSprintStart(Convert.ToDateTime(reader[2]).ToString("yyyy-MM-ddThh:mm"));
+                    sprintProperties.setSprintEnd(Convert.ToDateTime(reader[3]).ToString("yyyy-MM-ddThh:mm"));
                 }
 
                 reader.Close();
 
-
                 connection.Close();
 
-                return RedirectToAction("Sprint");
+                return RedirectToAction("editSprint","Sprint");
             }
             return View("Sprint");
         }
@@ -247,9 +246,7 @@ namespace Project_Envision.Controllers
                 string insertCommand = " ";
 
 
-                insertCommand = $"Update sprint set Sprintname ='" + sprintPropertiesModel.sprint_Name + "', Sprintdescription ='" + sprintPropertiesModel.sprint_Description + "', Start_time ='" + sprintPropertiesModel.start_Time + "', End_time ='" + sprintPropertiesModel.end_Time + "' where Sprint_id ='" + boardItems.m_TaskId + "'";
-
-
+                insertCommand = $"Update sprint set Sprintname ='" + sprintPropertiesModel.sprint_Name + "', Sprintdescription ='" + sprintPropertiesModel.sprint_Description + "', Start_time ='" + sprintPropertiesModel.start_Time + "', End_time ='" + sprintPropertiesModel.end_Time + "' where Sprint_id ='" + GetSprintProperties.getSprint_Id + "'";
 
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 

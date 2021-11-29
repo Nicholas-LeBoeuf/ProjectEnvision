@@ -30,7 +30,7 @@
         {
         <div id=@GetSprintProperties.getSprint_NameList[i] class="tabcontent">
             <button type="submit" class="createSprintButton" onclick="location.href='@Url.Action("deleteSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Delete Sprint</button>
-            <button type="button" class="createSprintButton" onclick="location.href='@Url.Action("EditSprint", "Sprint")'">Edit Sprint</button>
+            <button type="button" class="createSprintButton" onclick="location.href='@Url.Action("collect_Sprint_Info", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Edit Sprint</button>
             <br />
             <br />
 
