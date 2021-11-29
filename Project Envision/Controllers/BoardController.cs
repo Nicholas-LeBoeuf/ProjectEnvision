@@ -48,15 +48,27 @@ namespace Project_Envision.Controllers
                 boardItems.m_BoardId = boardId;
             }
 
+            if(boardModel.m_GotSprint == false)
+            {
+                return RedirectToAction("GetSprint", "Sprint");
+            }
+
             if (boardModel.m_GotTask == false)
             {
                 return RedirectToAction("GetTask", "Task");
             }
+
             if (boardModel.m_GotUsers == false)
             {
                 return RedirectToAction("getUsernames", "Task");
 
             }
+
+            if(boardModel.m_ReturnToBoard == true)
+            {
+                return RedirectToAction("Sprint", "Sprint");
+            }
+
             else
             {
                 return View("Board");

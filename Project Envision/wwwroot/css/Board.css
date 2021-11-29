@@ -44,7 +44,7 @@ th, td {
 }
 
 .cardContent {
-    font-size: 18px;
+    font-size: 15px;
     color: black;
     text-align: center;
     vertical-align: middle;
@@ -80,14 +80,15 @@ th, td {
     position: absolute;
     display: inline-block;
     text-align: center;
-    left: 40%;
+    left: 35%;
 }
 
 #circle {
-    width: 250px;
-    height: 250px;
-    border-radius: 100%;
+    width: 500px;
+    height: 200px;
+    border-radius: 20px;
     background-color: black;
+    margin-top: 25px;
     opacity: 50%;
     z-index: 1;
 }
@@ -100,7 +101,8 @@ th, td {
     background-size: contain;
     background-position: center;
     z-index: 2;
-    transform: scale(1.2, 1.2);
+    left: 43%;
+    transform: scale(1.5, 1.5);
 }
 
 .headerContainer {

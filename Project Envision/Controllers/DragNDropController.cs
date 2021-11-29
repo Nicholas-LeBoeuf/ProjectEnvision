@@ -12,6 +12,7 @@ namespace Project_Envision.Controllers
     public class DragNDropController : Controller
     {
 
+
         void updateTask(int taskId, string location)
         {
 
@@ -60,7 +61,7 @@ namespace Project_Envision.Controllers
                 command.Parameters.AddWithValue("@task_Points", points);
                 command.Parameters.AddWithValue("@completedDate", currentDate);
                 command.Parameters.AddWithValue("@board_Id", boardModel.m_BoardId);
-                command.Parameters.AddWithValue("@sprint_Id", 0);
+                command.Parameters.AddWithValue("@sprint_Id", GetSprintProperties.currentSprint_Id);
 
                 command.Prepare();
                 command.ExecuteReader();
@@ -77,7 +78,6 @@ namespace Project_Envision.Controllers
 
             return RedirectToAction("dragNDropUpdate", new { location = currentLocation });
         }
-        
 
         public IActionResult setLocation(string location)
         {
@@ -113,5 +113,4 @@ namespace Project_Envision.Controllers
                 return RedirectToAction("GetTask", "Task");
             }
         }
-
     }

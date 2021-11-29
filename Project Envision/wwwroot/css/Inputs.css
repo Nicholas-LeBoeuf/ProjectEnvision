@@ -167,3 +167,25 @@
     width: 385px;
     outline: none;
 }
+
+input[type="datetime-local"] {
+    width: 380px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 3px 12px;
+    background: #444;
+    color: #d7d7d7;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    text-align: center;
+    font-family: Arial;
+}
+
+input[type="datetime-local"]:focus {
+    background: #ccc;
+    color: #6a6f75;
+    margin: 3px 12px;
+    outline: none;
+}

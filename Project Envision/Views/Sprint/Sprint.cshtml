@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Project_Envision.Models.SprintPropertiesModel
+@{
     ViewData["Title"] = "Sprint";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
@@ -13,84 +14,58 @@
 
 
 <div class="box">
-    <div class="tab"> @*For loop here to make buttons for each sprint the user has?*@
-        <button type="button" class="createSprintButton" data-toggle="modal" data-target="#exampleModal">Create Sprint</button>
-        <button class="tablinks" onclick="openTab(event, 'Sprint 1')">Sprint 1</button>
-        <button class="tablinks" onclick="openTab(event, 'Sprint 2')">Sprint 2</button>
-        <button class="tablinks" onclick="openTab(event, 'Sprint 3')">Sprint 3</button>
+    <div class="tab">
+        <button type="button" class="createSprintButton" onclick="location.href='@Url.Action("CreateSprint", "Sprint")'">Create Sprint</button>
+
+        @{
+            for (int i = 0; i < GetSprintProperties.getSprint_IdList.Count(); i++)
+            {
+                <button class="tablinks" onclick="openTab(event, '@GetSprintProperties.getSprint_NameList[i]')">@GetSprintProperties.getSprint_NameList[i]</button>
+            }
+        }
     </div>
 
-    @*Have one div and have another for loop for each sprint to gather the tasks?*@
-    <div id="Sprint 1" class="tabcontent">
-        <p>Insert sprint description here</p>
-        <table style="color: white;">
-            <tr>
-                <th>Task Name</th>
-                <th>Task Description</th>
-                <th>Assigned To</th>
-                <th>Story Points</th>
-            </tr>
-            <tr>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-            </tr>
-        </table>
-    </div>
+    @{
+        for (int i = 0; i < GetSprintProperties.getSprint_IdList.Count(); i++)
+        {
+        <div id=@GetSprintProperties.getSprint_NameList[i] class="tabcontent">
+            <div class="deleteEditButtonContainer">
+                <button type="submit" class="buttonStyle deleteSprintButton" onclick="location.href='@Url.Action("deleteSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Delete Sprint</button>
+                <button type="button" class="buttonStyle editSprintButton" onclick="location.href='@Url.Action("collect_Sprint_Info", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Edit Sprint</button>
+            </div>
+            <br />
+            <br />
+            <h3 style="color: white">Sprint Description</h3>
+            <p>@GetSprintProperties.getSprint_DescriptionList[i]</p>
+            <table>
+                <tr>
+                    <th>Task Name</th>
+                    <th>Task Description</th>
+                    <th>Assigned To</th>
+                    <th>Story Points</th>
+                </tr>
 
-    <div id="Sprint 2" class="tabcontent">
+                @for (int j = 0; j < boardModel.m_TaskIdList.Count(); j++)
+                {
+                    if (GetSprintProperties.getSprint_IdList[i] == boardModel.m_SprintIdList[j])
+                    {
 
-    </div>
+                        <tr>
+                            <td>@boardModel.m_TaskList[j]</td>
+                            <td>@boardModel.m_TaskDescriptList[j]</td>
+                            <td>@boardModel.m_AssigneeList[j]</td>
+                            <td>@boardModel.m_TaskPointsList[j]</td>
+                        </tr>
+                    }
+                }
 
-    <div id="Sprint 3" class="tabcontent">
+            </table>
+        </div>
+        }
+    }
 
-    </div>
 </div>
 
-<form method="post" asp-action="Index" asp-controller="Home">
-    <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Create Sprint</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="secondaryInput">
-                        <label>Sprint Name:</label>
-                        <input class="secondaryInput" type="text" autocomplete="off" placeholder="Sprint Name" required="" />
-                    </div>
-
-                    <br />
-                    <div class="secondaryInput">
-                        <label>Sprint Description:</label>
-                        <textarea cols="25" rows="4" placeholder="Sprint Description" id="description" maxlength="100"></textarea>
-                    </div>
-
-                    <br />
-                    <div class="secondaryInput">
-                        <label>Sprint Start Time:</label>
-                        <input type="datetime-local" min="">
-                    </div>
-
-                    <br />
-
-                    <div class="secondaryInput">
-                        <label>Sprint End Time:</label>
-                        <input type="datetime-local" min="">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="buttonStyle">Create Sprint</button>
-                        <button type="button" class="buttonStyle" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
 
 <script>
     function openTab(evt, tabName) {
@@ -108,14 +83,11 @@
     }
 </script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnclick").click(function () {
-            $("#login").modal('show');
-        });
-
-        $("#HidebtnModal").click(function () {
-            $("#login").modal('hide');
-        });
-    });
-</script>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+    window.onload = function () {
+        alert("@ViewBag.Message");
+    };
+    </script>
+}
