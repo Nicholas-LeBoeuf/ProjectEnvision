@@ -158,5 +158,9 @@ namespace Project_Envision.Controllers
             }
             return View();
         }
+        public IActionResult Teammates()
+        {
+            return View();
+        }
     }
 }
