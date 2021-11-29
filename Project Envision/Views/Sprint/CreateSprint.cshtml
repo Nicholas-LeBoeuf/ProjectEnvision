@@ -1,0 +1,39 @@
+﻿@model Project_Envision.Models.SprintPropertiesModel
+@{
+    ViewData["Title"] = "Create Sprint";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Sprint.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
+<link rel="stylesheet" href="~/css/Inputs.css" />
+
+<div class="box">
+    <form>
+        <div class="secondaryInput">
+            <label asp-for="sprint_Name">Sprint Name:</label>
+            <input class="secondaryInput" type="text" autocomplete="off" asp-for="sprint_Name" placeholder="Sprint Name" required="" />
+        </div>
+
+        <br />
+        <div class="secondaryInput">
+            <label asp-for="sprint_Description">Sprint Description:</label>
+            <textarea cols="25" rows="4" asp-for="sprint_Description" placeholder="Sprint Description" id="description" maxlength="100"></textarea>
+        </div>
+
+        <br />
+        <div class="secondaryInput">
+            <label asp-for="start_Time">Sprint Start Time:</label>
+            <input asp-for="start_Time" type="datetime-local" value=@DateTime.Now.ToString("yyyy-MM-ddThh:mm") min=@DateTime.Now.ToString("yyyy-MM-ddThh:mm")>
+        </div>
+
+        <br />
+
+        <div class="secondaryInput">
+            <label asp-for="end_Time">Sprint End Time:</label>
+            <input asp-for="end_Time" type="datetime-local" value=@DateTime.Now.ToString("yyyy-MM-ddThh:mm") min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")">
+        </div>
+        <button type="submit" class="buttonStyle">Create Sprint</button>
+        <button type="button" class="buttonStyle" onclick="location.href='@Url.Action("Sprint", "Sprint")'">Close</button>
+    </form>
+</div>

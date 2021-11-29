@@ -15,7 +15,7 @@
 
 <div class="box">
     <div class="tab">
-        <button type="button" class="createSprintButton" data-toggle="modal" data-target="#exampleModal">Create Sprint</button>
+        <button type="button" class="createSprintButton" onclick="location.href='@Url.Action("CreateSprint", "Sprint")'">Create Sprint</button>
 
         @{
             for (int i = 0; i < GetSprintProperties.getSprint_IdList.Count(); i++)
@@ -30,6 +30,7 @@
         {
         <div id=@GetSprintProperties.getSprint_NameList[i] class="tabcontent">
             <button type="submit" class="createSprintButton" onclick="location.href='@Url.Action("deleteSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Delete Sprint</button>
+            <button type="button" class="createSprintButton" onclick="location.href='@Url.Action("EditSprint", "Sprint")'">Edit Sprint</button>
             <br />
             <br />
 
@@ -63,93 +64,6 @@
 
 </div>
 
-<form method="post" asp-action="createSprint" asp-controller="Sprint">
-    <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Create Sprint</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="secondaryInput">
-                        <label asp-for="sprint_Name">Sprint Name:</label>
-                        <input class="secondaryInput" type="text" autocomplete="off" asp-for="sprint_Name" placeholder="Sprint Name" required="" />
-                    </div>
-
-                    <br />
-                    <div class="secondaryInput">
-                        <label asp-for="sprint_Description">Sprint Description:</label>
-                        <textarea cols="25" rows="4" asp-for="sprint_Description" placeholder="Sprint Description" id="description" maxlength="100"></textarea>
-                    </div>
-
-                    <br />
-                    <div class="secondaryInput">
-                        <label asp-for="start_Time">Sprint Start Time:</label>
-                        <input asp-for="start_Time" type="datetime-local" value=@DateTime.Now.ToString("yyyy-MM-ddThh:mm") min=@DateTime.Now.ToString("yyyy-MM-ddThh:mm")>
-                    </div>
-
-                    <br />
-
-                    <div class="secondaryInput">
-                        <label asp-for="end_Time">Sprint End Time:</label>
-                        <input asp-for="end_Time" type="datetime-local" value=@DateTime.Now.ToString("yyyy-MM-ddThh:mm") min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="buttonStyle">Create Sprint</button>
-                        <button type="button" class="buttonStyle" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-
-<form method="post" asp-action="EditSprint" asp-controller="Sprint">
-    <div id="EditModal" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Sprint</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="secondaryInput">
-                        <label asp-for="sprint_Name">Sprint Name:</label>
-                        <input class="secondaryInput" type="text" autocomplete="off" asp-for="sprint_Name" value="@GetSprintProperties.getSprint_Name" required="" />
-                    </div>
-
-                    <br />
-                    <div class="secondaryInput">
-                        <label asp-for="sprint_Description">Sprint Description:</label>
-                        <textarea cols="25" rows="4" asp-for="sprint_Description" id="description" maxlength="100">@GetSprintProperties.getSprint_Description</textarea>
-                    </div>
-
-                    <br />
-                    <div class="secondaryInput">
-                        <label asp-for="start_Time">Sprint Start Time:</label>
-                        <input asp-for="start_Time" type="datetime-local" value=@GetSprintProperties.getSprint_Start min=@DateTime.Now.ToString("yyyy-MM-ddThh:mm")>
-                    </div>
-
-                    <br />
-
-                    <div class="secondaryInput">
-                        <label asp-for="end_Time">Sprint End Time:</label>
-                        <input asp-for="end_Time" type="datetime-local" value=@GetSprintProperties.getSprint_End min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="buttonStyle">Edit Sprint</button>
-                        <button type="button" class="buttonStyle" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
 
 <script>
     function openTab(evt, tabName) {
@@ -166,19 +80,6 @@
         evt.currentTarget.className += " active";
     }
 </script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnclick").click(function () {
-            $("#login").modal('show');
-        });
-
-        $("#HidebtnModal").click(function () {
-            $("#login").modal('hide');
-        });
-    });
-</script>
-
 
 @if (ViewBag.Message != null)
 {
