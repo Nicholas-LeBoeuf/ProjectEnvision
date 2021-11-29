@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="~/css/Buttons.css" />
 <link rel="stylesheet" href="~/css/Inputs.css" />
 
-<div class="box">
+<div class="createSprintBox">
+    <h1>Create Sprint</h1>
     <form>
         <div class="secondaryInput">
             <label asp-for="sprint_Name">Sprint Name:</label>
@@ -33,7 +34,9 @@
             <label asp-for="end_Time">Sprint End Time:</label>
             <input asp-for="end_Time" type="datetime-local" value=@DateTime.Now.ToString("yyyy-MM-ddThh:mm") min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")">
         </div>
-        <button type="submit" class="buttonStyle">Create Sprint</button>
-        <button type="button" class="buttonStyle" onclick="location.href='@Url.Action("Sprint", "Sprint")'">Close</button>
+        <div class="buttonContainer">
+            <button type="submit" class="buttonStyle createSprintFormButton">Create Sprint</button>
+            <button type="button" class="buttonStyle cancelButton" onclick="location.href='@Url.Action("Sprint", "Sprint")'">Cancel</button>
+        </div>
     </form>
 </div>

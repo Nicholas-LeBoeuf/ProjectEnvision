@@ -37,7 +37,7 @@
                                 if (@boardModel.m_TaskLocationList[i] != "Done")
                                 {
                                     <td>
-                                        <button onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                        <button class ="editDeleteButton" onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
                                             <i class="fas fa-pen fa-2x"></i>
                                         </button>
                                     </td>
@@ -45,7 +45,7 @@
                                 else
                                 {
                                     <td>
-                                        <button disabled="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                        <button class="disabledEditDeleteButton" disabled="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
                                             <i class="fas fa-pen fa-2x"></i>
                                         </button>
                                     </td>
@@ -53,7 +53,7 @@
                                 if (@boardModel.m_TaskLocationList[i] != "Done")
                                 {
                                     <td>
-                                        <button onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                        <button class="disabledEditDeleteButton" onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
                                             <i class="fas fa-trash fa-2x"></i>
 
                                         </button>
@@ -62,7 +62,7 @@
                                 else
                                 {
                                     <td>
-                                        <button disabled onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                        <button class="disabledEditDeleteButton" disabled onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
                                             <i class="fas fa-trash fa-2x"></i>
                                         </button>
                                     </td>

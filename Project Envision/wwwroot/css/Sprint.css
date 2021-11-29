@@ -10,6 +10,19 @@
     padding: 0px;
 }
 
+.createSprintBox {
+    position: absolute;
+    height: 70%;
+    width: 25%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 0px;
+    text-align: center;
+}
+
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
@@ -76,4 +89,20 @@ th, td {
 
 p {
     color: white;
+}
+
+.createSprintFormButton {
+    width: 175px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.cancelButton {
+    width: 175px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.buttonContainer {
+    margin-top: 30px;
 }

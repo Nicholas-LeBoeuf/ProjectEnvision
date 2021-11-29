@@ -89,3 +89,13 @@ th, td {
     height: 50px;
     padding: 13px 32px;
 }
+
+.editDeleteButton {
+    background-color: transparent;
+    border: none;
+}
+
+.disabledEditDeleteButton {
+    background-color: transparent;
+    border: none
+}
