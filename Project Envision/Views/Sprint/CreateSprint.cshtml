@@ -13,13 +13,13 @@
     <form>
         <div class="secondaryInput">
             <label asp-for="sprint_Name">Sprint Name:</label>
-            <input class="secondaryInput" type="text" autocomplete="off" asp-for="sprint_Name" placeholder="Sprint Name" required="" />
+            <input class="secondaryInput" type="text" autocomplete="off" asp-for="sprint_Name" placeholder="Sprint Name" maxlength="45" required="" />
         </div>
 
         <br />
         <div class="secondaryInput">
             <label asp-for="sprint_Description">Sprint Description:</label>
-            <textarea cols="25" rows="4" asp-for="sprint_Description" placeholder="Sprint Description" id="description" maxlength="100"></textarea>
+            <textarea cols="25" rows="4" placeholder="Sprint Description" id="description" maxlength="80"></textarea>
         </div>
 
         <br />
