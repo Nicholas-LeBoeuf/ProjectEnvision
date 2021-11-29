@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="~/css/Buttons.css" />
 <link rel="stylesheet" href="~/css/Inputs.css" />
 
-<div class="box">
+<div class="createSprintBox">
+    <h1>Edit Sprint</h1>
     <form>
         <div class="secondaryInput">
             <label asp-for="sprint_Name">Sprint Name:</label>
@@ -18,7 +19,7 @@
         <br />
         <div class="secondaryInput">
             <label for="sprint_Description" asp-for="sprint_Description">Sprint Description:</label>
-            <textarea cols="25" rows="4"  id="sprint_Description" name="sprint_Description" maxlength="100">@GetSprintProperties.getSprint_Description</textarea>
+            <textarea cols="25" rows="4" id="sprint_Description" name="sprint_Description" maxlength="100">@GetSprintProperties.getSprint_Description</textarea>
         </div>
 
         <br />
@@ -33,7 +34,9 @@
             <label asp-for="end_Time">Sprint End Time:</label>
             <input asp-for="end_Time" type="datetime-local" value=@GetSprintProperties.getSprint_End min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")">
         </div>
-        <button type="submit" class="buttonStyle">Edit Sprint</button>
-        <button type="button" class="buttonStyle" onclick="location.href='@Url.Action("Sprint", "Sprint")'">Close</button>
+        <div class="buttonContainer">
+            <button type="submit" class="buttonStyle createSprintFormButton">Edit Sprint</button>
+            <button type="button" class="buttonStyle cancelButton" onclick="location.href='@Url.Action("Sprint", "Sprint")'">Close</button>
+        </div>
     </form>
 </div>

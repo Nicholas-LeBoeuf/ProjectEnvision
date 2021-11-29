@@ -29,13 +29,15 @@
         for (int i = 0; i < GetSprintProperties.getSprint_IdList.Count(); i++)
         {
         <div id=@GetSprintProperties.getSprint_NameList[i] class="tabcontent">
-            <button type="submit" class="createSprintButton" onclick="location.href='@Url.Action("deleteSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Delete Sprint</button>
-            <button type="button" class="createSprintButton" onclick="location.href='@Url.Action("collect_Sprint_Info", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Edit Sprint</button>
+            <div class="deleteEditButtonContainer">
+                <button type="submit" class="buttonStyle deleteSprintButton" onclick="location.href='@Url.Action("deleteSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Delete Sprint</button>
+                <button type="button" class="buttonStyle editSprintButton" onclick="location.href='@Url.Action("collect_Sprint_Info", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Edit Sprint</button>
+            </div>
             <br />
             <br />
-
+            <h3 style="color: white">Sprint Description</h3>
             <p>@GetSprintProperties.getSprint_DescriptionList[i]</p>
-            <table style="color: white;">
+            <table>
                 <tr>
                     <th>Task Name</th>
                     <th>Task Description</th>
