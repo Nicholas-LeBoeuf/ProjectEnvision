@@ -143,7 +143,16 @@ namespace Project_Envision.Controllers
 
             boardModel.m_GotUsers = true;
 
+            if(boardModel.m_MemberReturn == true)
+            {
+                boardModel.m_MemberReturn = false;
+                return RedirectToAction("Teammates", "GroupMember");
+            }
+            else
+            {
             return RedirectToAction("Board", "Board");
+            }
+
         }
 
         int getUserId( string username)

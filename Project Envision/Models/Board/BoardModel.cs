@@ -13,8 +13,16 @@ namespace Project_Envision.Models
         public static List<int> m_TaskIdList;
         public static List<string> m_AssigneeList;
         public static List<int> m_TaskPointsList;
+        
         public static bool m_GotTask;
         public static bool m_ReturnToBoard;
+        public static bool m_MemberReturn;
+
+        public bool memberReturn
+        {
+            get => m_MemberReturn;
+            set => m_MemberReturn = value;
+        }
 
         public bool returnToBoard
         {

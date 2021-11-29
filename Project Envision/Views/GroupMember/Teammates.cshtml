@@ -54,11 +54,11 @@
     </div>
 </div>
 
-@if (ViewBag.Message != null)
+@if (ViewBag.message != null)
 {
-    <script>
-        $(document).ready(function ()) {
-            alert('@ViewBag.Message');
-        });
+    <script type="text/javascript">
+    window.onload = function () {
+        alert("@ViewBag.Message");
+    };
     </script>
 }

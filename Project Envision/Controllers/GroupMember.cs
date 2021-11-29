@@ -109,8 +109,10 @@ namespace Project_Envision.Controllers
                         command.Prepare();
                         command.ExecuteReader();
                         connection.Close();
+                        boardModel.m_GotUsers = false;
+                        boardModel.m_MemberReturn = true;
 
-                        ViewBag.Message = "User added successfully";
+                    ViewBag.message = "User added successfully";
                         return RedirectToAction("Teammates", "GroupMember");
                 }
             }
@@ -134,9 +136,12 @@ namespace Project_Envision.Controllers
                 removeMember.ExecuteReader();
                 connection.Close();
 
-                if(ModelItems.m_Username != username)
+                boardModel.m_GotUsers = false;
+                boardModel.m_MemberReturn = true;
+
+            if (ModelItems.m_Username != username)
                 {
-                    ViewBag.Message = "User removed successfully";
+                    ViewBag.message = "User removed successfully";
                     return RedirectToAction("Teammates", "GroupMember");
                 }
                 else
@@ -148,21 +153,29 @@ namespace Project_Envision.Controllers
 
         public IActionResult AddTeammate()
         {
-            return View();
+            return View("Teammates");
         }
 
         public IActionResult RemoveTeammate(GroupMembers groupMembers)
         {
-            if(groupMembers.removeUsername != null)
+            if (groupMembers.removeUsername != null)
             {
                 removeGroupMember(groupMembers.removeUsername);
-                ViewBag.Message = "User removed successfully";
+                ViewBag.message = "User removed sucessfully";
+                
                 return RedirectToAction("Teammates", "GroupMember");
             }
-            return View();
+
+            return View("Teammates");
         }
         public IActionResult Teammates()
         {
+
+            if (boardModel.m_GotUsers == false)
+            {
+                return RedirectToAction("getUsernames", "Task");
+
+            }
             return View();
         }
     }
