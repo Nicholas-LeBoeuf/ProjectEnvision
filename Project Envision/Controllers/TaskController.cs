@@ -214,12 +214,8 @@ namespace Project_Envision.Controllers
 
                 string insertCommand = " ";
 
-                if (userId == 0)
-                {
-                    userId = -1;
-                }
 
-                insertCommand = $"Insert into tasks(taskname, taskdescription, board_id, location, task_Points, user_id,Sprint_id )" + $"values ( @taskname,@taskdescription,@board_id, @location, @Task_point, @user_id, @sprint_Id)";
+                insertCommand = $"Insert into tasks(taskname, taskdescription, board_id, location, task_Points, user_id, Sprint_id )" + $"values ( @taskname,@taskdescription,@board_id, @location, @Task_point, @user_id, @sprint_Id)";
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
                 connection.Open();
@@ -240,9 +236,10 @@ namespace Project_Envision.Controllers
                 command.Prepare();
                 command.ExecuteReader();
                 connection.Close();
-                boardModel.m_GotTask = false;
 
-                return RedirectToAction("ProductBacklog", "Board");
+                taskPropertiesModel.setGetAssignee("None");
+
+                return RedirectToAction("getTask");
             }
             return View();
         }
@@ -305,9 +302,8 @@ namespace Project_Envision.Controllers
                 command.Prepare();
                 command.ExecuteReader();
                 connection.Close();
-                boardModel.m_GotTask = false;
 
-                return RedirectToAction("ProductBacklog", "Board");
+                return RedirectToAction("getTask");
             }
             return View();
         }

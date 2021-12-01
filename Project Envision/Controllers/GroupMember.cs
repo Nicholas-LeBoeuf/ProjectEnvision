@@ -119,18 +119,30 @@ namespace Project_Envision.Controllers
             return RedirectToAction("Teammates", "GroupMember");
         }
 
-        public IActionResult removeGroupMember(string username)
+        public IActionResult removeGroupMember(string username, string tableName)
         {
+                int userID = 0;
+                userID = getUserId(username);
+                
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
                 connection.Open();
 
                 MySqlCommand removeMember = connection.CreateCommand();
 
-                removeMember.CommandText = "Delete FROM invitedboard where board_id = @boardID AND inviteduser = @inviteduser";
-
+            if (tableName == "invitedboard")
+            {
+                removeMember.CommandText = "Delete FROM " + tableName + " where board_id = @boardID AND inviteduser = @inviteduser";
                 removeMember.Parameters.AddWithValue("@boardID", boardModel.m_BoardId);
                 removeMember.Parameters.AddWithValue("@inviteduser", username);
+
+            }
+            else
+            {
+                removeMember.CommandText = "Delete FROM " + tableName + " where board_id = @boardID and user_id = @user_Id";
+                removeMember.Parameters.AddWithValue("@boardID", boardModel.m_BoardId);
+                removeMember.Parameters.AddWithValue("@user_Id", userID);
+            }
 
                 removeMember.Prepare();
                 removeMember.ExecuteReader();
@@ -142,7 +154,16 @@ namespace Project_Envision.Controllers
             if (ModelItems.m_Username != username)
                 {
                     ViewBag.message = "User removed successfully";
+
+                if (boardModel.m_CreatorUsername == username)
+                {
+                    boardItems.m_GotBoard = false;
+                    return RedirectToAction("ChooseBoard", "Board");
+                }
+                else
+                    boardModel.m_GotTask = false;
                     return RedirectToAction("Teammates", "GroupMember");
+
                 }
                 else
                 {
@@ -160,7 +181,8 @@ namespace Project_Envision.Controllers
         {
             if (groupMembers.removeUsername != null)
             {
-                removeGroupMember(groupMembers.removeUsername);
+                removeGroupMember(groupMembers.removeUsername,"tasks");
+                removeGroupMember(groupMembers.removeUsername, "invitedboard");
                 ViewBag.message = "User removed sucessfully";
                 
                 return RedirectToAction("Teammates", "GroupMember");

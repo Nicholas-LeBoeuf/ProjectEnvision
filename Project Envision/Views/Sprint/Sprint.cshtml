@@ -43,6 +43,7 @@
                     <th>Task Description</th>
                     <th>Assigned To</th>
                     <th>Story Points</th>
+                    <th>Status</th>
                 </tr>
 
                 @for (int j = 0; j < boardModel.m_TaskIdList.Count(); j++)
@@ -55,6 +56,7 @@
                             <td>@boardModel.m_TaskDescriptList[j]</td>
                             <td>@boardModel.m_AssigneeList[j]</td>
                             <td>@boardModel.m_TaskPointsList[j]</td>
+                            <td>@boardModel.m_TaskLocationList[j]</td>
                         </tr>
                     }
                 }

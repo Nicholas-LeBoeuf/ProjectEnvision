@@ -19,57 +19,59 @@
                 <th>Task Description</th>
                 <th>Assigned To</th>
                 <th>Story Points</th>
+                <th>Status</th>
                 <th>Edit Task</th>
                 <th>Delete Task</th>
             </tr>
 
             @{ for (int i = 0; i < boardModel.m_TaskIdList.Count(); i++)
                 {
-                    <tr draggable="true" ondragstart="drag(event), location.href='@Url.Action("setSprintTaskId", "Sprint", new { taskid = @boardModel.m_TaskIdList[i]})'">
-                        @{
-                            if (boardModel.m_SprintIdList[i] == 0)
-                            {
-                                <td>@boardModel.m_TaskList[i]</td>
-                                <td>@boardModel.m_TaskDescriptList[i]</td>
-                                <td>@boardModel.m_AssigneeList[i]</td>
-                                <td>@boardModel.m_TaskPointsList[i]</td>
+                        <tr draggable="true" ondragstart="drag(event), location.href='@Url.Action("setSprintTaskId", "Sprint", new { taskid = @boardModel.m_TaskIdList[i]})'">
+                            @{
+                                if (boardModel.m_SprintIdList[i] == 0)
+                                {
+                                    <td>@boardModel.m_TaskList[i]</td>
+                                    <td>@boardModel.m_TaskDescriptList[i]</td>
+                                    <td>@boardModel.m_AssigneeList[i]</td>
+                                    <td>@boardModel.m_TaskPointsList[i]</td>
+                                    <td>@boardModel.m_TaskLocationList[i]</td>
 
-                                if (@boardModel.m_TaskLocationList[i] != "Done")
-                                {
-                                    <td>
-                                        <button class ="editDeleteButton" onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                            <i class="fas fa-pen fa-2x"></i>
-                                        </button>
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        <button class="disabledEditDeleteButton" disabled="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                            <i class="fas fa-pen fa-2x"></i>
-                                        </button>
-                                    </td>
-                                }
-                                if (@boardModel.m_TaskLocationList[i] != "Done")
-                                {
-                                    <td>
-                                        <button class="disabledEditDeleteButton" onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                            <i class="fas fa-trash fa-2x"></i>
+                                    if (@boardModel.m_TaskLocationList[i] != "Done")
+                                    {
+                                        <td>
+                                            <button class="editDeleteButton" onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                <i class="fas fa-pen fa-2x"></i>
+                                            </button>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <button class="disabledEditDeleteButton" disabled="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                <i class="fas fa-pen fa-2x"></i>
+                                            </button>
+                                        </td>
+                                    }
+                                    if (@boardModel.m_TaskLocationList[i] != "Done")
+                                    {
+                                        <td>
+                                            <button class="disabledEditDeleteButton" onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                <i class="fas fa-trash fa-2x"></i>
 
-                                        </button>
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        <button class="disabledEditDeleteButton" disabled onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                            <i class="fas fa-trash fa-2x"></i>
-                                        </button>
-                                    </td>
+                                            </button>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <button class="disabledEditDeleteButton" disabled onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                <i class="fas fa-trash fa-2x"></i>
+                                            </button>
+                                        </td>
+                                    }
                                 }
                             }
-                        }
-                    </tr>
+                        </tr>
                 }
             }
 
@@ -88,6 +90,7 @@
                     <th>Task Description</th>
                     <th>Assigned To</th>
                     <th>Story Points</th>
+                    <th>Status</th>
                     <th>Edit Task</th>
                     <th>Delete Task</th>
                 </tr>
@@ -96,47 +99,49 @@
                     {
                         if (boardModel.m_SprintIdList[i] == GetSprintProperties.getSprint_IdList[j])
                         {
-                            <tr draggable="true" ondragstart="drag(event), location.href='@Url.Action("setSprintTaskId", "Sprint", new { taskid = @boardModel.m_TaskIdList[i]})'">
-                                @{
-                                    <td>@boardModel.m_TaskList[i]</td>
-                                    <td>@boardModel.m_TaskDescriptList[i]</td>
-                                    <td>@boardModel.m_AssigneeList[i]</td>
-                                    <td>@boardModel.m_TaskPointsList[i]</td>
-                                    if (@boardModel.m_TaskLocationList[i] != "Done")
-                                    {
-                                        <td>
-                                            <button class ="editDeleteButton" onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                                <i class="fas fa-pen fa-2x"></i>
-                                            </button>
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            <button class="disabledEditDeleteButton" disabled="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                                <i class="fas fa-pen fa-2x"></i>
-                                            </button>
-                                        </td>
-                                    }
-                                    if (@boardModel.m_TaskLocationList[i] != "Done")
-                                    {
-                                        <td>
-                                            <button class ="editDeleteButton" onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                                <i class="fas fa-trash fa-2x"></i>
+                                <tr draggable="true" ondragstart="drag(event), location.href='@Url.Action("setSprintTaskId", "Sprint", new { taskid = @boardModel.m_TaskIdList[i]})'">
+                                    @{
+                                        <td>@boardModel.m_TaskList[i]</td>
+                                        <td>@boardModel.m_TaskDescriptList[i]</td>
+                                        <td>@boardModel.m_AssigneeList[i]</td>
+                                        <td>@boardModel.m_TaskPointsList[i]</td>
+                                        <td>@boardModel.m_TaskLocationList[i]</td>
 
-                                            </button>
-                                        </td>
+                                        if (@boardModel.m_TaskLocationList[i] != "Done")
+                                        {
+                                            <td>
+                                                <button class="editDeleteButton" onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                    <i class="fas fa-pen fa-2x"></i>
+                                                </button>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <button class="disabledEditDeleteButton" disabled="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                    <i class="fas fa-pen fa-2x"></i>
+                                                </button>
+                                            </td>
+                                        }
+                                        if (@boardModel.m_TaskLocationList[i] != "Done")
+                                        {
+                                            <td>
+                                                <button class="editDeleteButton" onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                    <i class="fas fa-trash fa-2x"></i>
+
+                                                </button>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <button class="disabledEditDeleteButton" disabled onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                    <i class="fas fa-trash fa-2x"></i>
+                                                </button>
+                                            </td>
+                                        }
                                     }
-                                    else
-                                    {
-                                        <td>
-                                            <button class="disabledEditDeleteButton" disabled onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                                <i class="fas fa-trash fa-2x"></i>
-                                            </button>
-                                        </td>
-                                    }
-                                }
-                            </tr>
+                                </tr>
                         }
                     }
                 }
