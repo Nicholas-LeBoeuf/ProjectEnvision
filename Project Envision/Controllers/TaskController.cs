@@ -18,28 +18,13 @@ namespace Project_Envision.Controllers
 
         public IActionResult deleteTask(int taskId)
         {
-            deleteTaskParts(taskId, "tasks");
-
-            boardModel.m_GotTask = false;
-            
-            if (boardModel.m_GotTask == false)
-            {
-                return RedirectToAction("getTask");
-            }
-
-            return View();
-        }
-
-        void deleteTaskParts(int taskId, string tableName)
-        {
-
             MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
             connection.Open();
 
             MySqlCommand deleteTaskpart = connection.CreateCommand();
 
-            deleteTaskpart.CommandText = "Delete FROM " + tableName + " where board_id = @boardID AND task_id = @taskId";
+            deleteTaskpart.CommandText = "Delete FROM tasks where board_id = @boardID AND task_id = @taskId";
 
             deleteTaskpart.Parameters.AddWithValue("@boardID", boardModel.m_BoardId);
             deleteTaskpart.Parameters.AddWithValue("@taskId", taskId);
@@ -47,6 +32,8 @@ namespace Project_Envision.Controllers
             deleteTaskpart.Prepare();
             deleteTaskpart.ExecuteReader();
             connection.Close();
+
+                return RedirectToAction("getTask");
         }
 
         public IActionResult getTask(boardModel boardModel)
@@ -104,8 +91,7 @@ namespace Project_Envision.Controllers
             else 
             {
                 return RedirectToAction("ProductBacklog", "Board");
-            }
-            
+            }    
         }
 
         public IActionResult getUsernames(boardModel boardModel)
@@ -126,15 +112,18 @@ namespace Project_Envision.Controllers
             {
                 usernameList.Add(Convert.ToString(reader[0]));
             }
+
             reader.Close();
 
             getTasks.CommandText = "SELECT username FROM Createboard where board_id= @boardID";
 
             MySqlDataReader sreader = getTasks.ExecuteReader();
+
             while (sreader.Read())
             {
                 boardModel.setCreatorUsername(Convert.ToString(sreader[0]));
             }
+
             sreader.Close();
 
             boardModel.setUsernameListAttr(usernameList);
@@ -152,7 +141,6 @@ namespace Project_Envision.Controllers
             {
             return RedirectToAction("Board", "Board");
             }
-
         }
 
         int getUserId( string username)
@@ -181,7 +169,7 @@ namespace Project_Envision.Controllers
 
         void getUsername(int userId)
         {
-            if (userId != 0)
+            if (userId != 0) // if the user is not None
             {
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
