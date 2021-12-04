@@ -68,11 +68,6 @@ td {
     cursor: grabbing;
 }
 
-boardCard::selection {
-    cursor: grabbing;
-    
-}
-
 .cardContent {
     font-size: 15px;
     color: black;
