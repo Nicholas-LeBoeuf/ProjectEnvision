@@ -14,14 +14,14 @@
 
             <div class="secondaryInput">
                 <label id="TaskNameLabel" asp-for="task_Name">Task Name:</label>
-                <input type="text" name="task_Name" asp-for="task_Name" value=@TaskPropertiesModel.getTask_Name autocomplete="off" required="" />
+                <input type="text" name="task_Name" asp-for="task_Name" value=@TaskPropertiesModel.getTask_Name autocomplete="off" required="" maxlength="20" />
             </div>
 
             <br />
 
             <div class="secondaryInput">
                 <label for="task_Description" asp-for="task_Description">Description:</label>
-                <textarea id="task_Description" name="task_Description" rows="4" cols="25">@TaskPropertiesModel.getTask_Description</textarea>
+                <textarea id="task_Description" name="task_Description" rows="4" cols="25" maxlength="100">@TaskPropertiesModel.getTask_Description</textarea>
             </div>
 
             <br />
