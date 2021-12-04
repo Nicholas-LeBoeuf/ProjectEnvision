@@ -1,6 +1,6 @@
 ﻿.box {
     position: absolute;
-    height: 75%;
+    height: 80%;
     width: 75%;
     left: 50%;
     top: 50%;
@@ -56,47 +56,52 @@
     padding: 6px 12px;
     border-top: none;
     border-radius: 20px;
-    overflow:scroll;
-    overflow-x: hidden;
 }
 
 .createSprintButton {
     background-color: #e16e12;
 }
 
-table, th, td {
-    border: 1px solid white;
-    font-family: 'Lucida Bright';
-    font-weight: bold;
-    table-layout: fixed;
-    border-collapse: collapse;
-}
-
 table {
     width: 100%;
-    color: white;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1000px;
-    float: none;
-    text-align: center;
+    table-layout: fixed;
+    font-family: 'Lucida Bright';
+}
+
+.tableHead {
+    background-color: rgba(255,255,255,0.3);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.tableContent {
+    height: 300px;
+    overflow-x: auto;
+    margin-top: 0px;
+    padding: 0px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 th {
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 15px;
     color: #e16e12;
+    text-transform: uppercase;
+    text-shadow: -.5px -.5px 0 #000, .5px -.5px 0 #000, -.5px .5px 0 #000, .5px .5px 0 #000;
 }
 
-th, td {
-    text-align: center;
-    padding-left: 75px;
-    padding-right: 75px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    min-width: 50px;
-}
-
-p {
-    color: white;
+td {
+    padding: 15px;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 14px;
+    color: #fff;
+    border-bottom: solid 1px rgba(255,255,255,0.1);
 }
 
 .createSprintFormButton {
@@ -149,7 +154,11 @@ p {
 
 .deleteEditButtonContainer {
     margin-top: 15px;
-    margin-bottom: 50px;
+    margin-bottom: 15px;
+    display: flex; /* establish flex container */
+    flex-direction: row; /* default value; can be omitted */
+    flex-wrap: nowrap; /* default value; can be omitted */
+    justify-content: space-between; /* switched from default (flex-start, see below) */
 }
 
 h3 {
@@ -158,5 +167,8 @@ h3 {
 
 p {
     text-align: center;
-    font-family: Arial;
+    color: white;
+    font-family: 'Lucida Bright';
+    font-size: 20px;
+    padding-top: 2%;
 }
