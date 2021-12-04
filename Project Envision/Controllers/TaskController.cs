@@ -169,7 +169,7 @@ namespace Project_Envision.Controllers
 
         void getUsername(int userId)
         {
-            if (userId != 0) // if the user is not None
+            if (userId != 0)
             {
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
