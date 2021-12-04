@@ -21,7 +21,6 @@ namespace Project_Envision.Models
         [Display(Name = "Pass")]
         public string password { get; set; }
 
-        public int idInput { get => id; set => m_UserId = value; }
     }
 
 }

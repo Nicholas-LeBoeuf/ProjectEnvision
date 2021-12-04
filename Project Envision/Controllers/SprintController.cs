@@ -185,7 +185,6 @@ namespace Project_Envision.Controllers
 
         public IActionResult createSprint(SprintPropertiesModel sprintPropertiesModel)
         {
-
             if (ModelState.IsValid)
             {
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
@@ -210,13 +209,9 @@ namespace Project_Envision.Controllers
 
                 string sprintName = sprintPropertiesModel.sprint_Name.Substring(0, 1).ToUpper() + sprintPropertiesModel.sprint_Name.Substring(1,length);
                 
-
                 string insertCommand = " ";
 
                 insertCommand = $"Insert into sprint(Sprintname, Sprintdescription, Start_time, End_time, board_id)" + $"values ( @Sprintname,@Sprintdescription,@Start_time,@End_time,@board_id)";
-
-
-
 
                 MySqlCommand command = new MySqlCommand(insertCommand, connection);
 
@@ -238,22 +233,17 @@ namespace Project_Envision.Controllers
             return View();
         }
 
-
         public IActionResult editSprint(SprintPropertiesModel sprintPropertiesModel)
         {
             if (ModelState.IsValid)
             {
-
-                string insertCommand = " ";
-
-
-                insertCommand = $"Update sprint set Sprintname ='" + sprintPropertiesModel.sprint_Name + "', Sprintdescription ='" + sprintPropertiesModel.sprint_Description + "', Start_time ='" + sprintPropertiesModel.start_Time + "', End_time ='" + sprintPropertiesModel.end_Time + "' where Sprint_id ='" + GetSprintProperties.getSprint_Id + "'";
+                string updateCommand = $"Update sprint set Sprintname ='" + sprintPropertiesModel.sprint_Name + "', Sprintdescription ='" + sprintPropertiesModel.sprint_Description + "', Start_time ='" + sprintPropertiesModel.start_Time + "', End_time ='" + sprintPropertiesModel.end_Time + "' where Sprint_id ='" + GetSprintProperties.getSprint_Id + "'";
 
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
                 connection.Open();
 
-                MySqlCommand command = new MySqlCommand(insertCommand, connection);
+                MySqlCommand command = new MySqlCommand(updateCommand, connection);
 
                 command.Prepare();
                 command.ExecuteReader();

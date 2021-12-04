@@ -24,69 +24,92 @@ namespace Project_Envision.Controllers
             return View();
         }
 
+        void setUserId(string username)
+        {
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+            connection.Open();
+
+            MySqlDataReader dRead;
+
+            string selectCommand = "SELECT user_id FROM users where username='" + username + "'";
+            MySqlCommand command = new MySqlCommand(selectCommand, connection);
+            using (dRead = command.ExecuteReader())
+            {
+                if (dRead.Read())
+                {
+                    ModelItems.m_UserId = Convert.ToInt32(dRead.GetValue(0).ToString());
+                }
+            }
+            connection.Close();
+            dRead.Close();
+        }
+
+        void setEmail(string username)
+        {
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+            connection.Open();
+
+            MySqlDataReader dRead;
+
+            string selectCommand = "SELECT email FROM users where username='" + username + "'";
+            MySqlCommand command = new MySqlCommand(selectCommand, connection);
+
+            using (dRead = command.ExecuteReader())
+            {
+                if (dRead.Read())
+                {
+                    ModelItems.m_Email = dRead.GetValue(0).ToString();
+                }
+            }
+            connection.Close();
+            dRead.Close();
+        }
+
         public IActionResult Login(LoginModel loginModel)
         {
             MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
-
             string username = loginModel.username;
             string password = loginModel.password;
 
-            if(username != null || password != null)
-            { 
-            connection.Open();
-            string selectCommand = $"SELECT* FROM users where username = '" + username + "' AND password = '" + password + "'"; // the command
-            MySqlCommand command = new MySqlCommand(selectCommand, connection);
-
-            MySqlDataReader dRead;
-
-            if (ModelState.IsValid)
+            if (username != null || password != null)
             {
-                using (dRead = command.ExecuteReader())
+
+                connection.Open();
+
+                string selectCommand = $"SELECT* FROM users where username = '" + username + "' AND password = '" + password + "'";
+                MySqlCommand command = new MySqlCommand(selectCommand, connection);
+
+                MySqlDataReader dRead;
+
+                if (ModelState.IsValid)
                 {
-                    if (dRead.Read())
+                    using (dRead = command.ExecuteReader())
                     {
-
-                        string selectCommand2 = "SELECT user_id FROM users where username='" + username + "'";
-                        MySqlCommand command2 = new MySqlCommand(selectCommand2, connection);
-                        dRead.Close();
-                        using (dRead = command2.ExecuteReader())
+                        if (dRead.Read())
                         {
-                            if (dRead.Read())
-                            {
-                                loginModel.id = Convert.ToInt32(dRead.GetValue(0).ToString());
-                            }
+                            setUserId(username);
+                            setEmail(username);
+
+                            connection.Close();
+                            dRead.Close();
+
+                            return RedirectToAction("GetBoarditems", "Board");
                         }
-                        selectCommand2 = "SELECT email FROM users where username='" + username + "'";
-                        command2 = new MySqlCommand(selectCommand2, connection);
-                        dRead.Close();
-                        using (dRead = command2.ExecuteReader())
+                        else
                         {
-                            if (dRead.Read())
-                            {
-                                ModelItems.m_Email = dRead.GetValue(0).ToString();
-                            }
+                            connection.Close();
+                            dRead.Close();
+
+                            ViewBag.message = "username not found or password incorrect!";
+                            return View("Login");
                         }
-                        connection.Close();
-                        dRead.Close();
-                        return RedirectToAction("GetBoarditems", "Board");
                     }
-                    else
-                    {
-                        connection.Close();
-                        dRead.Close();
-
-                        ViewBag.message = "username not found or password incorrect!";
-                        return View("Login");
-                    }
-
                 }
+            }
 
-            }
-            }
             return View("Login");
         }
-
 
         public IActionResult CreateAccount()
         {
@@ -97,7 +120,6 @@ namespace Project_Envision.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateAccount(CreateAccountModel createAccount)
         {
-
             if (ModelState.IsValid)
             {
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
@@ -107,6 +129,7 @@ namespace Project_Envision.Controllers
                 string selectCommand = $"SELECT user_id FROM users where username='" + createAccount.username + "'";
                 MySqlCommand dataCommand = new MySqlCommand(selectCommand, connection);
                 MySqlDataReader dRead;
+                
                 using (dRead = dataCommand.ExecuteReader())
                 {
                     if (dRead.Read())
@@ -117,11 +140,11 @@ namespace Project_Envision.Controllers
 
                     }
                 }
+
                 dRead.Close();
 
                 if (createAccount.Password != createAccount.confirmPassword)
                 {
-
                     connection.Close();
                     return View("CreateAccount");
                 }
@@ -145,14 +168,52 @@ namespace Project_Envision.Controllers
             return View("CreateAccount");
         }
 
+        void generateSecuriteCode()
+        {
+            int random;
+            string codes = "";
+            Random rand = new Random();
+
+            for (int i = 0; i < 6; i++)
+            {
+                random = rand.Next(10);
+                codes = random + codes;
+            }
+
+            ModelItems.code = codes;
+        }
+
+        void sendEmail()
+        {
+            MimeMessage codemail = new MimeMessage();
+            MailboxAddress from = new MailboxAddress("ProjectEnvision", "ProjectEnvision.gmail.com");
+            codemail.From.Add(from);
+
+            MailboxAddress to = new MailboxAddress(ModelItems.m_Username, ModelItems.m_Email);
+            codemail.To.Add(to);
+            codemail.Subject = "Forgot Password Security Code";
+
+            SmtpClient client = new SmtpClient();
+            client.Connect("smtp.gmail.com", 465, true);
+
+            client.Authenticate("ProjectEnvision2021@gmail.com", "ProjectEnvision123!");
+
+            codemail.Body = new TextPart("plain")
+            {
+
+                Text = @"Forgot-Password Security-code: " + ModelItems.code.ToString()
+            };
+
+            client.Send(codemail);
+            client.Disconnect(true);
+            client.Dispose();
+        }
+
         public IActionResult ForgotPassword1(ForgotPassword1 forgotPassword1)
         {
-            string username = forgotPassword1.username;
-            string email = forgotPassword1.email;
-
             MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
             MySqlDataReader reader;
-            string selectcommand = $"Select* FROM users where username = '" + username + "' and email = '" + email + "'";
+            string selectcommand = $"Select* FROM users where username = '" + forgotPassword1.username + "' and email = '" + forgotPassword1.email + "'";
             MySqlCommand command = new MySqlCommand(selectcommand, connection);
 
             connection.Open();
@@ -163,48 +224,15 @@ namespace Project_Envision.Controllers
                 {
                     if (reader.Read())
                     {
+                        ModelItems.m_Username = forgotPassword1.username;
+                        ModelItems.m_Email = forgotPassword1.email;
 
-                        int random;
-                        string codes = "";
-                        Random rand = new Random();
-                        ModelItems.m_Username = username;
-                        ModelItems.m_Email = email;
-
-                        for (int i = 0; i < 6; i++)
-                        {
-                            random = rand.Next(10);
-                            codes = random + codes;
-                        }
-
-                        ModelItems.code = codes;
-
-                        MimeMessage codemail = new MimeMessage();
-                        MailboxAddress from = new MailboxAddress("ProjectEnvision", "ProjectEnvision.gmail.com");
-                        codemail.From.Add(from);
-
-                        MailboxAddress to = new MailboxAddress(ModelItems.m_Username, ModelItems.m_Email);
-                        codemail.To.Add(to);
-                        codemail.Subject = "Forgot Password Security Code";
-
-                        SmtpClient client = new SmtpClient();
-                        client.Connect("smtp.gmail.com", 465, true);
-
-                        client.Authenticate("ProjectEnvision2021@gmail.com", "ProjectEnvision123!");
-
-                        codemail.Body = new TextPart("plain")
-                        {
-
-                            Text = @"Forgot-Password Security-code: " + ModelItems.code.ToString()
-                        };
-
-                        client.Send(codemail);
-                        client.Disconnect(true);
-                        client.Dispose();
+                        generateSecuriteCode();
+                        sendEmail();
+            
                         connection.Close();
 
                         return View("ForgotPassword2");
-
-
                     }
                     else
                     {
@@ -214,6 +242,7 @@ namespace Project_Envision.Controllers
                     }
                 }
             }
+
             connection.Close();
             return View();
         }
@@ -231,17 +260,9 @@ namespace Project_Envision.Controllers
             }
         }
 
-        public IActionResult ForgotPassword3(ForgotPassword3 forgotPassword3)
+        void updatePassword (string password, string confirmPassword)
         {
-            string password = forgotPassword3.Password;
-            string confirmPass = forgotPassword3.confirmPassword;
-
-            if (password != confirmPass)
-            {
-                return View();
-            }
             string updatecommand = "update users SET password = '" + password + "' Where username = '" + ModelItems.m_Username + "'";
-        
 
             MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
             MySqlCommand dataCommand = new MySqlCommand(updatecommand, connection);
@@ -251,6 +272,17 @@ namespace Project_Envision.Controllers
 
             ViewBag.message = ("Password has been Changed");
             connection.Close();
+        }
+
+        public IActionResult ForgotPassword3(ForgotPassword3 forgotPassword3)
+        {
+
+            if (forgotPassword3.Password != forgotPassword3.confirmPassword)
+            {
+                return View();
+            }
+
+            updatePassword(forgotPassword3.Password, forgotPassword3.confirmPassword);
 
             return View("Login");
         }
