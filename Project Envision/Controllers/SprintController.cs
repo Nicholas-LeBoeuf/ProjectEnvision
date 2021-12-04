@@ -170,8 +170,8 @@ namespace Project_Envision.Controllers
                 {
                     sprintProperties.setGetSprintName(Convert.ToString(reader[0]));
                     sprintProperties.setSprintDescript(Convert.ToString(reader[1]));
-                    sprintProperties.setSprintStart(Convert.ToDateTime(reader[2]).ToString("yyyy-MM-ddThh:mm"));
-                    sprintProperties.setSprintEnd(Convert.ToDateTime(reader[3]).ToString("yyyy-MM-ddThh:mm"));
+                    sprintProperties.setSprintStart(Convert.ToDateTime(reader[2]).ToString("yyyy-MM-ddTHH:mm"));
+                    sprintProperties.setSprintEnd(Convert.ToDateTime(reader[3]).ToString("yyyy-MM-ddTHH:mm"));
                 }
 
                 reader.Close();

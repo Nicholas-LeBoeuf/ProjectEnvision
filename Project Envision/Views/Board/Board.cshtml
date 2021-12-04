@@ -13,30 +13,28 @@
 <script src="https://kit.fontawesome.com/1e6384ea85.js" crossorigin="anonymous"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" type="text/javascript"></script>
 
 <div class="headerContainer">
 
     <div class="logoContainer">
-        <div id="circle"></div>
-        <div id="logo"></div>
-    </div>
+        <div class="containerContent">
+            <h1>Board Page</h1>
+            @{
+                for (int k = 0; k < GetSprintProperties.getSprint_IdList.Count(); k++)
+                {
+                    if (GetSprintProperties.currentSprint_Id == GetSprintProperties.getSprint_IdList[k])
+                    {
+                        <p><span class="sprintSpans">Sprint Name: </span>@GetSprintProperties.getSprint_NameList[k]</p>
 
-    @{
+                        <p><span class="sprintSpans">Start Time: </span>@GetSprintProperties.getSprint_StartList[k]</p>
 
-        for (int k = 0; k < GetSprintProperties.getSprint_IdList.Count(); k++)
-        {
-            if (GetSprintProperties.currentSprint_Id == GetSprintProperties.getSprint_IdList[k])
-            {
-
-                    <p>Sprint Name: @GetSprintProperties.getSprint_NameList[k]</p>
-
-                    <p>Start Time: @GetSprintProperties.getSprint_StartList[k]</p>
-
-                    <p>End Time: @GetSprintProperties.getSprint_EndList[k]</p>
-
+                        <p><span class="sprintSpans">End Time: </span>@GetSprintProperties.getSprint_EndList[k]</p>
+                    }
+                }
             }
-        }
-    }
+        </div>
+    </div>
 </div>
 
 <div class="box">
@@ -139,18 +137,6 @@
     </table>
 </div>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnclick").click(function () {
-            $("#addTeammate").modal('show');
-        });
-
-        $("#HidebtnModal").click(function () {
-            $("#addTeammate").modal('hide');
-        });
-    });
-</script>
-
 @if (ViewBag.Message != null)
 {
     <script type="text/javascript">
@@ -162,20 +148,20 @@
 }
 
 
-    <script>
+<script>
 
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
 
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-        }
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
 
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            ev.target.appendChild(document.getElementById(data));
-        }
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
 
-    </script>
+</script>
