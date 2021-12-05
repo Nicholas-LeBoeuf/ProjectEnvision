@@ -129,8 +129,8 @@ namespace Project_Envision.Controllers
                 sprintnameList.Add(Convert.ToString(reader[0]));
                 sprint_Id.Add(Convert.ToInt32(reader[1]));
                 sprintDescriptList.Add(Convert.ToString(reader[2]));
-                startList.Add(Convert.ToString(reader[3]));
-                endList.Add(Convert.ToString(reader[4]));
+                startList.Add(Convert.ToDateTime(reader[3]).ToString("yyyy-MM-ddTHH:mm"));
+                endList.Add(Convert.ToDateTime(reader[4]).ToString("yyyy-MM-ddTHH:mm"));
 
             }
             reader.Close();
@@ -170,8 +170,8 @@ namespace Project_Envision.Controllers
                 {
                     sprintProperties.setGetSprintName(Convert.ToString(reader[0]));
                     sprintProperties.setSprintDescript(Convert.ToString(reader[1]));
-                    sprintProperties.setSprintStart(Convert.ToDateTime(reader[2]).ToString("yyyy-MM-ddThh:mm"));
-                    sprintProperties.setSprintEnd(Convert.ToDateTime(reader[3]).ToString("yyyy-MM-ddThh:mm"));
+                    sprintProperties.setSprintStart(Convert.ToDateTime(reader[2]).ToString("yyyy-MM-ddTHH:mm"));
+                    sprintProperties.setSprintEnd(Convert.ToDateTime(reader[3]).ToString("yyyy-MM-ddTHH:mm"));
                 }
 
                 reader.Close();
@@ -218,8 +218,8 @@ namespace Project_Envision.Controllers
                 command.CommandType = CommandType.Text;
                 command.Parameters.AddWithValue("@Sprintname", sprintName);
                 command.Parameters.AddWithValue("@Sprintdescription", sprintPropertiesModel.sprint_Description);
-                command.Parameters.AddWithValue("@Start_time", sprintPropertiesModel.start_Time);
-                command.Parameters.AddWithValue("@End_time", sprintPropertiesModel.end_Time);
+                command.Parameters.AddWithValue("@Start_time", sprintPropertiesModel.start_Time.ToString("yyyy-MM-ddTHH:mm"));
+                command.Parameters.AddWithValue("@End_time", sprintPropertiesModel.end_Time.ToString("yyyy-MM-ddTHH:mm"));
                 command.Parameters.AddWithValue("@board_id", boardItems.m_BoardId);
 
                 command.Prepare();
@@ -237,7 +237,7 @@ namespace Project_Envision.Controllers
         {
             if (ModelState.IsValid)
             {
-                string updateCommand = $"Update sprint set Sprintname ='" + sprintPropertiesModel.sprint_Name + "', Sprintdescription ='" + sprintPropertiesModel.sprint_Description + "', Start_time ='" + sprintPropertiesModel.start_Time + "', End_time ='" + sprintPropertiesModel.end_Time + "' where Sprint_id ='" + GetSprintProperties.getSprint_Id + "'";
+                string updateCommand = $"Update sprint set Sprintname ='" + sprintPropertiesModel.sprint_Name + "', Sprintdescription ='" + sprintPropertiesModel.sprint_Description + "', Start_time ='" + sprintPropertiesModel.start_Time.ToString("yyyy-MM-ddTHH:mm") + "', End_time ='" + sprintPropertiesModel.end_Time.ToString("yyyy-MM-ddTHH:mm") + "' where Sprint_id ='" + GetSprintProperties.getSprint_Id + "'";
 
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 

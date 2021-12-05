@@ -30,9 +30,9 @@
 
                     <p>Sprint Name: @GetSprintProperties.getSprint_NameList[k]</p>
 
-                    <p>Start Time: @GetSprintProperties.getSprint_StartList[k]</p>
+                    <p>Start Time: @Convert.ToDateTime(GetSprintProperties.getSprint_StartList[k]).ToString("MM/dd/yyyy hh:mm tt")</p>
 
-                    <p>End Time: @GetSprintProperties.getSprint_EndList[k]</p>
+                    <p>End Time: @Convert.ToDateTime(GetSprintProperties.getSprint_EndList[k]).ToString("MM/dd/yyyy hh:mm tt")</p>
 
             }
         }
