@@ -49,12 +49,11 @@
                         <td> @ChooseBoardModel.m_BoardDescList[i]</td>
 
                         <td>
-                                    <a value=@ChooseBoardModel.m_BoardList[i] onclick="location.href='@Url.Action("deleteBoard", "Board", new { boardid = ChooseBoardModel.m_BoardIdList[i] })'">
-                                        <i class="fas fa-trash fa-3x"></i>
-                                    </a>
+                            <a value=@ChooseBoardModel.m_BoardList[i] onclick="location.href='@Url.Action("deleteBoard", "Board", new { boardid = ChooseBoardModel.m_BoardIdList[i] })'">
+                                <i class="fas fa-trash fa-3x"></i>
+                            </a>
                         </td>
                     </tr>
-
                 }
            }
         </table>
