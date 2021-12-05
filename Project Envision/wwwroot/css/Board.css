@@ -13,6 +13,22 @@
     overflow-x: hidden;
 }
 
+.logoContainer {
+    height: 30%;
+    width: 25%;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding-top: 5px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 table, th, td {
     border-left: 1px solid white;
     border-right: 1px solid white;
@@ -23,24 +39,33 @@ table, th, td {
 }
 
 table {
-    margin: auto;
+    width: 100%;
+    height: 100%;
 }
 
-th, td {
+th {
     text-align: center;
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+td {
+    text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
     font-size: 20px;
 }
 
 .boardCard {
-    height: 100px;
-    width: 175px;
+    height: 50%;
+    width: 100%;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 20px;
     text-align: center;
+    cursor: grab;
+}
+
+.boardCard:active {
+    cursor: grabbing;
 }
 
 .cardContent {
@@ -69,42 +94,6 @@ th, td {
     background: #C35700;
 }
 
-.logoContainer {
-    position: relative;
-    text-align: center;
-    padding-top: 5px;
-}
-
-#circle,
-#logo {
-    position: absolute;
-    display: inline-block;
-    text-align: center;
-    left: 35%;
-}
-
-#circle {
-    width: 500px;
-    height: 200px;
-    border-radius: 20px;
-    background-color: black;
-    margin-top: 25px;
-    opacity: 50%;
-    z-index: 1;
-}
-
-#logo {
-    height: 250px;
-    width: 250px;
-    background-image: url(../images/logo.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    z-index: 2;
-    left: 43%;
-    transform: scale(1.5, 1.5);
-}
-
 .headerContainer {
     margin-left: 4%;
     margin-right: 2%;
@@ -120,4 +109,16 @@ th, td {
     float: right;
     width: 175px;
     height: 50px;
+}
+
+p {
+    font-size: 20px;
+    font-family: 'Lucida Bright';
+}
+
+.sprintSpans {
+    font-size: 20px;
+    font-family: 'Lucida Bright';
+    font-weight: 900;
+    color: #e16e12;
 }

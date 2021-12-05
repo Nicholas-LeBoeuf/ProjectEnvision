@@ -13,39 +13,68 @@
     overflow-x: hidden;
 }
 
-table, th, td{
-    border: 1px solid white;
-    font-family: 'Lucida Bright';
-    font-weight: bold;
-    table-layout: fixed;
-    border-collapse: collapse;
+.headerContainer {
+    text-align: center;
 }
 
-text {
-    width: 85%;
-    color: #e16e12;
-    font-family: 'Lucida Bright';
-    font-weight: bold;
-    font-size: 25px;
+.viewHeader {
     text-align: center;
+    font-size: 40px;
+}
+
+.tableh1 {
+    font-size: 30px;
+    color: #fff;
+    font-family: 'Lucida Bright';
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 table {
-    margin: 0 auto;
-    margin: 0px;
+    width: 100%;
+    table-layout: fixed;
+    font-family: 'Lucida Bright';
+}
+
+.tableHead {
+    background-color: rgba(255,255,255,0.3);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.tableContent {
+    height: 300px;
+    overflow-x: auto;
+    margin-top: 0px;
+    padding: 0px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 th {
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 15px;
     color: #e16e12;
+    text-transform: uppercase;
+    text-shadow: -.5px -.5px 0 #000, .5px -.5px 0 #000, -.5px .5px 0 #000, .5px .5px 0 #000;
 }
 
-th, td {
-    text-align: center;
-    padding-left: 75px;
-    padding-right: 75px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    min-width: 50px;
+td {
+    padding: 15px;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 14px;
+    color: #fff;
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+    cursor: pointer;
 }
 
 ::-webkit-scrollbar {
@@ -67,12 +96,13 @@ th, td {
 }
 
 .fa-pen {
-    color: #52280b;
+    color: #8B4513;
     cursor: pointer;
 }
 
 .fa-pen:hover {
     color: #8B4513;
+    color: #A45116;
 }
 
 .fa-trash {

@@ -76,7 +76,6 @@ namespace Project_Envision.Controllers
             }
         }
 
-
         void deleteBoardParts(int boardId, string tableName)
         {
 
@@ -148,29 +147,34 @@ namespace Project_Envision.Controllers
             }
             reader.Close();
         
-            int boardid = 0;
-            
+            List<int> boardIdInviteBoard = new List<int>();
+
             getBoards.CommandText = "SELECT board_id FROM invitedboard where user_id= @userID";
             MySqlDataReader sReader = getBoards.ExecuteReader();
             while (sReader.Read())
             {
-                boardid = Convert.ToInt32(sReader[0]);
+                boardIdInviteBoard.Add(Convert.ToInt32(sReader[0]));
             }
 
             sReader.Close();
 
-            getBoards.CommandText = "SELECT board_Name, board_id, board_description FROM createboard where board_id= @board_Id";
-            getBoards.Parameters.AddWithValue("@board_Id", boardid);
-
-            MySqlDataReader sReader2 = getBoards.ExecuteReader();
-
-            while (sReader2.Read())
+            for (int j = 0; j < boardIdInviteBoard.Count(); j++)
             {
-                boardsList.Add(Convert.ToString(sReader2[0]));
-                boardIdsList.Add(Convert.ToInt32(sReader2[1]));
-                boardDescList.Add(Convert.ToString(sReader2[2]));
+                getBoards.CommandText = "SELECT board_Name, board_id, board_description FROM createboard where board_id= @board_Id";
+
+                    getBoards.Parameters.AddWithValue("@board_Id", boardIdInviteBoard[j]);
+ 
+                MySqlDataReader sReader2 = getBoards.ExecuteReader();
+
+                while (sReader2.Read())
+                {
+                    boardsList.Add(Convert.ToString(sReader2[0]));
+                    boardIdsList.Add(Convert.ToInt32(sReader2[1]));
+                    boardDescList.Add(Convert.ToString(sReader2[2]));
+                }
+                sReader2.Close();
+                getBoards.Parameters.Clear();
             }
-            sReader2.Close();
 
             chooseBoardModel.setBoardListAttr(boardsList);
             chooseBoardModel.setBoardIdListAttr(boardIdsList);
@@ -227,6 +231,8 @@ namespace Project_Envision.Controllers
         
         public IActionResult ChooseBoard()
         {
+            boardModel.m_GotUsers = false;
+
             if(boardItems.m_GotBoard == false)
             {
                 return RedirectToAction("getBoardItems");

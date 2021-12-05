@@ -17,11 +17,9 @@
                     <label asp-for="username">Group Member's Username:</label>
                     <br />
                     <input asp-for="username" class="secondaryInput" type="text" autocomplete="off" placeholder="Group Member's Username" required />
-                    <span asp-validation-for="username" class="text-danger"></span>
                 </div>
                 <div class="buttonContainer">
                     <button type="submit" form="addMember" class="buttonStyle addTeammateButton">Add Teammate</button>
-                    <button type="button" class="buttonStyle cancelButton">Cancel</button>
                 </div>
             </form>
         </div>
@@ -46,7 +44,6 @@
                     </div>
                     <div class="buttonContainer">
                         <button type="submit" class="buttonStyle addTeammateButton" form="removeMember">Remove Teammate</button>
-                        <button type="button" class="buttonStyle cancelButton" id="HidebtnModal">Cancel</button>
                     </div>
                 </form>
             </div>

@@ -42,7 +42,7 @@ namespace Project_Envision.Controllers
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
                 connection.Open();
-                string selectCommand = $"SELECT* FROM users where username = '" + username + "'"; // the command
+                string selectCommand = $"SELECT* FROM users where username = '" + username + "'";
                 MySqlCommand command = new MySqlCommand(selectCommand, connection);
 
                 MySqlDataReader dRead;
@@ -58,6 +58,7 @@ namespace Project_Envision.Controllers
                         dRead.Close();
                     }
                 }
+
                 dRead.Close();
                 
                 if(userdatatable == true)
@@ -119,36 +120,66 @@ namespace Project_Envision.Controllers
             return RedirectToAction("Teammates", "GroupMember");
         }
 
-        public IActionResult removeGroupMember(string username)
+        public IActionResult removeGroupMember(string username, string tableName)
         {
-                MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+            int userID = 0;
+            userID = getUserId(username);
 
-                connection.Open();
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
-                MySqlCommand removeMember = connection.CreateCommand();
+            connection.Open();
 
-                removeMember.CommandText = "Delete FROM invitedboard where board_id = @boardID AND inviteduser = @inviteduser";
+            MySqlCommand removeMember = connection.CreateCommand();
 
+            if (tableName == "invitedboard")
+            {
+                removeMember.CommandText = "Delete FROM " + tableName + " where board_id = @boardID AND inviteduser = @inviteduser";
                 removeMember.Parameters.AddWithValue("@boardID", boardModel.m_BoardId);
                 removeMember.Parameters.AddWithValue("@inviteduser", username);
 
-                removeMember.Prepare();
-                removeMember.ExecuteReader();
-                connection.Close();
+            }
+            else
+            {
+                removeMember.CommandText = "Delete FROM " + tableName + " where board_id = @boardID and user_id = @user_Id";
+                removeMember.Parameters.AddWithValue("@boardID", boardModel.m_BoardId);
+                removeMember.Parameters.AddWithValue("@user_Id", userID);
+            }
 
-                boardModel.m_GotUsers = false;
-                boardModel.m_MemberReturn = true;
+            removeMember.Prepare();
+            removeMember.ExecuteReader();
+            connection.Close();
+
+            boardModel.m_GotUsers = false;
+            boardModel.m_MemberReturn = true;
 
             if (ModelItems.m_Username != username)
-                {
-                    ViewBag.message = "User removed successfully";
+            {
+                ViewBag.message = "User removed successfully";
+
+                    boardModel.m_GotTask = false;
                     return RedirectToAction("Teammates", "GroupMember");
-                }
-                else
-                {
-                    boardItems.m_GotBoard = false;
-                    return RedirectToAction("ChooseBoard", "Board");
-                }
+            }
+            else
+            {
+                boardItems.m_GotBoard = false;
+                return RedirectToAction("ChooseBoard", "Board");
+            }
+        }
+
+        void removeAssignee(string username)
+        {
+            string updateCommand = $"Update tasks set user_id = 0 where board_id ='" + boardModel.m_BoardId + "' and user_id = " + getUserId(username);
+
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand(updateCommand, connection);
+
+            command.Prepare();
+            command.ExecuteReader();
+            connection.Close();
+
         }
 
         public IActionResult AddTeammate()
@@ -160,7 +191,8 @@ namespace Project_Envision.Controllers
         {
             if (groupMembers.removeUsername != null)
             {
-                removeGroupMember(groupMembers.removeUsername);
+                removeAssignee(groupMembers.removeUsername);
+                removeGroupMember(groupMembers.removeUsername, "invitedboard");
                 ViewBag.message = "User removed sucessfully";
                 
                 return RedirectToAction("Teammates", "GroupMember");
@@ -168,6 +200,7 @@ namespace Project_Envision.Controllers
 
             return View("Teammates");
         }
+
         public IActionResult Teammates()
         {
 
