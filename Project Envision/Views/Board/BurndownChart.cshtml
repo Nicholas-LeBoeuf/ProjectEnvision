@@ -1,17 +1,90 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Burndown Chart";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
 
-<link rel="stylesheet" href="~/css/BurndownChart.css" />
 <link rel="stylesheet" href="~/css/Inputs.css" />
 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
+
 <div class="box">
-    <div class="selectionStyle">
+    <div class=" selectionStyle">
         <select>
-            <option>test</option>
-            <option>test2</option>
-            <option>test3</option>
+            <option>Sprint 1</option>
+            <option>Sprint 2</option>
+            <option>Sprint 3</option>
         </select>
     </div>
 </div>
+
+<canvas id="canvas" style="width: 100%; max-width: 600px; padding: 0; margin: auto; display: block;
+          width: 800px; height: 600px; position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-color:black;"></canvas>
+
+
+
+
+<script>
+  
+        var timeFormat = 'YYYY/MM/DD';
+        var config = {
+        type: 'line',
+        data: {
+            datasets: [
+                {
+                    label: "Sprint Progress",
+                    data: [{
+                        x: "2021/11/10", y: 60
+                    }, {
+                            x: "2021/11/20", y: 55
+                        }, {
+                            x: "2021/11/28", y: 20
+                        }],
+                    fill: false,
+                    borderColor: 'white'
+                },
+                {
+        label: "Target",
+                    data: [{
+                        x: "2021/11/10", y: 60
+                    }, {
+                        x: "2021/11/30", y: 0
+                        }],
+                    fill: false,
+                    borderColor: 'orange'
+                }
+            ]
+        },
+        options: {
+        responsive: true,
+           
+            scales: {
+            xAxes: [{
+                type: "time",
+                    time: {
+                    format: timeFormat,
+                        tooltipFormat: 'll'
+                    },
+                    scaleLabel: {
+                    display: true,
+                        labelString: 'Date'
+                    }
+                }],
+                yAxes: [{
+                scaleLabel: {
+                    display: true,
+                        labelString: 'Points'
+                    }
+                }]
+            }
+        }
+    };
+
+        window.onload = function () {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myLine = new Chart(ctx, config);
+        };
+</script>
+
