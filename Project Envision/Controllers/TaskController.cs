@@ -33,7 +33,7 @@ namespace Project_Envision.Controllers
             deleteTaskpart.ExecuteReader();
             connection.Close();
 
-                return RedirectToAction("getTask");
+            return RedirectToAction("getTask");
         }
 
         public IActionResult getTask(boardModel boardModel)

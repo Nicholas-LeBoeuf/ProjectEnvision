@@ -1,5 +1,5 @@
 ﻿.box {
-    height: 50%;
+    min-height: 50%;
     width: 30%;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
@@ -9,10 +9,17 @@
 }
 
 .smallBoxes {
-    float: left;
     display: inline-block;
     vertical-align: middle;
     margin: 50px;
+}
+
+.leftBox {
+    float: left;
+}
+
+.rightBox {
+    float: right;
 }
 
 .boxContainer {
