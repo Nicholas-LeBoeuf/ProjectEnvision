@@ -36,8 +36,13 @@ namespace Project_Envision.Controllers
             return RedirectToAction("getTask");
         }
 
-        public IActionResult getTask(boardModel boardModel)
+        public IActionResult getTask(boardModel boardModel, bool differentBoard)
         {
+            if(differentBoard == true)
+            {
+                boardModel.m_DifferentBoard = true;
+            }
+
             MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
             connection.Open();

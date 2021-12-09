@@ -43,6 +43,14 @@ namespace Project_Envision.Controllers
 
         public IActionResult board(int boardId)
         {
+            if(boardModel.m_DifferentBoard == true)
+            {
+                boardModel.m_DifferentBoard = false;
+                boardModel.m_GotSprint = false;
+                boardModel.m_GotUsers = false;
+                DragNDropModel.returnBoard = true;
+            }
+
             if (boardId != 0)
             {
                 boardItems.m_BoardId = boardId;

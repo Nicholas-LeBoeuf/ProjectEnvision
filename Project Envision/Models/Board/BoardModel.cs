@@ -17,6 +17,13 @@ namespace Project_Envision.Models
         public static bool m_GotTask;
         public static bool m_ReturnToBoard;
         public static bool m_MemberReturn;
+        public static bool m_DifferentBoard;
+
+        public bool DifferentBoard
+        {
+            get => m_DifferentBoard;
+            set => m_DifferentBoard = value;
+        }
 
         public bool memberReturn
         {

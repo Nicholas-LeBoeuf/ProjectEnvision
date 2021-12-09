@@ -81,6 +81,8 @@ namespace Project_Envision.Controllers
             deleteSprintpart.Prepare();
             deleteSprintpart.ExecuteReader();
             connection.Close();
+
+            getCurrentSprint();
         }
 
         void getCurrentSprint()

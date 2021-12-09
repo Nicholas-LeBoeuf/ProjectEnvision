@@ -40,7 +40,7 @@
                 {
                     <tr>
                         <td>
-                            <a class="goButton" value=@ChooseBoardModel.m_BoardList[i] onclick="location.href='@Url.Action("GetTask", "Task", new { boardid = ChooseBoardModel.m_BoardIdList[i] })'">
+                            <a class="goButton" value=@ChooseBoardModel.m_BoardList[i] onclick="location.href='@Url.Action("GetTask", "Task", new { boardid = ChooseBoardModel.m_BoardIdList[i], differentBoard = true })'">
                                 <i class="fas fa-arrow-circle-right fa-3x"></i>
                             </a>
                         </td>
