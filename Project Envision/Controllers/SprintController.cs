@@ -148,6 +148,12 @@ namespace Project_Envision.Controllers
 
             boardModel.m_GotSprint = true;
             getCurrentSprint();
+
+            if (boardModel.m_GotUsers == false)
+            {
+                return RedirectToAction("Board", "Board");
+            }
+
             boardModel.m_ReturnToBoard = true;
 
                 return RedirectToAction("Board", "Board");
