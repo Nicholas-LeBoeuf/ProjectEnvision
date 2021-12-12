@@ -133,6 +133,8 @@ namespace Project_Envision.Controllers
         public IActionResult getBoardItems(ChooseBoardModel chooseBoardModel)
         {
             boardItems.m_GotBoard = true;
+            chooseBoardModel.createdBoardNum = 0;
+
             MySqlConnection databaseConnection= new MySqlConnection(Database_connection.m_Connection);
 
             databaseConnection.Open();
@@ -149,6 +151,7 @@ namespace Project_Envision.Controllers
             
             while (reader.Read())
             {
+                chooseBoardModel.createdBoardNum++;
                 boardsList.Add(Convert.ToString(reader[0]));
                 boardIdsList.Add(Convert.ToInt32(reader[1]));
                 boardDescList.Add(Convert.ToString(reader[2]));
