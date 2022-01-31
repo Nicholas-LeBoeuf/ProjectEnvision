@@ -11,8 +11,6 @@ namespace Project_Envision.Models
         public static int m_BoardId;
         public static int m_TaskId;
 
-
-
         public int taskId
         {
             get => m_TaskId;

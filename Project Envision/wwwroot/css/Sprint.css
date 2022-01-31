@@ -140,6 +140,7 @@ td {
 
 .editSprintButton {
     width: 175px;
+    height: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
     float: right;
@@ -147,6 +148,7 @@ td {
 
 .deleteSprintButton {
     width: 175px;
+    height: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
     float: left;

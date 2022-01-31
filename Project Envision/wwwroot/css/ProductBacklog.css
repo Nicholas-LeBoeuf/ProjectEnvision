@@ -127,5 +127,7 @@ td {
 
 .disabledEditDeleteButton {
     background-color: transparent;
-    border: none
+    border: none;
+    color: black
+
 }

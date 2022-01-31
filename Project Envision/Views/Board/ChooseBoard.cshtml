@@ -10,7 +10,7 @@
     <div class="headerArea">
         <div class="createButton">
             @{
-                if (ChooseBoardModel.m_BoardList.Count < 5)
+                if (ChooseBoardModel.m_CreatedBoardNum < 5)
                 {
                     <button class="buttonStyle chooseBoardButtons" onclick="location.href='@Url.Action("CreateBoard", "board")'">Create board</button>
                 }
