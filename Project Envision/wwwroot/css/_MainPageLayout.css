@@ -16,16 +16,16 @@ body {
 }
 
 .logo {
-    height: 250px;
-    width: 250px;
-    margin-top: -35px;
-    margin-left: 60px;
+    height: 200px;
+    width: 200px;
+    margin-top: -15px;
+    margin-left: 95px;
     background-image: url(../images/logo.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     z-index: 3;
-    transform: scale(1.5, 1.5);
+    transform: scale(2, 2);
 }
 
 .fas{
@@ -62,7 +62,7 @@ body {
 }
 
 .main-menu > ul {
-    margin: 70px 0;
+    margin: 20px 0;
 }
 
 .main-menu li {
