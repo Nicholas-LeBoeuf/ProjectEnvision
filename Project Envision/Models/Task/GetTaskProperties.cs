@@ -7,6 +7,7 @@ namespace Project_Envision.Models.Board
 {
     public class GetTaskProperties
     {
+        public static int sprintId { get; set; }
 
         public static string getTask_Name { get; set; }
         public void setGetTaskName(string getTaskName)
@@ -43,6 +44,5 @@ namespace Project_Envision.Models.Board
         {
             getLocation = location;
         }
-
     }
 }
