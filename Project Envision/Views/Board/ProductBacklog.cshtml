@@ -7,22 +7,22 @@
 <link rel="stylesheet" href="~/css/Buttons.css" />
 
 <div class="box">
-    <div class="headerContainer">
+    <div class="headerContainer" ondrop="location.href='@Url.Action("sprintUpdate", "Sprint", new { sprintId = 0})', drop(event)" ondragover="allowDrop(event)">
         <h1 class="viewHeader">Product Backlog</h1>
        @* <button class="buttonStyle createTaskButton" style="margin: auto;" onclick="location.href='@Url.Action("CreateTask", "Task")'">Create Task</button>*@
     </div>
     <div>
         <br />
         <br />
-        <div class="tableHead">
-            <table cellpadding="0" cellspacing="0" border="0" ondrop="location.href='@Url.Action("sprintUpdate", "Sprint", new { sprintId = 0})', drop(event)" ondragover="allowDrop(event)">
+        <div class="tableHead" ondrop="location.href='@Url.Action("sprintUpdate", "Sprint", new { sprintId = 0})', drop(event)" ondragover="allowDrop(event)">
+            <table cellpadding="0" cellspacing="0" border="0">
                
                 <div>
                     <h1 class="tableh1">Product Backlog</h1>
                 </div>
 
                 <div class="buttonTitle">
-                    <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("CreateTask", "Task")'">Create Task</button>
+                    <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("createTaskSprintId", "Task", new { sprintId = 0})'">Create Task</button>
                 </div>
 
                 <thead>
@@ -38,8 +38,8 @@
                 </thead>
             </table>
         </div>
-        <div class="tableContent">
-            <table cellpadding="0" cellspacing="0" border="0" ondrop="location.href='@Url.Action("sprintUpdate", "Sprint", new { sprintId = 0})', drop(event)" ondragover="allowDrop(event)">
+        <div class="tableContent" ondrop="location.href='@Url.Action("sprintUpdate", "Sprint", new { sprintId = 0})', drop(event)" ondragover="allowDrop(event)">
+            <table cellpadding="0" cellspacing="0" border="0">
                 <tbody>
                     @{ for (int i = 0; i < boardModel.m_TaskIdList.Count(); i++)
                         {
@@ -102,14 +102,14 @@
         { 
         <div>
             <br />
-            <div class="tableHead">
-                    <table cellpadding="0" cellspacing="0" border="0" ondrop="location.href='@Url.Action("sprintUpdate", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j]})', drop(event)" ondragover="allowDrop(event)">
+            <div class="tableHead" ondrop="location.href='@Url.Action("sprintUpdate", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j]})', drop(event)" ondragover="allowDrop(event)">
+                    <table cellpadding="0" cellspacing="0" border="0">
                         <div>
                             <h1 class="tableh1">@GetSprintProperties.getSprint_NameList[j]</h1>
                         </div>
 
                         <div class="buttonTitle">
-                            <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("CreateTask", "Task")'">Create Task</button>
+                            <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("createTaskSprintId", "Task", new { sprintId = GetSprintProperties.getSprint_IdList[j]})'">Create Task</button>
                         </div>
 
                         <thead>
@@ -126,8 +126,8 @@
                     </table>
             </div>
 
-            <div class="tableContent">
-                <table cellpadding="0" cellspacing="0" border="0" ondrop="location.href='@Url.Action("sprintUpdate", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j]})', drop(event)" ondragover="allowDrop(event)">
+            <div class="tableContent" ondrop="location.href='@Url.Action("sprintUpdate", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j]})', drop(event)" ondragover="allowDrop(event)">
+                <table cellpadding="0" cellspacing="0" border="0">
                     <tbody>
                         @{ for (int i = 0; i < boardModel.m_TaskIdList.Count(); i++)
                             {
@@ -190,18 +190,18 @@
 
 <script>
 
-    function allowDrop(ev) {
-        ev.preventDefault();
+    function allowDrop(event) {
+        event.preventDefault();
     }
 
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
+    function drag(event) {
+        event.dataTransfer.setData("text", event.target.id);
     }
 
-    function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
+    function drop(event) {
+        event.preventDefault();
+        var data = event.dataTransfer.getData("text");
+        event.target.appendChild(document.getElementById(data));
     }
 
 </script>

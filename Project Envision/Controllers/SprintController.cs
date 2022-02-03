@@ -88,7 +88,6 @@ namespace Project_Envision.Controllers
         void getCurrentSprint()
         {
             DateTime currentDate = DateTime.Now;
-            
 
             for(int i = 0; i < GetSprintProperties.getSprint_IdList.Count(); i ++)
             {
