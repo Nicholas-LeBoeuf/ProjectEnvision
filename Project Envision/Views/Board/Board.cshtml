@@ -31,9 +31,36 @@
 
                         <p><span class="sprintSpans">End Time: </span>@Convert.ToDateTime(GetSprintProperties.getSprint_EndList[k]).ToString("MM/dd/yyyy hh:mm tt")</p>
 
+                        <p id="counter"></p> //displays counter in view
+
+                        <script>
+
+                        var countDownDate = new Date("@Convert.ToDateTime(GetSprintProperties.getSprint_EndList[k]).ToString("MM/dd/yyyy")").getTime();
+
+                        var x = setInterval(function () {
+
+                        var now = new Date().getTime();
+
+                        var distance = countDownDate - now;
+
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+                        document.getElementById("counter").innerHTML = "Time Remaining: " + days + " days";
+
+                        if (distance < 0) {
+                          clearInterval(x);
+                          document.getElementById("counter").innerHTML = "Due Tonight At: 11:59 PM";
+                       }
+                         }, 1000);
+
+                        </script>
+
+
+
                     }
                 }
             }
+
         </div>
     </div>
 </div>
@@ -164,5 +191,7 @@
         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
     }
+
+    
 
 </script>
