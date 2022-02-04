@@ -45,11 +45,11 @@
 
                         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
 
-                        document.getElementById("counter").innerHTML = "Time Remaining: " + days + " days";
+                        document.getElementById("counter").innerHTML = "<span style='color: #e16e12;'>Time Remaining: </span>" + days + " days";
 
                         if (distance < 0) {
                           clearInterval(x);
-                          document.getElementById("counter").innerHTML = "Due Tonight At: 11:59 PM";
+                            document.getElementById("counter").innerHTML = "<span style='color: #e16e12;'>Due Tonight at: </span>" + "11:59 PM";
                        }
                          }, 1000);
 
