@@ -198,9 +198,19 @@ namespace Project_Envision.Controllers
             }
         }
 
+        public IActionResult createTaskSprintId(int sprintId)
+        {
+            if (sprintId != 0)
+            {
+                TaskPropertiesModel.sprintId = sprintId;
+            }
+
+            return RedirectToAction("createTask");
+        }
+
         public IActionResult createTask(TaskPropertiesModel taskPropertiesModel)
         {
-            
+
             if (ModelState.IsValid)
             {
                 int userId = getUserId(taskPropertiesModel.assignee);
@@ -213,22 +223,24 @@ namespace Project_Envision.Controllers
 
                 connection.Open();
 
-               
+
                 MySqlCommand command = new MySqlCommand(insertCommand, connection);
-               
+
                 command.CommandType = CommandType.Text;
                 command.Parameters.AddWithValue("@taskname", taskPropertiesModel.task_Name);
                 command.Parameters.AddWithValue("@taskdescription", taskPropertiesModel.task_Description);
                 command.Parameters.AddWithValue("@board_id", boardItems.m_BoardId);
                 command.Parameters.AddWithValue("@Task_point", taskPropertiesModel.task_Points);
                 command.Parameters.AddWithValue("@user_id", userId);
-                command.Parameters.AddWithValue("@sprint_Id", 0);
+                command.Parameters.AddWithValue("@sprint_Id", TaskPropertiesModel.sprintId);
 
                 command.Parameters.AddWithValue("@location", "Backlog");
 
                 command.Prepare();
                 command.ExecuteReader();
                 connection.Close();
+
+                TaskPropertiesModel.sprintId = 0;
 
                 taskPropertiesModel.setGetAssignee("None");
 

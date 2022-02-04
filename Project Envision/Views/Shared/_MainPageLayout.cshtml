@@ -8,43 +8,55 @@
     <nav class="main-menu">
         <div class="logo"></div>
         <ul>
-            <li>
+            <li style="margin-bottom: 5%;">
                 <a href="@Url.Action("Board", "Board")">
                     <i class="fas fa-clipboard"></i>
                     <span class="nav-text">Board</span>
                 </a>
             </li>
-            <li>
+            <li style="margin-bottom: 5%;">
                 <a href="@Url.Action("ProductBacklog", "Board")">
                     <i class="fas fa-list-ul"></i>
                     <span class="nav-text">Product Backlog</span>
                 </a>
             </li>
-            <li>
+            <li style="margin-bottom: 5%;">
                 <a href="@Url.Action("BurndownChart", "Board")">
                     <i class="fas fa-chart-line"></i>
                     <span class="nav-text">Burndown Chart</span>
                 </a>
             </li>
-            <li>
+            <li style="margin-bottom: 5%;">
                 <a href="@Url.Action("Sprint", "Sprint")">
                     <i class="fas fa-sync"></i>
                     <span class="nav-text">Sprint</span>
                 </a>
             </li>
-            <li style="margin-bottom: 155px;">
+            <li style="margin-bottom: 5%;">
                 <a href="@Url.Action("Teammates", "GroupMember")">
                     <i class="fas fa-users"></i>
                     <span class="nav-text">Teammates</span>
                 </a>
             </li>
-            <li>
+            <li style="margin-bottom: 5%;">
+                <a href="@Url.Action("UserSettings", "Settings")">
+                    <i class="fas fa-user-cog"></i>
+                    <span class="nav-text">User Settings</span>
+                </a>
+            </li>
+            <li style="margin-bottom: 5%;">
+                <a href="@Url.Action("BoardSettings", "Settings")">
+                    <i class="fas fa-cog"></i>
+                    <span class="nav-text">Board Settings</span>
+                </a>
+            </li>
+            <li style="margin-bottom: 5%;">
                 <a href="@Url.Action("ChooseBoard", "Board")">
                     <i class="fas fa-arrow-circle-left"></i>
                     <span class="nav-text">Back to Boards</span>
                 </a>
             </li>
-            <li>
+            <li style="margin-bottom: 5%;">
                 <a href="@Url.Action("Index", "Home")">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="nav-text">Logout</span>

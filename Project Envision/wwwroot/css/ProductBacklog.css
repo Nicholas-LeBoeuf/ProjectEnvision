@@ -131,3 +131,8 @@ td {
     color: black
 
 }
+
+.buttonTitle {
+    text-align: center;
+    font-size: 22px;
+}
