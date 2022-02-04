@@ -168,7 +168,7 @@
     outline: none;
 }
 
-input[type="datetime-local"] {
+input[type="date"] {
     width: 380px;
     border-radius: 20px;
     text-align: center;
@@ -183,7 +183,7 @@ input[type="datetime-local"] {
     font-family: Arial;
 }
 
-input[type="datetime-local"]:focus {
+input[type="date"]:focus {
     background: #ccc;
     color: #6a6f75;
     margin: 3px 12px;
