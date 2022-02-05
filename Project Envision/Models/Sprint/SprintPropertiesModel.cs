@@ -7,7 +7,7 @@ using Project_Envision.Models.Board;
 
 namespace Project_Envision.Models
 {
-    public class SprintPropertiesModel
+    public class SprintPropertiesModel: GetSprintProperties
     {
         [Required(ErrorMessage = "Required field. *")]
         public string sprint_Name { get; set; }

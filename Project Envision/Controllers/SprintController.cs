@@ -131,8 +131,8 @@ namespace Project_Envision.Controllers
                 sprintnameList.Add(Convert.ToString(reader[0]));
                 sprint_Id.Add(Convert.ToInt32(reader[1]));
                 sprintDescriptList.Add(Convert.ToString(reader[2]));
-                startList.Add(Convert.ToDateTime(reader[3]).ToString("yyyy-MM-ddTHH:mm"));
-                endList.Add(Convert.ToDateTime(reader[4]).ToString("yyyy-MM-ddTHH:mm"));
+                startList.Add(Convert.ToDateTime(reader[3]).ToString("yyyy-MM-dd"));
+                endList.Add(Convert.ToDateTime(reader[4]).ToString("yyyy-MM-dd"));
 
             }
             reader.Close();
@@ -178,8 +178,8 @@ namespace Project_Envision.Controllers
                 {
                     sprintProperties.setGetSprintName(Convert.ToString(reader[0]));
                     sprintProperties.setSprintDescript(Convert.ToString(reader[1]));
-                    sprintProperties.setSprintStart(Convert.ToDateTime(reader[2]).ToString("yyyy-MM-ddTHH:mm"));
-                    sprintProperties.setSprintEnd(Convert.ToDateTime(reader[3]).ToString("yyyy-MM-ddTHH:mm"));
+                    sprintProperties.setSprintStart(Convert.ToDateTime(reader[2]).ToString("yyyy-MM-dd"));
+                    sprintProperties.setSprintEnd(Convert.ToDateTime(reader[3]).ToString("yyyy-MM-dd"));
                 }
 
                 reader.Close();
@@ -226,8 +226,8 @@ namespace Project_Envision.Controllers
                 command.CommandType = CommandType.Text;
                 command.Parameters.AddWithValue("@Sprintname", sprintName);
                 command.Parameters.AddWithValue("@Sprintdescription", sprintPropertiesModel.sprint_Description);
-                command.Parameters.AddWithValue("@Start_time", sprintPropertiesModel.start_Time.ToString("yyyy-MM-ddTHH:mm"));
-                command.Parameters.AddWithValue("@End_time", sprintPropertiesModel.end_Time.ToString("yyyy-MM-ddTHH:mm"));
+                command.Parameters.AddWithValue("@Start_time", sprintPropertiesModel.start_Time.ToString("yyyy-MM-dd"));
+                command.Parameters.AddWithValue("@End_time", sprintPropertiesModel.end_Time.ToString("yyyy-MM-dd"));
                 command.Parameters.AddWithValue("@board_id", boardItems.m_BoardId);
 
                 command.Prepare();

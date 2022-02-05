@@ -17,15 +17,16 @@
         </div>
 
         <br />
+
         <div class="secondaryInput">
-            <label asp-for="sprint_Description">Sprint Description:</label>
-            <textarea cols="25" rows="4" placeholder="Sprint Description" id="description" maxlength="100"></textarea>
+            <label for="sprint_Description" asp-for="sprint_Description">Sprint Description:</label>
+            <textarea cols="25" rows="4" placeholder="Sprint Description" id="description" asp-for="sprint_Description" maxlength="100"></textarea>
         </div>
 
         <br />
         <div class="secondaryInput">
             <label asp-for="start_Time">Sprint Start Time:</label>
-            <input asp-for="start_Time" type="date" value=@DateTime.Now.ToString("yyyy-MM-dd") min=@DateTime.Now.ToString("yyyy-MM-dd").>
+            <input asp-for="start_Time" type="date" value=@DateTime.Now.ToString("yyyy-MM-dd") min=@DateTime.Now.ToString("yyyy-MM-dd") .>
         </div>
 
         <br />
