@@ -30,7 +30,16 @@
         {
         <div id=@GetSprintProperties.getSprint_IdList[i] class="tabcontent">
             <div class="deleteEditButtonContainer">
-                <button type="submit" class="buttonStyle deleteSprintButton" onclick="location.href='@Url.Action("deleteSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Delete Sprint</button>
+                @{
+                    if (GetSprintProperties.getSprint_IdList[i] == GetSprintProperties.currentSprint_Id)
+                    {
+                        <button type="submit" disabled class="buttonStyle deleteSprintButton" onclick="location.href='@Url.Action("deleteSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Delete Sprint</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="buttonStyle deleteSprintButton" onclick="location.href='@Url.Action("deleteSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Delete Sprint</button>
+                    }
+                }
                 <p>@GetSprintProperties.getSprint_DescriptionList[i]</p>
                 <button type="button" class="buttonStyle editSprintButton" onclick="location.href='@Url.Action("collect_Sprint_Info", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Edit Sprint</button>
             </div>

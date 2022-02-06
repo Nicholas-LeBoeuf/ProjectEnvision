@@ -24,17 +24,37 @@
         </div>
 
         <br />
-        <div class="secondaryInput">
-            <label asp-for="start_Time">Sprint Start Time:</label>
-            <input asp-for="start_Time" type="date" value=@GetSprintProperties.getSprint_Start min=@GetSprintProperties.getSprint_Start>
-        </div>
+        @{
 
-        <br />
+            if (GetSprintProperties.getSprint_Id == GetSprintProperties.currentSprint_Id)
+            {
+                <div class="secondaryInput">
+                    <label asp-for="start_Time">Sprint Start Time:</label>
+                    <input asp-for="start_Time" disabled type="date" value=@GetSprintProperties.getSprint_Start min=@GetSprintProperties.getSprint_Start>
+                </div>
 
-        <div class="secondaryInput">
-            <label asp-for="end_Time">Sprint End Time:</label>
-            <input asp-for="end_Time" type="date" value=@GetSprintProperties.getSprint_End min="@DateTime.Now.ToString("yyyy-MM-dd")">
-        </div>
+                <br />
+
+                <div class="secondaryInput">
+                    <label asp-for="end_Time">Sprint End Time:</label>
+                    <input asp-for="end_Time" type="date" value=@GetSprintProperties.getSprint_End min="@DateTime.Now.ToString("yyyy-MM-dd")">
+                </div>
+            }
+            else
+            {
+                <div class="secondaryInput">
+                    <label asp-for="start_Time">Sprint Start Time:</label>
+                    <input asp-for="start_Time" type="date" value=@GetSprintProperties.getSprint_Start min=@GetSprintProperties.getSprint_Start>
+                </div>
+
+                <br />
+
+                <div class="secondaryInput">
+                    <label asp-for="end_Time">Sprint End Time:</label>
+                    <input asp-for="end_Time" type="date" value=@GetSprintProperties.getSprint_End min="@DateTime.Now.ToString("yyyy-MM-dd")">
+                </div>
+            }
+        }
         <div class="buttonContainer">
             <button type="submit" class="buttonStyle createSprintFormButton">Edit Sprint</button>
             <button type="button" class="buttonStyle cancelButton" onclick="location.href='@Url.Action("Sprint", "Sprint")'">Close</button>

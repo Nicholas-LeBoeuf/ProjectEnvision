@@ -43,7 +43,7 @@ namespace Project_Envision.Controllers
                     command.Prepare();
                     command.ExecuteReader();
                     connection.Close();
-
+                    GetSprintProperties.currentSprint_Id = sprintId;
                     GetSprintProperties.getCurrent_SprintList[i] = true;
                 }
             }
@@ -84,6 +84,7 @@ namespace Project_Envision.Controllers
                     GetSprintProperties.getCurrent_SprintList[i] = false;
                     GetSprintProperties.getSprint_CompletedList[i] = true;
                     GetSprintProperties.currentSprintCount--;
+                    GetSprintProperties.currentSprint_Id = 0;
                 }
             }
             return RedirectToAction("ProductBacklog", "Board");
@@ -208,6 +209,10 @@ namespace Project_Envision.Controllers
                 sprint_completed.Add(Convert.ToBoolean(reader[5]));
                 currentSprint.Add(Convert.ToBoolean(reader[6]));
                 validSprint.Add(false);
+                if(Convert.ToBoolean(reader[6]) == true)
+                {
+                    GetSprintProperties.currentSprint_Id = Convert.ToInt32(reader[1]);
+                }
             }
             reader.Close();
 
