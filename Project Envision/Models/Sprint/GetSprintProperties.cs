@@ -7,10 +7,17 @@ namespace Project_Envision.Models
 {
     public class GetSprintProperties
     {
+
         public static int currentSprint_Id { get; set; }
         public void setCurrentSprint_Id(int currentId)
         {
             currentSprint_Id = currentId;
+        }
+
+        public static int currentSprintCount { get; set; }
+        public void setCurrentSprint_Count(int currentCount)
+        {
+            currentSprintCount = currentCount;
         }
 
         public static int getSprint_Id { get; set; }
@@ -73,5 +80,22 @@ namespace Project_Envision.Models
             getSprint_EndList = getSprintEndList;
         }
 
+        public static List<bool> getSprint_CompletedList { get; set; }
+        public void setSprintCompletedList(List<bool> getSprintCompletedList)
+        {
+            getSprint_CompletedList = getSprintCompletedList;
+        }
+
+        public static List<bool> getCurrent_SprintList { get; set; }
+        public void setCurrentSprintList(List<bool> getCurrentSprintList)
+        {
+            getCurrent_SprintList = getCurrentSprintList;
+        }
+
+        public static List<bool> getValidCurrent_SprintList { get; set; }
+        public void setValidCurrentSprintList(List<bool> getValidCurrentSprintList)
+        {
+            getValidCurrent_SprintList = getValidCurrentSprintList;
+        }
     }
 }

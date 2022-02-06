@@ -24,9 +24,101 @@ namespace Project_Envision.Controllers
             return RedirectToAction("GetTask", "Task");
         }
 
-    public IActionResult setSprintTaskId(int taskId)
+        public IActionResult setCurrentSprint(int sprintId)
+        {
+            GetSprintProperties.currentSprint_Id = sprintId;
+
+            for (int i = 0; i < GetSprintProperties.getSprint_IdList.Count(); i++)
+            {
+                if (GetSprintProperties.getSprint_IdList[i] == sprintId)
+                {
+                    string updateCommand = $"Update sprint set Currentsprint ='" + 1 + "' where Sprint_id ='" + sprintId + "'";
+
+                    MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+
+                    connection.Open();
+
+                    MySqlCommand command = new MySqlCommand(updateCommand, connection);
+
+                    command.Prepare();
+                    command.ExecuteReader();
+                    connection.Close();
+
+                    GetSprintProperties.getCurrent_SprintList[i] = true;
+                }
+            }
+            currentSprintCount();
+
+            return RedirectToAction("ProductBacklog", "Board");
+        }
+
+        public void currentSprintCount()
+        {
+            for (int i = 0; i < GetSprintProperties.getSprint_IdList.Count(); i++)
+            {
+                if(GetSprintProperties.getCurrent_SprintList[i] == true)
+                {
+                    GetSprintProperties.currentSprintCount++;
+                }
+            }
+        }
+
+        public IActionResult currentSprintCompleted()
+        {
+            for (int i = 0; i < GetSprintProperties.getSprint_IdList.Count(); i++)
+            {
+                if (GetSprintProperties.getCurrent_SprintList[i] == true)
+                {
+                    string updateCommand = $"Update sprint set Sprint_completed ='" + 1 + "', Currentsprint ='" + 0 + "'where Sprint_id ='" + GetSprintProperties.getSprint_IdList[i] + "'";
+
+                    MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+
+                    connection.Open();
+
+                    MySqlCommand command = new MySqlCommand(updateCommand, connection);
+
+                    command.Prepare();
+                    command.ExecuteReader();
+                    connection.Close();
+
+                    GetSprintProperties.getCurrent_SprintList[i] = false;
+                    GetSprintProperties.getSprint_CompletedList[i] = true;
+                    GetSprintProperties.currentSprintCount--;
+                }
+            }
+            return RedirectToAction("ProductBacklog", "Board");
+        }
+
+        public void getValidSprints()
         {
 
+            DateTime currentDate = DateTime.Now;
+
+            for (int i = 0; i< GetSprintProperties.getSprint_IdList.Count(); i++)
+            {
+                DateTime start = Convert.ToDateTime(GetSprintProperties.getSprint_StartList[i]);
+                DateTime end = Convert.ToDateTime(GetSprintProperties.getSprint_EndList[i]);
+
+                int check = DateTime.Compare(currentDate, start);
+
+                if (check == 0 || check > 0)
+                {
+                    check = DateTime.Compare(currentDate, end);
+
+                    if (check == 0 || check < 0)
+                    {
+                        if (GetSprintProperties.getSprint_CompletedList[i] == false)
+                        {
+                            GetSprintProperties.getValidCurrent_SprintList[i] = true;
+                        }
+                    }
+                }
+            }
+            currentSprintCount();
+        }
+
+    public IActionResult setSprintTaskId(int taskId)
+        {
             DragNDropModel.taskId = taskId;
 
             return RedirectToAction("ProductBacklog", "Board");
@@ -50,9 +142,10 @@ namespace Project_Envision.Controllers
 
         public IActionResult deleteSprint(int sprintId)
         {
-            
             deleteSprintParts(sprintId, "tasks");
             deleteSprintParts(sprintId, "sprint");
+
+            getValidSprints();
 
             boardModel.m_GotSprint = false;
 
@@ -82,30 +175,6 @@ namespace Project_Envision.Controllers
             deleteSprintpart.ExecuteReader();
             connection.Close();
 
-            getCurrentSprint();
-        }
-
-        void getCurrentSprint()
-        {
-            DateTime currentDate = DateTime.Now;
-
-            for(int i = 0; i < GetSprintProperties.getSprint_IdList.Count(); i ++)
-            {
-                DateTime start = Convert.ToDateTime(GetSprintProperties.getSprint_StartList[i]);
-                DateTime end = Convert.ToDateTime(GetSprintProperties.getSprint_EndList[i]);
-                int check = DateTime.Compare(currentDate, start);
-                if (check == 0 || check > 0 )
-                {
-                    check = DateTime.Compare(currentDate, end);
-
-                    if(check == 0 || check < 0)
-                    {
-                        GetSprintProperties.currentSprint_Id = GetSprintProperties.getSprint_IdList[i];
-                    }
-
-                }
-            }
-
         }
 
         public IActionResult getSprint(GetSprintProperties getSprintProperties)
@@ -115,7 +184,7 @@ namespace Project_Envision.Controllers
             connection.Open();
 
             MySqlCommand getSprint = connection.CreateCommand();
-            getSprint.CommandText = "SELECT Sprintname, Sprint_id, Sprintdescription, Start_time, End_time FROM sprint where board_id= @boardID";
+            getSprint.CommandText = "SELECT Sprintname, Sprint_id, Sprintdescription, Start_time, End_time, Sprint_completed, Currentsprint FROM sprint where board_id= @boardID";
             getSprint.Parameters.AddWithValue("@boardID", boardModel.m_BoardId);
 
             MySqlDataReader reader = getSprint.ExecuteReader();
@@ -125,7 +194,10 @@ namespace Project_Envision.Controllers
             List<string> startList = new List<string>();
             List<string> endList = new List<string>();
             List<int> sprint_Id = new List<int>();
-
+            List<bool> sprint_completed = new List<bool>();
+            List<bool> currentSprint = new List<bool>();
+            List<bool> validSprint = new List<bool>();
+            
             while (reader.Read())
             {
                 sprintnameList.Add(Convert.ToString(reader[0]));
@@ -133,7 +205,9 @@ namespace Project_Envision.Controllers
                 sprintDescriptList.Add(Convert.ToString(reader[2]));
                 startList.Add(Convert.ToDateTime(reader[3]).ToString("yyyy-MM-dd"));
                 endList.Add(Convert.ToDateTime(reader[4]).ToString("yyyy-MM-dd"));
-
+                sprint_completed.Add(Convert.ToBoolean(reader[5]));
+                currentSprint.Add(Convert.ToBoolean(reader[6]));
+                validSprint.Add(false);
             }
             reader.Close();
 
@@ -144,10 +218,14 @@ namespace Project_Envision.Controllers
             getSprintProperties.setSprintDescriptList(sprintDescriptList);
             getSprintProperties.setSprintStartList(startList);
             getSprintProperties.setSprintEndList(endList);
+            getSprintProperties.setCurrentSprintList(currentSprint);
+            getSprintProperties.setSprintCompletedList(sprint_completed);
+            getSprintProperties.setValidCurrentSprintList(validSprint);
 
             boardModel.m_GotSprint = true;
-            getCurrentSprint();
 
+            getValidSprints();
+            
             if (boardModel.m_GotUsers == false)
             {
                 return RedirectToAction("Board", "Board");
@@ -162,7 +240,6 @@ namespace Project_Envision.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 sprintProperties.setGetSprintId(sprintId);
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
@@ -185,6 +262,8 @@ namespace Project_Envision.Controllers
                 reader.Close();
 
                 connection.Close();
+
+                getValidSprints();
 
                 return RedirectToAction("editSprint","Sprint");
             }
@@ -219,7 +298,7 @@ namespace Project_Envision.Controllers
                 
                 string insertCommand = " ";
 
-                insertCommand = $"Insert into sprint(Sprintname, Sprintdescription, Start_time, End_time, board_id)" + $"values ( @Sprintname,@Sprintdescription,@Start_time,@End_time,@board_id)";
+                insertCommand = $"Insert into sprint(Sprintname, Sprintdescription, Start_time, End_time, board_id, Sprint_completed, Currentsprint)" + $"values ( @Sprintname,@Sprintdescription,@Start_time,@End_time,@board_id,@Sprint_completed,@Currentsprint)";
 
                 MySqlCommand command = new MySqlCommand(insertCommand, connection);
 
@@ -229,13 +308,16 @@ namespace Project_Envision.Controllers
                 command.Parameters.AddWithValue("@Start_time", sprintPropertiesModel.start_Time.ToString("yyyy-MM-dd"));
                 command.Parameters.AddWithValue("@End_time", sprintPropertiesModel.end_Time.ToString("yyyy-MM-dd"));
                 command.Parameters.AddWithValue("@board_id", boardItems.m_BoardId);
+                command.Parameters.AddWithValue("@Sprint_completed", false);
+                command.Parameters.AddWithValue("@Currentsprint", false);
 
                 command.Prepare();
                 command.ExecuteReader();
                 connection.Close();
                 boardModel.m_GotSprint = false;
-
                 boardModel.m_ReturnToBoard = true;
+                getValidSprints();
+
                 return RedirectToAction("board", "board");
             }
             return View();
@@ -259,6 +341,8 @@ namespace Project_Envision.Controllers
                 
                 boardModel.m_GotSprint = false;
                 boardModel.m_ReturnToBoard = true;
+
+                getValidSprints();
 
                 return RedirectToAction("board", "board");
             }
