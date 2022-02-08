@@ -25,7 +25,6 @@
     font-weight: bold;
     width: 200px;
     border: none;
-    color: white;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -61,4 +60,21 @@
 .smallButtonStyle:hover {
     background-color: #696969;
     color: #ff9036;
+}
+
+.disabledSmallButtonStyle {
+    font-family: 'Lucida Bright';
+    font-weight: bold;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #696969;
+    color: black;
+    border: 2px solid #000;
 }

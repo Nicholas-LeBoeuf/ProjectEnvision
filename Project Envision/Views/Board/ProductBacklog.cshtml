@@ -115,25 +115,25 @@
                                 {
                                     if (GetSprintProperties.currentSprintCount == 0)
                                     {
-                                        <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("setCurrentSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Start @GetSprintProperties.getSprint_NameList[j]</button>
+                                        <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("setCurrentSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Start Sprint</button>
                                         <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("createTaskSprintId", "Task", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Create Task</button>
                                     }
                                     else
                                     {
-                                        <button class="smallButtonStyle createTaskButton" disabled onclick="location.href='@Url.Action("setCurrentSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Start @GetSprintProperties.getSprint_NameList[j]</button>
+                                        <button class="disabledSmallButtonStyle createTaskButton" disabled onclick="location.href='@Url.Action("setCurrentSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Start Sprint</button>
                                         <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("createTaskSprintId", "Task", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Create Task</button>
                                     }
                                 }
 
                                 else if (GetSprintProperties.getCurrent_SprintList[j] == true)
                                 {
-                                    <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("currentSprintCompleted", "Sprint")'">End @GetSprintProperties.getSprint_NameList[j]</button>
+                                    <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("currentSprintCompleted", "Sprint")'">End Sprint</button>
                                     <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("createTaskSprintId", "Task", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Create Task</button>
                                 }
 
                                 else if (GetSprintProperties.getSprint_CompletedList[j] == false)
                                 {
-                                    <button class="smallButtonStyle createTaskButton" disabled onclick="location.href='@Url.Action("setCurrentSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Start @GetSprintProperties.getSprint_NameList[j]</button>
+                                    <button class="disabledSmallButtonStyle createTaskButton" disabled onclick="location.href='@Url.Action("setCurrentSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Start Sprint</button>
                                     <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("createTaskSprintId", "Task", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Create Task</button>
                                 }
                             }
@@ -170,25 +170,25 @@
                                 {
                                     if (GetSprintProperties.currentSprintCount == 0)
                                     {
-                                        <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("setCurrentSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Start @GetSprintProperties.getSprint_NameList[j]</button>
+                                        <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("setCurrentSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Start Sprint</button>
                                         <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("createTaskSprintId", "Task", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Create Task</button>
                                     }
                                     else
                                     {
-                                        <button class="smallButtonStyle createTaskButton" disabled onclick="location.href='@Url.Action("setCurrentSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Start @GetSprintProperties.getSprint_NameList[j]</button>
+                                        <button class="disabledSmallButtonStyle createTaskButton" disabled onclick="location.href='@Url.Action("setCurrentSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Start Sprint</button>
                                         <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("createTaskSprintId", "Task", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Create Task</button>
                                     }
                                 }
 
                                 else if (GetSprintProperties.getCurrent_SprintList[j] == true)
                                 {
-                                    <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("currentSprintCompleted", "Sprint")'">End @GetSprintProperties.getSprint_NameList[j]</button>
+                                    <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("currentSprintCompleted", "Sprint")'">End Sprint</button>
                                     <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("createTaskSprintId", "Task", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Create Task</button>
                                 }
 
                                 else if (GetSprintProperties.getSprint_CompletedList[j] == false)
                                 {
-                                    <button class="smallButtonStyle createTaskButton" disabled onclick="location.href='@Url.Action("setCurrentSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Start @GetSprintProperties.getSprint_NameList[j]</button>
+                                    <button class="disabledSmallButtonStyle createTaskButton" disabled onclick="location.href='@Url.Action("setCurrentSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Start Sprint</button>
                                     <button class="smallButtonStyle createTaskButton" onclick="location.href='@Url.Action("createTaskSprintId", "Task", new { sprintId = GetSprintProperties.getSprint_IdList[j] })'">Create Task</button>
                                 }
                             }
