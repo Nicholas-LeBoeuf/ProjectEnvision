@@ -332,7 +332,7 @@ namespace Project_Envision.Controllers
         {
             if (ModelState.IsValid)
             {
-                string updateCommand = $"Update sprint set Sprintname ='" + sprintPropertiesModel.sprint_Name + "', Sprintdescription ='" + sprintPropertiesModel.sprint_Description + "', Start_time ='" + sprintPropertiesModel.start_Time.ToString("yyyy-MM-ddTHH:mm") + "', End_time ='" + sprintPropertiesModel.end_Time.ToString("yyyy-MM-ddTHH:mm") + "' where Sprint_id ='" + GetSprintProperties.getSprint_Id + "'";
+                string updateCommand = $"Update sprint set Sprintname ='" + sprintPropertiesModel.sprint_Name + "', Sprintdescription ='" + sprintPropertiesModel.sprint_Description + "', Start_time ='" + sprintPropertiesModel.start_Time.ToString("yyyy-MM-dd") + "', End_time ='" + sprintPropertiesModel.end_Time.ToString("yyyy-MM-dd") + "' where Sprint_id ='" + GetSprintProperties.getSprint_Id + "'";
 
                 MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 

@@ -101,7 +101,6 @@ td {
 }
 
 .fa-pen:hover {
-    color: #8B4513;
     color: #A45116;
 }
 
@@ -135,4 +134,9 @@ td {
 .buttonTitle {
     text-align: center;
     font-size: 22px;
+}
+
+.sprintTables {
+    width: 90%;
+    margin: 0 auto;
 }
