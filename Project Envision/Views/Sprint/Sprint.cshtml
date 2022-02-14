@@ -33,7 +33,7 @@
                 @{
                     if (GetSprintProperties.getSprint_IdList[i] == GetSprintProperties.currentSprint_Id)
                     {
-                        <button type="submit" disabled class="buttonStyle deleteSprintButton" onclick="location.href='@Url.Action("deleteSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Delete Sprint</button>
+                        <button type="submit" disabled class="disabledButton deleteSprintButton" onclick="location.href='@Url.Action("deleteSprint", "Sprint", new { sprintId = GetSprintProperties.getSprint_IdList[i]})'">Delete Sprint</button>
                     }
                     else
                     {
