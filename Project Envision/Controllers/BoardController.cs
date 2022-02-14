@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Project_Envision.Controllers
 {
     public class boardController : Controller
@@ -270,6 +271,11 @@ namespace Project_Envision.Controllers
 
         public IActionResult BurndownChart()
         {
+            return View();
+        }
+
+        public IActionResult Getburndownpoints()
+        {
             MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
             connection.Open();
@@ -287,11 +293,14 @@ namespace Project_Envision.Controllers
             List<int> BurndownTaskPoints = new List<int>();
 
 
+
             while (reader.Read())
             {
                 BurndownTaskPointsPlaceholder.Add(Convert.ToInt32(reader[0]));
             }
             reader.Close();
+
+
 
             List<string> Burndowndates = new List<string>();
 
@@ -328,7 +337,7 @@ namespace Project_Envision.Controllers
 
             connection.Close();
 
-            return View();
+            return View(BurndownTaskPointsPlaceholder);
         }
 
     }
