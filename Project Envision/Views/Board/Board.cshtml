@@ -43,7 +43,7 @@
 
                         var distance = countDownDate - now;
 
-                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var days = Math.ceil(distance / (1000 * 60 * 60 * 24));
 
                         document.getElementById("counter").innerHTML = "<span style='color: #e16e12; font-weight: 900;'>Time Remaining: </span>" + days + " days";
 
