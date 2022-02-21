@@ -31,29 +31,52 @@
 
                         <p><span class="sprintSpans">End Date: </span>@Convert.ToDateTime(GetSprintProperties.getSprint_EndList[k]).ToString("MM/dd/yyyy")</p>
 
-                        <p id="counter"></p> //displays counter in view
+                        <p id="counter" ></p> //displays counter in view
 
-                        <script>
+        <script>
+                                var countDownDate = new Date("@Convert.ToDateTime(GetSprintProperties.getSprint_EndList[k]).ToString("MM/dd/yyyy")").getTime();
 
-                        var countDownDate = new Date("@Convert.ToDateTime(GetSprintProperties.getSprint_EndList[k]).ToString("MM/dd/yyyy")").getTime();
+            var count = 0;
 
-                        var x = setInterval(function () {
+            if (count == 0)
+            {
+                var now = new Date().getTime();
 
-                        var now = new Date().getTime();
+                var distance = countDownDate - now;
 
-                        var distance = countDownDate - now;
+                var days = Math.ceil(distance / (1000 * 60 * 60 * 24));
 
-                        var days = Math.ceil(distance / (1000 * 60 * 60 * 24));
 
-                        document.getElementById("counter").innerHTML = "<span style='color: #e16e12; font-weight: 900;'>Time Remaining: </span>" + days + " days";
+                document.getElementById("counter").innerHTML = "<span style='color: #e16e12; font-weight: 900;'>Time Remaining: </span>" + days + " days";
 
-                        if (distance < 0) {
-                          clearInterval(x);
-                          document.getElementById("counter").innerHTML = "<span style='color: #e16e12; font-weight: 900;'>Due Tonight at: </span>" + "11:59 PM";
-                       }
-                         }, 1000);
+                if (distance < 0) {
+                    document.getElementById("counter").innerHTML = "<span style='color: #e16e12; font-weight: 900;'>Due Tonight at: </span>" + "11:59 PM";
+                };
 
-                        </script>
+            count++;
+            } 
+            if (count == 1)
+            {
+                var x = setInterval(function () {
+
+                    var now = new Date().getTime();
+
+                    var distance = countDownDate - now;
+
+                    var days = Math.ceil(distance / (1000 * 60 * 60 * 24));
+
+
+                    document.getElementById("counter").innerHTML = "<span style='color: #e16e12; font-weight: 900;'>Time Remaining: </span>" + days + " days";
+
+                    if (distance < 0) {
+                        clearInterval(x);
+                        document.getElementById("counter").innerHTML = "<span style='color: #e16e12; font-weight: 900;'>Due Tonight at: </span>" + "11:59 PM";
+                    }
+
+                }, 600000);
+            }
+         
+        </script>
 
 
 
@@ -191,7 +214,4 @@
         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
     }
-
-    
-
 </script>
