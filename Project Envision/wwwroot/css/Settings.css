@@ -1,0 +1,80 @@
+﻿.boxContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 5px 10px;
+    margin-left: 3%;
+}
+.box {
+    display: inline-block;
+    height: 280px;  
+    width: 690px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    margin: 15px;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    align-content: center;
+}
+
+.titleBox {
+    height: 60px;
+    width: 25%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-left: 38%;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.smallBoxTitle {
+    margin-bottom: 10px;
+}
+
+.editButton {
+    width: 100px;
+    height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.changeUsernameButton {
+    width: 200px;
+    height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.changePasswordButton {
+    width: 200px;
+    height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.textColorButton {
+    width: 200px;
+    height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E16500;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #C35700;
+}
