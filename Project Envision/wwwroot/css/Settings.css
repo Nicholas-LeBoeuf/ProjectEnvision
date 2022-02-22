@@ -1,18 +1,43 @@
 ﻿.boxContainer {
     display: grid;
     grid-template-columns: auto auto;
-    padding: 10px;
+    padding: 5px 10px;
     margin-left: 3%;
 }
 .box {
-    height: 290px;  
-
+    display: inline-block;
+    height: 280px;  
+    width: 690px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     margin: 15px;
     padding: 20px;
     font-size: 30px;
     text-align: center;
+    align-content: center;
+}
+
+.titleBox {
+    height: 60px;
+    width: 25%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-left: 38%;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.smallBoxTitle {
+    margin-bottom: 10px;
+}
+
+.createButton {
+    width: 100px;
+    height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 ::-webkit-scrollbar {
