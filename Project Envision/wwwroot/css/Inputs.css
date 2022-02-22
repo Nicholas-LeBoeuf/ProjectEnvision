@@ -65,6 +65,34 @@
     outline: none;
 }
 
+.secondaryInput input[type="password"] {
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width: 380px;
+    padding: 6px 15px 6px 15px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    margin-left: 12px;
+    margin-right: 12px;
+    direction: ltr;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    text-align: center;
+    margin: auto;
+}
+
+.secondaryInput input[type="password"]:focus {
+    background: #ccc;
+    color: #6a6f75;
+    outline: none;
+}
+
+
 .secondaryInput input[type="number"] {
     background: #444;
     border: 0 none;

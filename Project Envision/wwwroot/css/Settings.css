@@ -33,8 +33,22 @@
     margin-bottom: 10px;
 }
 
-.createButton {
+.editButton {
     width: 100px;
+    height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.changeUsernameButton {
+    width: 200px;
+    height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.changePasswordButton {
+    width: 200px;
     height: 40px;
     padding-top: 10px;
     padding-bottom: 10px;
