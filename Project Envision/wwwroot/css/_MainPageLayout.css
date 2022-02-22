@@ -8,7 +8,7 @@ body {
     color: #fff;
     background-color: black;
     font-weight: 300;
-    background-image: url(../images/background.jpg);
+    background-image: url(../images/Computer-Background.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -41,11 +41,11 @@ body {
 .main-menu:hover, nav.main-menu.expanded {
     width: 372px;
     overflow: hidden;
-    opacity: 1;
+    background: rgba(20, 20, 20, .9);
 }
 
 .main-menu {
-    background: #141414;
+    background: rgba(20, 20, 20, .9);
     position: fixed;
     top: 0;
     bottom: 0;
