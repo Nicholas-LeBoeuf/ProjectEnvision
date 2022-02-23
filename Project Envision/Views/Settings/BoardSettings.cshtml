@@ -12,14 +12,25 @@
 </div>
 
 <div class="boxContainer">
-   @* Board name and description *@
+    @* Board name *@
     <div class="box">
-        <div class="smallBoxTitle">Board Name/Description</div>
+        <div class="smallBoxTitle">Change Board Name</div>
+
+        <br />
 
         <div class="secondaryInput">
             <label>Board Name</label>
             <input type="text" name="board_Name" placeholder="Board Name" autocomplete="off" required="" maxlength="20" />
         </div>
+
+        <div class="buttons">
+            <input type="submit" class="buttonStyle editButton" value="Edit" />
+        </div>
+    </div>
+
+    @* Description *@
+    <div class="box">
+        <div class="smallBoxTitle">Change Description</div>
 
         <br />
 
@@ -34,41 +45,38 @@
     </div>
 
     @* Change text color *@
-<div class="box">
-    <div class="smallBoxTitle">Change Text Color</div>
+    <div class="box">
+        <div class="smallBoxTitle">Change Text Color</div>
 
-    <div class="secondaryInput">
-        <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+        <div class="secondaryInput">
+            <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+        </div>
+
+        <br />
+
+        <div class="buttons">
+            <input type="submit" class="buttonStyle textColorButton" value="Change Text Color" />
+        </div>
     </div>
-
-    <br />  
-
-    <div class="buttons">
-        <input type="submit" class="buttonStyle textColorButton" value="Change Text Color" />
-    </div>
-</div>
 
     @* Change card color *@
-<div class="box">
-    <div class="smallBoxTitle">Change Card Color</div>
-
-    <div class="secondaryInput">
-        <input type="color" id="favcolor" name="favcolor" value="#ff0000">
-    </div>
-
-    <br />
-
-    <div class="buttons">
-        <input type="submit" class="buttonStyle textColorButton" value="Change Card Color" />
-    </div>
-</div>
-
     <div class="box">
+        <div class="smallBoxTitle">Change Card Color</div>
 
+        <div class="secondaryInput">
+            <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+        </div>
+
+        <br />
+
+        <div class="buttons">
+            <input type="submit" class="buttonStyle textColorButton" value="Change Card Color" />
+        </div>
     </div>
 
-    <div class="box">
-
+    <div class="boxCombined">
+        <div class="smallBoxTitle">Change Background</div>
     </div>
+
 
 </div>
