@@ -56,6 +56,7 @@
     -o-transition: all 0.7s ease 0s;
     transition: all 0.7s ease 0s;
     text-align: center;
+    margin: auto;
 }
 
 .secondaryInput input[type="text"]:focus {
@@ -63,6 +64,34 @@
     color: #6a6f75;
     outline: none;
 }
+
+.secondaryInput input[type="password"] {
+    background: #444;
+    border: 0 none;
+    color: #d7d7d7;
+    width: 380px;
+    padding: 6px 15px 6px 15px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    margin-left: 12px;
+    margin-right: 12px;
+    direction: ltr;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    text-align: center;
+    margin: auto;
+}
+
+.secondaryInput input[type="password"]:focus {
+    background: #ccc;
+    color: #6a6f75;
+    outline: none;
+}
+
 
 .secondaryInput input[type="number"] {
     background: #444;
@@ -188,4 +217,21 @@ input[type="date"]:focus {
     color: #6a6f75;
     margin: 3px 12px;
     outline: none;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    height: 100px;
+    width: 200px;
+    border: none;
+    margin: auto;
+    background: transparent;
+}
+
+
+
+input[type="color"]::-webkit-color-swatch {
+    border: 10px solid #444;
+    border-radius: 20px;
+    cursor: pointer;
 }

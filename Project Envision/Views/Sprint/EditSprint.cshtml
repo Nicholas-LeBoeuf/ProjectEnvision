@@ -28,29 +28,32 @@
 
             if (GetSprintProperties.getSprint_Id == GetSprintProperties.currentSprint_Id)
             {
-                <div class="secondaryInput">
-                    <label asp-for="start_Time">Sprint Start Time:</label>
-                    <input asp-for="start_Time" disabled type="date" value=@GetSprintProperties.getSprint_Start min=@GetSprintProperties.getSprint_Start>
+                <div class="secondaryInput" hidden>
+                    <label asp-for="start_Time" hidden>Sprint Start Date:</label>
+                    <input asp-for="start_Time" hidden type="date" value=@GetSprintProperties.getSprint_Start>
                 </div>
 
-                <br />
+                <div class="secondaryInput">
+                    <label>Sprint Start Date:</label>
+                    <input type="date" disabled value=@GetSprintProperties.getSprint_Start>
+                </div>
 
                 <div class="secondaryInput">
-                    <label asp-for="end_Time">Sprint End Time:</label>
+                    <label asp-for="end_Time">Sprint End Date:</label>
                     <input asp-for="end_Time" type="date" value=@GetSprintProperties.getSprint_End min="@DateTime.Now.ToString("yyyy-MM-dd")">
                 </div>
             }
             else
             {
                 <div class="secondaryInput">
-                    <label asp-for="start_Time">Sprint Start Time:</label>
+                    <label asp-for="start_Time">Sprint Start Date:</label>
                     <input asp-for="start_Time" type="date" value=@GetSprintProperties.getSprint_Start min=@GetSprintProperties.getSprint_Start>
                 </div>
 
                 <br />
 
                 <div class="secondaryInput">
-                    <label asp-for="end_Time">Sprint End Time:</label>
+                    <label asp-for="end_Time">Sprint End Date:</label>
                     <input asp-for="end_Time" type="date" value=@GetSprintProperties.getSprint_End min="@DateTime.Now.ToString("yyyy-MM-dd")">
                 </div>
             }
