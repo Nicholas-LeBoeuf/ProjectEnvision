@@ -11,6 +11,32 @@ namespace Project_Envision.Controllers
 {
     public class BurndownController : Controller
     {
+        public IActionResult GetPoints()
+        {
+            /*
+            List<int> points = new List<int>();
 
+            Burndown.m_BurndownTaskPoints = points;
+
+
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+
+            connection.Open();
+
+                MySqlCommand cmd = new MySqlCommand("SELECT task_points FROM burndownchart where board_id = '" + boardItems.m_BoardId + "' AND user_id = '" + ModelItems.m_UserId + "'", connection);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        points.Add(Convert.ToInt32(reader));
+                    }
+                }
+            connection.Close();
+            */
+
+            return View();
+
+        }
     }
 }
