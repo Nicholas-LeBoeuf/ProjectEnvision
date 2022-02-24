@@ -76,45 +76,46 @@
 
     <div class="boxCombined">
         <div class="smallBoxTitle">Change Background</div>
-        <div class="slideshow-container">
+        <br />
+        <div class="backgroundImageContainer">
 
-            <div class="mySlides fade">
+            <div class="backgroundImages fade">
                 <div class="numbertext">1 / 7</div>
                 <img src="~/images/Computer.jpg" style="width:100%">
                 <div class="text">Computer</div>
             </div>
 
-            <div class="mySlides fade">
+            <div class="backgroundImages fade">
                 <div class="numbertext">2 / 7</div>
                 <img src="~/images/Beach.jpg" style="width:100%">
                 <div class="text">Beach</div>
             </div>
 
-            <div class="mySlides fade">
+            <div class="backgroundImages fade">
                 <div class="numbertext">3 / 7</div>
                 <img src="~/images/City.jpg" style="width:100%">
                 <div class="text">City</div>
             </div>
 
-            <div class="mySlides fade">
+            <div class="backgroundImages fade">
                 <div class="numbertext">4 / 7</div>
                 <img src="~/images/Forest.jpg" style="width:100%">
                 <div class="text">Forest</div>
             </div>
 
-            <div class="mySlides fade">
+            <div class="backgroundImages fade">
                 <div class="numbertext">5 / 7</div>
                 <img src="~/images/Mountains.jpg" style="width:100%">
                 <div class="text">Mountains</div>
             </div>
 
-            <div class="mySlides fade">
+            <div class="backgroundImages fade">
                 <div class="numbertext">6 / 7</div>
                 <img src="~/images/Space.jpg" style="width:100%">
                 <div class="text">Space</div>
             </div>
 
-            <div class="mySlides fade">
+            <div class="backgroundImages fade">
                 <div class="numbertext">7 / 7</div>
                 <img src="~/images/Volcano.jpg" style="width:100%">
                 <div class="text">Volcano</div>
@@ -124,16 +125,44 @@
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
         </div>
-        <br>
 
-        <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>
-            <span class="dot" onclick="currentSlide(6)"></span>
-            <span class="dot" onclick="currentSlide(7)"></span>
+        <br />
+        <div class="selectionStyle">
+            <select>
+
+                <option value="Computer-Background.jpg">
+                    Computer
+                </option>
+
+                <option value="Beach-Background.jpg">
+                    Beach
+                </option>
+
+                <option value="City-Background.jpg">
+                    City
+                </option>
+
+                <option value="Forest-Background.jpg">
+                    Forest
+                </option>
+
+                <option value="Mountains-Background.jpg">
+                    Mountains
+                </option>
+
+                <option value="Space-Background.jpg">
+                    Space
+                </option>
+
+                <option value="Volcano-Background.jpg">
+                    Volcano
+                </option>
+
+            </select>
+        </div>
+
+        <div class="buttons">
+            <input type="submit" class="buttonStyle textColorButton" value="Change Background" />
         </div>
     </div>
 
@@ -141,30 +170,30 @@
 </div>
 
 <script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
+    var index = 1;
+    showImages(index);
 
     function plusSlides(n) {
-        showSlides(slideIndex += n);
+        showImages(index += n);
     }
 
     function currentSlide(n) {
-        showSlides(slideIndex = n);
+        showImages(index = n);
     }
 
-    function showSlides(n) {
+    function showImages(n) {
         var i;
-        var slides = document.getElementsByClassName("mySlides");
+        var slides = document.getElementsByClassName("backgroundImages");
         var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
+        if (n > slides.length) { index = 1 }
+        if (n < 1) { index = slides.length }
         for (i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
         for (i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" active", "");
         }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
+        slides[index - 1].style.display = "block";
+        dots[index - 1].className += " active";
     }
 </script>
