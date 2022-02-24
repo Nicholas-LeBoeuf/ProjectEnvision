@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="~/css/Inputs.css" />
 
 <div class="titleBox">
-    <h2 style="margin: auto;">Board Settings</h2>
+    Board Settings
 </div>
 
 <div class="boxContainer">
@@ -76,7 +76,124 @@
 
     <div class="boxCombined">
         <div class="smallBoxTitle">Change Background</div>
+        <br />
+        <div class="backgroundImageContainer">
+
+            <div class="backgroundImages fade">
+                <div class="numbertext">1 / 7</div>
+                <img src="~/images/Computer.jpg" style="width:100%">
+                <div class="text">Computer</div>
+            </div>
+
+            <div class="backgroundImages fade">
+                <div class="numbertext">2 / 7</div>
+                <img src="~/images/Beach.jpg" style="width:100%">
+                <div class="text">Beach</div>
+            </div>
+
+            <div class="backgroundImages fade">
+                <div class="numbertext">3 / 7</div>
+                <img src="~/images/City.jpg" style="width:100%">
+                <div class="text">City</div>
+            </div>
+
+            <div class="backgroundImages fade">
+                <div class="numbertext">4 / 7</div>
+                <img src="~/images/Forest.jpg" style="width:100%">
+                <div class="text">Forest</div>
+            </div>
+
+            <div class="backgroundImages fade">
+                <div class="numbertext">5 / 7</div>
+                <img src="~/images/Mountains.jpg" style="width:100%">
+                <div class="text">Mountains</div>
+            </div>
+
+            <div class="backgroundImages fade">
+                <div class="numbertext">6 / 7</div>
+                <img src="~/images/Space.jpg" style="width:100%">
+                <div class="text">Space</div>
+            </div>
+
+            <div class="backgroundImages fade">
+                <div class="numbertext">7 / 7</div>
+                <img src="~/images/Volcano.jpg" style="width:100%">
+                <div class="text">Volcano</div>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        </div>
+
+        <br />
+        <div class="selectionStyle">
+            <select>
+
+                <option value="Computer-Background.jpg">
+                    Computer
+                </option>
+
+                <option value="Beach-Background.jpg">
+                    Beach
+                </option>
+
+                <option value="City-Background.jpg">
+                    City
+                </option>
+
+                <option value="Forest-Background.jpg">
+                    Forest
+                </option>
+
+                <option value="Mountains-Background.jpg">
+                    Mountains
+                </option>
+
+                <option value="Space-Background.jpg">
+                    Space
+                </option>
+
+                <option value="Volcano-Background.jpg">
+                    Volcano
+                </option>
+
+            </select>
+        </div>
+
+        <div class="buttons">
+            <input type="submit" class="buttonStyle textColorButton" value="Change Background" />
+        </div>
     </div>
 
 
 </div>
+
+<script>
+    var index = 1;
+    showImages(index);
+
+    function plusSlides(n) {
+        showImages(index += n);
+    }
+
+    function currentSlide(n) {
+        showImages(index = n);
+    }
+
+    function showImages(n) {
+        var i;
+        var slides = document.getElementsByClassName("backgroundImages");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) { index = 1 }
+        if (n < 1) { index = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[index - 1].style.display = "block";
+        dots[index - 1].className += " active";
+    }
+</script>
