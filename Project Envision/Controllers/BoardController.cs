@@ -125,7 +125,7 @@ namespace Project_Envision.Controllers
             else
             {
                 boardModel.m_BoardId = boardId;
-                return RedirectToAction("removeGroupMember", "GroupMember", new { username = ModelItems.m_Username});
+                return RedirectToAction("removeGroupMember", "GroupMember", new { username = ModelItems.m_Username, tableName = "invitedboard" });
             }
             return RedirectToAction("ChooseBoard");
         }
