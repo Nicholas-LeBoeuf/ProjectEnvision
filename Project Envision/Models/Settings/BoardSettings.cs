@@ -12,7 +12,7 @@ namespace Project_Envision.Models
 
             public string textColor { get; set; }
 
-            public string backgroundColor { get; set; }
+            public string backgroundImage { get; set; }
 
             public string boardName { get; set; }
 

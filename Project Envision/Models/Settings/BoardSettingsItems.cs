@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Project_Envision.Models.Board
+namespace Project_Envision.Models
 {
     public class BoardSettingsItems
     {
@@ -11,7 +11,8 @@ namespace Project_Envision.Models.Board
         public static string m_BoardDescription;
         public static string m_BoardBackground;
         public static string m_TextColor;
-        public static string m_CardColor;
+        public static string m_CardColorRGBA;
+        public static string m_CardColorHex;
 
         public string boardName
         {
@@ -37,10 +38,16 @@ namespace Project_Envision.Models.Board
             set => m_TextColor = value;
         }
 
-        public string cardColor
+        public string cardColorRGBA
         {
-            get => m_CardColor;
-            set => m_CardColor = value;
+            get => m_CardColorRGBA;
+            set => m_CardColorRGBA = value;
+        }
+
+        public string cardColorHex
+        {
+            get => m_CardColorHex;
+            set => m_CardColorHex = value;
         }
     }
 }
