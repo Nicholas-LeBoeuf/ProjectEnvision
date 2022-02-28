@@ -19,6 +19,11 @@ namespace Project_Envision.Models
         }
         public static List<string> m_Burndowndates { get; set; }
 
+        public void setburndowndates(List<string> getburndown_dates)
+        {
+            m_Burndowndates = getburndown_dates;
+        }
+
 
     }
 }

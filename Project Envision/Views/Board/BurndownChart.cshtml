@@ -1,10 +1,9 @@
-﻿
+﻿@model Project_Envision.Models.Burndown
 @{
     ViewData["Title"] = "Burndown Chart";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
 
-@model Burndown
 
 <link rel="stylesheet" href="~/css/Inputs.css" />
 
@@ -16,25 +15,17 @@
 <div class="box">
     <div class=" selectionStyle">
         <select>
-           
         </select>
-
-        </div>
+       
+    </div>
 </div>
 
-<p>
-    @{ 
-        for (int i = 0; i < Burndown.m_Burndowndates.Count(); i++)
-        {
-            @Burndown.m_BurndownTaskPoints[i];
-        }
-        }
-</p>
+
 
 <script>
-  
-        var timeFormat = 'YYYY/MM/DD';
-        var config = {
+
+    var timeFormat = 'YYYY/MM/DD';
+    var config = {
         type: 'line',
         data: {
             datasets: [
@@ -43,43 +34,43 @@
                     data: [{
                         x: "2021/11/10", y: 60
                     }, {
-                            x: "2021/11/20", y: 55
-                        }, {
-                            x: "2021/11/28", y: 20
-                        }],
+                        x: "2021/11/20", y: 55
+                    }, {
+                        x: "2021/11/28", y: 20
+                    }],
                     fill: false,
                     borderColor: 'white'
                 },
                 {
-        label: "Target",
+                    label: "Target",
                     data: [{
                         x: "2021/11/10", y: 60
                     }, {
                         x: "2021/11/30", y: 0
-                        }],
+                    }],
                     fill: false,
                     borderColor: 'orange'
                 }
             ]
         },
         options: {
-        responsive: true,
-           
+            responsive: true,
+
             scales: {
-            xAxes: [{
-                type: "time",
+                xAxes: [{
+                    type: "time",
                     time: {
-                    format: timeFormat,
+                        format: timeFormat,
                         tooltipFormat: 'll'
                     },
                     scaleLabel: {
-                    display: true,
+                        display: true,
                         labelString: 'Date'
                     }
                 }],
                 yAxes: [{
-                scaleLabel: {
-                    display: true,
+                    scaleLabel: {
+                        display: true,
                         labelString: 'Points'
                     }
                 }]
@@ -87,9 +78,9 @@
         }
     };
 
-        window.onload = function () {
-            var ctx = document.getElementById("canvas").getContext("2d");
-            window.myLine = new Chart(ctx, config);
-        };
+    window.onload = function () {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myLine = new Chart(ctx, config);
+    };
 </script>
 
