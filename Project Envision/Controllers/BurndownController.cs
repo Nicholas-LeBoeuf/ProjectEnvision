@@ -9,8 +9,14 @@ using System.Threading.Tasks;
 
 namespace Project_Envision.Controllers
 {
-    public class BurndownController : Controller
+    namespace DevExtreme.NETCore.Demos.Controllers
     {
-
+        public class BurndownController : Controller
+        {
+            public ActionResult Line()
+            {
+                return View();
+            }
+        }
     }
 }
