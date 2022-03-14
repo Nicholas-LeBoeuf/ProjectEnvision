@@ -50,6 +50,7 @@ namespace Project_Envision.Controllers
                 boardModel.m_GotSprint = false;
                 boardModel.m_GotUsers = false;
                 DragNDropModel.returnBoard = true;
+                boardItems.m_GotBoardSettings = false;
             }
 
             if (boardId != 0)
@@ -77,6 +78,13 @@ namespace Project_Envision.Controllers
             {
                 boardModel.m_ReturnToBoard = false;
                 return RedirectToAction("Sprint", "Sprint");
+            }
+
+
+            if (boardItems.m_GotBoardSettings == false && boardItems.m_BoardId != 0)
+            {
+                boardItems.m_GotBoardSettingsReturn = true;
+                return RedirectToAction("index", "BoardSettings");
             }
 
             else
@@ -126,7 +134,7 @@ namespace Project_Envision.Controllers
             else
             {
                 boardModel.m_BoardId = boardId;
-                return RedirectToAction("removeGroupMember", "GroupMember", new { username = ModelItems.m_Username});
+                return RedirectToAction("removeGroupMember", "GroupMember", new { username = ModelItems.m_Username, tableName = "invitedboard" });
             }
             return RedirectToAction("ChooseBoard");
         }
@@ -203,7 +211,7 @@ namespace Project_Envision.Controllers
 
             if (ModelState.IsValid)
             {
-
+                
                 MySqlConnection databaseConnection= new MySqlConnection(Database_connection.m_Connection);
 
                 databaseConnection.Open();
@@ -234,21 +242,23 @@ namespace Project_Envision.Controllers
                     command2.Prepare();
                     command2.ExecuteReader();
                     databaseConnection.Close();
+                
                 boardItems.m_GotBoard = false;
                 return RedirectToAction("ChooseBoard");
             }
             
             return View("CreateBoard");
             }
-        
+
         public IActionResult ChooseBoard()
         {
             boardModel.m_GotUsers = false;
 
-            if(boardItems.m_GotBoard == false)
+            if (boardItems.m_GotBoard == false && boardItems.m_BoardId != 0)
             {
                 return RedirectToAction("getBoardItems");
             }
+
             return View();
         }
 

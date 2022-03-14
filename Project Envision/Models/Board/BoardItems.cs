@@ -8,6 +8,9 @@ namespace Project_Envision.Models
     public class boardItems
     {
         public static bool m_GotBoard;
+
+        public static bool m_GotBoardSettingsReturn;
+        public static bool m_GotBoardSettings;
         public static int m_BoardId;
         public static int m_TaskId;
 
@@ -21,6 +24,18 @@ namespace Project_Envision.Models
         {
             get => m_GotBoard;
             set => m_GotBoard = value;
+        }
+
+        public bool gotBoardSettings
+        {
+            get => m_GotBoardSettings;
+            set => m_GotBoardSettings = value;
+        }
+
+        public bool gotBoardSettingsReturn
+        {
+            get => m_GotBoardSettingsReturn;
+            set => m_GotBoardSettingsReturn = value;
         }
 
         public int boardid

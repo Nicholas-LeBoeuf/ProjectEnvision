@@ -6,6 +6,16 @@
 <link rel="stylesheet" href="~/css/ProductBacklog.css" />
 <link rel="stylesheet" href="~/css/Buttons.css" />
 
+<style>
+     th,.tableh1{
+        color: @BoardSettingsItems.m_TextColor;
+    }
+    td{
+        background-color: @BoardSettingsItems.m_CardColorRGBA;
+        color:@BoardSettingsItems.m_TextColor;
+    }
+</style>
+
 <div class="box">
     <div class="headerContainer" ondrop="location.href='@Url.Action("sprintUpdate", "Sprint", new { sprintId = 0 })', drop(event)" ondragover="allowDrop(event)">
         <h1 class="viewHeader">Product Backlog</h1>

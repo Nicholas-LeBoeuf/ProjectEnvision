@@ -86,11 +86,11 @@ namespace Project_Envision.Controllers
             connection.Close();
             
             boardModel.m_GotTask = true;
-            
+      
             if(DragNDropModel.returnBoard == true)
             {
                 DragNDropModel.returnBoard = false;
-                return RedirectToAction("Board","Board");
+                return RedirectToAction("board", "Board");
             }
 
             else 

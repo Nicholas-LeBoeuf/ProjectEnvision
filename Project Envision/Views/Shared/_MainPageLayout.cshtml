@@ -4,6 +4,17 @@
 <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
+<style>
+
+    body{
+        background-image: url(../images/@BoardSettingsItems.m_BoardBackground);
+    }
+    h1,p{
+                color: @BoardSettingsItems.m_TextColor;
+    }
+
+</style>
+
 <body>
 
     <div class="translation" id="google_translate_element"></div>
@@ -48,7 +59,7 @@
                 </a>
             </li>
             <li style="margin-bottom: 3%;">
-                <a href="@Url.Action("BoardSettings", "Settings")">
+                <a href="@Url.Action("index", "BoardSettings")">
                     <i class="fas fa-cog"></i>
                     <span class="nav-text">Board Settings</span>
                 </a>

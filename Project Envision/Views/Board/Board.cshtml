@@ -15,6 +15,16 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" type="text/javascript"></script>
 
+<style>
+    h1, th, p, .cardContent {
+        color: @BoardSettingsItems.m_TextColor;
+    }
+    .boardCard {
+    background-color: @BoardSettingsItems.m_CardColorRGBA;
+    }
+
+</style>
+
 <div class="headerContainer">
 
     <div class="logoContainer">
@@ -47,14 +57,14 @@
                 var days = Math.ceil(distance / (1000 * 60 * 60 * 24));
 
 
-                document.getElementById("counter").innerHTML = "<span style='color: #e16e12; font-weight: 900;'>Time Remaining: </span>" + days + " days";
+                document.getElementById("counter").innerHTML = "<span style='color: @BoardSettingsItems.m_TextColor; font-weight: 900;'>Time Remaining: </span>" + days + " days";
 
                 if (distance < 0) {
-                    document.getElementById("counter").innerHTML = "<span style='color: #e16e12; font-weight: 900;'>Due Tonight at: </span>" + "11:59 PM";
+                    document.getElementById("counter").innerHTML = "<span style='color: @BoardSettingsItems.m_TextColor; font-weight: 900;'>Due Tonight at: </span>" + "11:59 PM";
                 };
 
             count++;
-            } 
+            }
             if (count == 1)
             {
                 var x = setInterval(function () {
@@ -75,7 +85,7 @@
 
                 }, 600000);
             }
-         
+
         </script>
 
 
