@@ -75,7 +75,7 @@
                                         {
                                             <td>
                                                 <button class="disabledEditDeleteButton" disabled="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                                    <i class="fas fa-pen fa-2x"></i>
+                                                    <i class="fas fa-pen fa-2x" style="color: gray;"></i>
                                                 </button>
                                             </td>
                                         }
@@ -83,7 +83,7 @@
                                         {
                                             <td>
                                                 <button class="disabledEditDeleteButton" onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                                    <i class="fas fa-trash fa-2x"></i>
+                                                    <i class="fas fa-trash fa-2x" style="color: gray;"></i>
 
                                                 </button>
                                             </td>
@@ -92,7 +92,7 @@
                                         {
                                             <td>
                                                 <button class="disabledEditDeleteButton" disabled onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                                    <i class="fas fa-trash fa-2x"></i>
+                                                    <i class="fas fa-trash fa-2x" style="color: gray;"></i>
                                                 </button>
                                             </td>
                                         }
@@ -257,8 +257,8 @@
                                                             else
                                                             {
                                                                 <td>
-                                                                    <button class="disabledEditDeleteButton" disabled="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                                                        <i class="fas fa-pen fa-2x"></i>
+                                                                    <button class="disabledEditDeleteButton" disabled onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                                        <i class="fas fa-pen fa-2x" style="color: gray;"></i>
                                                                     </button>
                                                                 </td>
                                                             }
@@ -275,7 +275,7 @@
                                                             {
                                                                 <td>
                                                                     <button class="disabledEditDeleteButton" disabled onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                                                        <i class="fas fa-trash fa-2x"></i>
+                                                                        <i class="fas fa-trash fa-2x" style="color: gray;"></i>
                                                                     </button>
                                                                 </td>
                                                             }
@@ -321,7 +321,7 @@
                                                             {
                                                                 <td>
                                                                     <button class="disabledEditDeleteButton" disabled="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                                                        <i class="fas fa-pen fa-2x"></i>
+                                                                        <i class="fas fa-pen fa-2x" style="color: gray;"></i>
                                                                     </button>
                                                                 </td>
                                                             }
@@ -339,7 +339,7 @@
                                                             {
                                                                 <td>
                                                                     <button class="disabledEditDeleteButton" disabled onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                                                        <i class="fas fa-trash fa-2x"></i>
+                                                                        <i class="fas fa-trash fa-2x" style="color: gray;"></i>
                                                                     </button>
                                                                 </td>
                                                             }
