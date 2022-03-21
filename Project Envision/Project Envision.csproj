@@ -4,7 +4,7 @@
     <RootNamespace>Project_Envision</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.6" />
+    <PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.2" />
     <PackageReference Include="MailKit" Version="2.15.0" />
     <PackageReference Include="MimeKit" Version="2.15.1" />
     <PackageReference Include="MySql.Data" Version="8.0.26" />

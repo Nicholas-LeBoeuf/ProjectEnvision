@@ -68,7 +68,7 @@
                                             <td>
                                                 <button class="editDeleteButton" onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
                                                     <i class="fas fa-pen fa-2x"></i>
-                                                </button>
+                                                </button> 
                                             </td>
                                         }
                                         else
@@ -82,8 +82,8 @@
                                         if (@boardModel.m_TaskLocationList[i] != "Done")
                                         {
                                             <td>
-                                                <button class="disabledEditDeleteButton" onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
-                                                    <i class="fas fa-trash fa-2x" style="color: gray;"></i>
+                                                <button class="editDeleteButton" onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                    <i class="fas fa-trash fa-2x"></i>
 
                                                 </button>
                                             </td>
@@ -245,11 +245,10 @@
                                                             <td>@boardModel.m_TaskPointsList[i]</td>
                                                             <td>@boardModel.m_TaskLocationList[i]</td>
 
-
-                                                            if (@boardModel.m_TaskLocationList[i] != "Done")
-                                                            {
+                                                                if (@boardModel.m_TaskLocationList[i] != "Done" && GetSprintProperties.getSprint_CompletedList[j] != true)
+                                                                {
                                                                 <td>
-                                                                    <button class="editDeleteButton" disabled onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                                    <button class="editDeleteButton"  onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
                                                                         <i class="fas fa-pen fa-2x"></i>
                                                                     </button>
                                                                 </td>
@@ -262,10 +261,10 @@
                                                                     </button>
                                                                 </td>
                                                             }
-                                                            if (@boardModel.m_TaskLocationList[i] != "Done")
+                                                            if (@boardModel.m_TaskLocationList[i] != "Done" && GetSprintProperties.getSprint_CompletedList[j] != true)
                                                             {
                                                                 <td>
-                                                                    <button class="editDeleteButton" disabled onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                                    <button class="editDeleteButton"  onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
                                                                         <i class="fas fa-trash fa-2x"></i>
 
                                                                     </button>
@@ -308,7 +307,7 @@
 
                                                             <td>@boardModel.m_TaskLocationList[i]</td>
 
-                                                            if (@boardModel.m_TaskLocationList[i] != "Done")
+                                                            if (@boardModel.m_TaskLocationList[i] != "Done" && GetSprintProperties.getSprint_CompletedList[j] != true)
                                                             {
                                                                 <td>
                                                                     <button class="editDeleteButton" onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
@@ -320,13 +319,13 @@
                                                             else
                                                             {
                                                                 <td>
-                                                                    <button class="disabledEditDeleteButton" disabled="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
+                                                                    <button class="disabledEditDeleteButton" disabled onclick="location.href='@Url.Action("collect_task_info", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
                                                                         <i class="fas fa-pen fa-2x" style="color: gray;"></i>
                                                                     </button>
                                                                 </td>
                                                             }
 
-                                                            if (@boardModel.m_TaskLocationList[i] != "Done")
+                                                            if (@boardModel.m_TaskLocationList[i] != "Done" && GetSprintProperties.getSprint_CompletedList[j] != true)
                                                             {
                                                                 <td>
                                                                     <button class="editDeleteButton" onclick="location.href='@Url.Action("Deletetask", "Task", new { Taskid = @boardModel.m_TaskIdList[i] })'">
