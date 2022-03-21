@@ -30,17 +30,18 @@
 
     @(Html.DevExtreme().Chart()
         .DataSource(new List<object> {
-            new { Date = "3/1", StoryPoints = 59.8 },
+            new { Date = "@GetSprintProperties.getSprint_Start", StoryPoints = 59.8, Projected = 59.8 },
             new { Date = "3/2", StoryPoints = 74.2 },
-            new { Date = "3/3", StoryPoints = 40.0 },
-            new { Date = "3/4", StoryPoints = 22.6 },
-            new { Date = "3/5", StoryPoints = 19.0 },
-            new { Date = "3/6", StoryPoints = 6.1 }
+            new { Date = "3/3", StoryPoints = 74.2  },
+            new { Date = "3/4", StoryPoints = 74.2 },
+            new { Date = "3/5", StoryPoints = 23.5 },
+            new { Date = "3/6",  Projected = 0.0 }
         })
 
         .Series(s =>
         {
             s.Add().ValueField("StoryPoints").Name("Story-Points");
+            s.Add().ValueField("Projected").Name("Projected Line");
 
         })
 

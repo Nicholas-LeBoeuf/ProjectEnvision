@@ -13,10 +13,10 @@ namespace Project_Envision.Controllers
     {
         public class BurndownController : Controller
         {
-            public ActionResult Line()
+           /*public ActionResult BurndownChart()
             {
-                return View();
-            }
+
+            }*/
         }
     }
 }
