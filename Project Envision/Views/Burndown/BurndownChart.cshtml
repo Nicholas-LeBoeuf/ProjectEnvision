@@ -1,4 +1,8 @@
-﻿@{
+﻿
+
+@model Project_Envision.Models.Burndown
+
+@{
     ViewData["Title"] = "Burndown Chart";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
@@ -9,7 +13,46 @@
 
 <div class="box">
 
-    <div class="options">
+@(Html.DevExtreme().Chart()
+    .ID("chart")
+    .DataSource(d => d
+        .StaticJson()
+        .Url(Url.Action("GetBurndownValues", "Burndown"))
+          
+    )
+ 
+
+
+    .Series(s => s.Add()
+        .ArgumentField("Day")
+        .ValueField("Temperature")
+        .Type(SeriesType.Line)
+    )
+    
+   
+    .ArgumentAxis(a => a.ArgumentType(ChartDataType.String))
+    .Title("Temperature in Seattle: October 2017")
+    .Size(s => s.Height(420))
+    .Legend(l => l.Visible(false))
+    .LoadingIndicator(l => l.Enabled(true))
+    .Export(e => e.Enabled(true))
+)
+
+
+
+</div>
+
+
+ 
+
+
+
+
+
+
+
+
+    @*<div class="options">
         <div class="option">
             <span>Sprint</span>
             @(Html.DevExtreme().SelectBox()
@@ -56,6 +99,6 @@
 
         .Export(e => e.Enabled(true))
         .Tooltip(t => t.Enabled(true))
-    )
+    )*@
 
-</div>
+<script src="~/js/palette.js"></script>

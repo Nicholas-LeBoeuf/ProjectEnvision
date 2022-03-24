@@ -278,7 +278,7 @@ namespace Project_Envision.Controllers
             }
         }
 
-        public IActionResult BurndownChart()
+        /*public IActionResult BurndownChart()
         {
             MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
@@ -317,7 +317,7 @@ namespace Project_Envision.Controllers
             }
             reader2.Close();
 
-            /*
+            *//*
             int length = BurndownTaskPointsPlaceholder.Count();
             int temp, addpoint;
             int sum = BurndownTaskPointsPlaceholder.Sum();
@@ -333,13 +333,13 @@ namespace Project_Envision.Controllers
             }
             */
 
-            Burndown.m_BurndownTaskPoints = BurndownTaskPointsPlaceholder;
-            Burndown.m_Burndowndates = Burndowndates;
+   /*         Burndown.m_BurndownTaskPoints = BurndownTaskPointsPlaceholder;
+            Burndown.m_Burndowndates = Burndowndates;*//*
 
             connection.Close();
 
             return View();
-        }
+        }*/
 
     }
 }

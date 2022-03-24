@@ -7,16 +7,25 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+
+using Newtonsoft.Json;
+
+
 namespace Project_Envision.Controllers
 {
-    namespace DevExtreme.NETCore.Demos.Controllers
+    public class BurndownController : Controller
     {
-        public class BurndownController : Controller
+        public IActionResult BurndownChart()
         {
-           /*public ActionResult BurndownChart()
-            {
+            return View();
+        }
 
-            }*/
+        public object GetBurndownValues()
+        {
+            return Models.SampleData.BurndownList;
         }
     }
 }
+
