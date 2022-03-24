@@ -14,6 +14,6 @@ namespace Project_Envision.Models
       //Tyler Local
         //public static string m_Connection = "server=localhost; Username= Guess; Password = welcome123!; persistsecurityinfo=True;database= projectEnvision";
       //Nick Local
-       //public static string m_Connection = "server=localhost; Username= root; Password = password; persistsecurityinfo=True;database= project";
+       public static string m_Connection = "server=localhost; Username= root; Password = password; persistsecurityinfo=True;database= project";
     }
 }
