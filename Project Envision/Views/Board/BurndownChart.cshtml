@@ -1,21 +1,38 @@
-﻿@{
+@model Project_Envision.Models.Burndown
+@{
     ViewData["Title"] = "Burndown Chart";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
 
-
 <link rel="stylesheet" href="~/css/Inputs.css" />
 <link rel="stylesheet" href="~/css/BurndownChart.css" />
 
+<div class="secondaryInput">
+    <div class="selectionStyle">
+        <label for="Sprint" asp-for="SprintIds">Sprints</label>
+
+        <select name="sprint" id="Sprint" asp-for="SprintIds">
+            @{
+                <option value="None"> None</option>
+
+                for (int i = 0; i < BurndownItems.m_SprintIds.Count(); i++)
+                {
+                        <option value=@BurndownItems.m_SprintIds[i]> @BurndownItems.m_SprintIds[i]</option>
+                }
+            }
+        </select>
+    </div>
+    <div>
+    </div>
+</div>
 
 
-<div class="box">
-
-    <div class="options">
-        <div class="option">
-            <span>Sprint</span>
-            @(Html.DevExtreme().SelectBox()
+<div class="options">
+    <div class="option">
+        <span>Sprint</span>
+        @(Html.DevExtreme().SelectBox()
                 .DataSource(new[] {
+
                     SeriesType.Line,
                     SeriesType.StackedLine,
                     SeriesType.FullStackedLine
@@ -27,10 +44,10 @@
                     }
                 </text>)
             )
-        </div>
     </div>
+</div>
 
-    @(Html.DevExtreme().Chart()
+@(Html.DevExtreme().Chart()
         .DataSource(new List<object> {
             new { Date = "3/1", StoryPoints = 59.8 },
             new { Date = "3/2", StoryPoints = 74.2 },
@@ -58,5 +75,4 @@
         .Export(e => e.Enabled(true))
         .Tooltip(t => t.Enabled(true))
     )
-
 </div>

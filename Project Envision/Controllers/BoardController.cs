@@ -279,28 +279,9 @@ namespace Project_Envision.Controllers
             }
         }
 
-        public IActionResult BurndownChart(Burndown bur)
+        public IActionResult BurndownChart()
         {
-            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
-
-            connection.Open();
-
-            MySqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "select task_points from burndownchart";
             
-            MySqlDataReader reader = cmd.ExecuteReader();
-            List<int> points = new List<int>();
-
-
-            while (reader.Read())
-                {
-                    points.Add(Convert.ToInt32(reader[0]));
-                }
-            reader.Close();
-            connection.Close();
-
-            bur.setburndowntaskpoints(points);
-
             return View();
         }
 
