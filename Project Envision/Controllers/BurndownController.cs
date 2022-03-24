@@ -24,7 +24,17 @@ namespace Project_Envision.Controllers
 
         public object GetBurndownValues()
         {
-            return Models.SampleData.BurndownList;
+
+            List<Burndown> vals = new List<Burndown>();
+
+            for (int i = 10; i >= 1; i--)
+            {
+                vals.Add(new Burndown { Date = i, StoryPoints = i });
+            }
+
+            IEnumerable<Burndown> BurndownList = vals;
+
+            return BurndownList;
         }
     }
 }
