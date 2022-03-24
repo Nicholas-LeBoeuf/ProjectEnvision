@@ -21,17 +21,14 @@
           
     )
  
-
-
     .Series(s => s.Add()
-        .ArgumentField("Day")
-        .ValueField("Temperature")
+        .ArgumentField("Date")
+        .ValueField("StoryPoints")
         .Type(SeriesType.Line)
     )
     
-   
     .ArgumentAxis(a => a.ArgumentType(ChartDataType.String))
-    .Title("Temperature in Seattle: October 2017")
+    .Title("Burndown Chart")
     .Size(s => s.Height(420))
     .Legend(l => l.Visible(false))
     .LoadingIndicator(l => l.Enabled(true))
@@ -42,63 +39,5 @@
 
 </div>
 
-
- 
-
-
-
-
-
-
-
-
-    @*<div class="options">
-        <div class="option">
-            <span>Sprint</span>
-            @(Html.DevExtreme().SelectBox()
-                .DataSource(new[] {
-                    SeriesType.Line,
-                    SeriesType.StackedLine,
-                    SeriesType.FullStackedLine
-                })
-                .Value(SeriesType.Line)
-                .OnValueChanged(@<text>
-                    function (e) {
-                        $("#line-chart").dxChart("option", "commonSeriesSettings.type", e.value);
-                    }
-                </text>)
-            )
-        </div>
-    </div>
-
-    @(Html.DevExtreme().Chart()
-        .DataSource(new List<object> {
-            new { Date = "@GetSprintProperties.getSprint_Start", StoryPoints = 59.8, Projected = 59.8 },
-            new { Date = "3/2", StoryPoints = 74.2 },
-            new { Date = "3/3", StoryPoints = 74.2  },
-            new { Date = "3/4", StoryPoints = 74.2 },
-            new { Date = "3/5", StoryPoints = 23.5 },
-            new { Date = "3/6",  Projected = 0.0 }
-        })
-
-        .Series(s =>
-        {
-            s.Add().ValueField("StoryPoints").Name("Story-Points");
-            s.Add().ValueField("Projected").Name("Projected Line");
-
-        })
-
-        .CommonSeriesSettings(s => s
-            .ArgumentField("Date")
-            .Type(SeriesType.Line)
-            .Label(l => l
-                .Visible(true)
-                .Connector(c => c.Visible(true))
-            )
-        )
-
-        .Export(e => e.Enabled(true))
-        .Tooltip(t => t.Enabled(true))
-    )*@
 
 <script src="~/js/palette.js"></script>

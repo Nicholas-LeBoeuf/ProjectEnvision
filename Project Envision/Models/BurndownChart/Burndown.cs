@@ -11,8 +11,8 @@ namespace Project_Envision.Models
 { 
     public class Burndown 
     {
-        public int Day { get; set; }
-        public double Temperature { get; set; }
+        public int Date { get; set; }
+        public double StoryPoints { get; set; }
         public static List<int> m_BurndownTaskPoints { get; set; }
         public static List<string> m_Burndowndates { get; set; }
     }
