@@ -5,31 +5,12 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, .8);
     border-radius: 15px;
-    padding: 0px;
-
-}
-.options {
-    height: 10%;
     padding: 20px;
-    margin-top: 20px;
+
 }
 
-.option {
-    margin-top: 10px;
-}
-
-.caption {
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.option > span {
-    margin-right: 10px;
-}
-
-.option > .dx-widget {
-    display: inline-block;
-    vertical-align: middle;
+#chart {
+    color: green;
 }
