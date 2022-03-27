@@ -26,15 +26,150 @@ namespace Project_Envision.Controllers
         {
 
             List<Burndown> vals = new List<Burndown>();
+            vals.Add(new Burndown { Date = 0, StoryPoints = Burndown.TaskTotal });
 
-            for (int i = 10; i >= 1; i--)
+            for (int i = 1; i <= (Burndown.m_GraphDates.Count()); i++)
             {
-                vals.Add(new Burndown { Date = i, StoryPoints = i });
+                if(DateTime.Compare(Burndown.m_GraphDates[(i - 1)], DateTime.Now) <= 0)
+                {
+                     vals.Add(new Burndown { Date = i, StoryPoints = Burndown.m_DataTaskPoints[i - 1]});
+                }
+               
             }
 
             IEnumerable<Burndown> BurndownList = vals;
 
             return BurndownList;
+        }
+
+        public int dayCalc(DateTime startDate, DateTime endDate)
+        {
+            int Num = (endDate - startDate).Days;
+            return Num;
+        }
+
+        public void graphDataPrep(Burndown burndown)
+        {
+            int addDays = dayCalc(Convert.ToDateTime(Burndown.sprintStartTime), Convert.ToDateTime(Burndown.sprintEndTime));
+            DateTime dateTracker = Convert.ToDateTime(Burndown.sprintStartTime);
+            double total = Burndown.TaskTotal;
+            double dayTotal = 0;
+
+            List<DateTime> graphDates = new List<DateTime>();
+            List<double> graph_Task_Points = new List<double>();
+
+            graphDates.Add(dateTracker.Date);
+            for (int j = 0; j < Burndown.m_BurndownDates.Count(); j++)
+            {
+                if(dateTracker.DayOfYear == Burndown.m_BurndownDates[j].DayOfYear)
+                {
+                    dayTotal = dayTotal + Burndown.m_BurndownTaskPoints[j];
+                    
+                }
+
+            }
+            total = total - dayTotal;
+            graph_Task_Points.Add(total);
+
+
+
+            for (int i = 0; i < addDays; i++)
+            {
+                dateTracker = dateTracker.AddDays(1);
+                graphDates.Add(dateTracker.Date);
+                dayTotal = 0;
+                for (int j = 0; j < Burndown.m_BurndownDates.Count(); j++)
+                {
+                    if (dateTracker.DayOfYear == Burndown.m_BurndownDates[j].DayOfYear)
+                    {
+                       dayTotal = dayTotal + Burndown.m_BurndownTaskPoints[j];
+                        
+                    }
+                }
+                total = total - dayTotal;
+                graph_Task_Points.Add(total);
+            }
+            burndown.setGraphDates(graphDates);
+            burndown.setGraphTaskPoints(graph_Task_Points);
+
+        }
+        public IActionResult getBurndownInfo(int sprintId, Burndown burndown)
+        {
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+
+            connection.Open();
+
+            MySqlCommand getInfo = connection.CreateCommand();
+            getInfo.CommandText = "SELECT task_points, completedDate FROM burndownchart where Sprint_id= @sprint_id and user_Id= @userId";
+            getInfo.Parameters.AddWithValue("@sprint_id", sprintId);
+            getInfo.Parameters.AddWithValue("@userId", ModelItems.m_UserId);
+
+            List<DateTime> completedDate = new List<DateTime>();
+            List<double> task_Points = new List<double>();
+
+            MySqlDataReader reader = getInfo.ExecuteReader();
+
+            while (reader.Read())
+            {
+                task_Points.Add(Convert.ToDouble(reader[0]));
+                completedDate.Add(Convert.ToDateTime(reader[1]));
+            }
+
+            burndown.setBurndownTaskPoints(task_Points);
+            burndown.setBurndownDates(completedDate);
+            reader.Close();
+            connection.Close();
+
+            totalTaskPoints(sprintId);
+            startAndEnd(sprintId, burndown);
+            graphDataPrep(burndown);
+            return RedirectToAction("BurndownChart");
+            
+        }
+
+        public void startAndEnd(int sprintId, Burndown burndown)
+        {
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+
+            connection.Open();
+
+            MySqlCommand getInfo = connection.CreateCommand();
+            getInfo.CommandText = "SELECT Start_time, End_time FROM sprint where Sprint_id= @sprint_id";
+            getInfo.Parameters.AddWithValue("@sprint_id", sprintId);
+            getInfo.Parameters.AddWithValue("@userId", ModelItems.m_UserId);
+
+            MySqlDataReader reader = getInfo.ExecuteReader();
+
+            while (reader.Read())
+            {
+                burndown.setSprintStartTime(Convert.ToString(reader[0]));
+                burndown.setSprintEndTime(Convert.ToString(reader[1]));
+            }
+            reader.Close();
+            connection.Close();
+
+        }
+
+        public void totalTaskPoints(int sprintId)
+        {
+            MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
+
+            connection.Open();
+
+            MySqlCommand getInfo = connection.CreateCommand();
+            getInfo.CommandText = "SELECT Sum(task_points) FROM tasks where Sprint_id= @sprint_id";
+            getInfo.Parameters.AddWithValue("@sprint_id", sprintId);
+            getInfo.Parameters.AddWithValue("@userId", ModelItems.m_UserId);
+
+            MySqlDataReader reader = getInfo.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Burndown.TaskTotal = Convert.ToInt32(reader[0]);
+            }
+            reader.Close();
+            connection.Close();
+
         }
     }
 }

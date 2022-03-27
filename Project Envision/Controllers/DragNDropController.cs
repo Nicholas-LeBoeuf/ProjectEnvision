@@ -47,14 +47,15 @@ namespace Project_Envision.Controllers
                         points = boardModel.m_TaskPointsList[i];
             
                         if (DragNDropModel.currentLocation == "Done")
-                            points = -(points * 2);
+                            points = -(points);
+                        break;
                     }
                 }
 
                 MySqlConnection databaseConnection = new MySqlConnection(Database_connection.m_Connection);
 
                 databaseConnection.Open();
-                string insetcommand = $"Insert into burndownchart(user_Id,task_Points,completedDate,board_Id, sprint_Id)" + $"values ( @user_Id,@task_Points,@completedDate, @board_Id, sprint_Id) ";
+                string insetcommand = $"Insert into burndownchart(user_Id,task_Points,completedDate,board_Id, sprint_Id)" + $"values ( @user_Id,@task_Points,@completedDate, @board_Id, @sprint_Id) ";
                 MySqlCommand command = new MySqlCommand(insetcommand, databaseConnection);
                 command.CommandType = CommandType.Text;
                 command.Parameters.AddWithValue("@user_Id", ModelItems.m_UserId);
