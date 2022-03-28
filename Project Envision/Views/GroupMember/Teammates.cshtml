@@ -9,45 +9,48 @@
 <link rel="stylesheet" href="~/css/Inputs.css" />
 
 <div class="boxContainer">
-    <div class="box smallBoxes leftBox">
-        <h1>Add Teammate</h1>
-        <div class="addTeammateFormContainer">
-            <form method="post" id="addMember" asp-action="inviteGroupMember" asp-controller="GroupMember">
-                <div class="secondaryInput">
-                    <label asp-for="username">Group Member's Username:</label>
-                    <br />
-                    <input asp-for="username" class="secondaryInput" type="text" autocomplete="off" placeholder="Group Member's Username" required />
-                </div>
-                <div class="buttonContainer">
-                    <button type="submit" form="addMember" class="buttonStyle addTeammateButton">Add Teammate</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="box smallBoxes rightBox">
-        <h1>Remove Teammate</h1>
-        <div class="removeTeammateFormContainer">
-            <div class="secondaryInput">
-                <form method="post" class="removeTeammateForm" id="removeMember" asp-action="RemoveTeammate" asp-controller="GroupMember">
-                    <label asp-for="removeUsername">Choose Group Member to Remove</label>
-                    <br />
-                    <div class="selectionStyle">
-                        <select asp-for="removeUsername">
-                            <option value="" disabled selected hidden> Select Group Member </option>
-                            @{
-                                for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
-                                {
-                                    <option value=@boardModel.m_UsernameList[i]>@boardModel.m_UsernameList[i]</option>
-                                }
-                            }
-                        </select>
-                    </div>
-                    <div class="buttonContainer">
-                        <button type="submit" class="buttonStyle addTeammateButton" form="removeMember">Remove Teammate</button>
-                    </div>
-                </form>
+    <div class="box">
+        <h1 style="font-size: 35px;">Add Teammate</h1>
+        <form method="post" class="removeTeammateForm" id="removeMember" asp-action="RemoveTeammate" asp-controller="GroupMember">
+            <label asp-for="removeUsername">Choose Group Member to Remove</label>
+            <br />
+            <div class="selectionStyle">
+                <select asp-for="removeUsername">
+                    <option value="" disabled selected hidden> Select Group Member </option>
+                    @{
+                        for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
+                        {
+                            <option value=@boardModel.m_UsernameList[i]>@boardModel.m_UsernameList[i]</option>
+                        }
+                    }
+                </select>
             </div>
-        </div>
+            <div class="buttonContainer">
+                <button type="submit" class="buttonStyle addTeammateButton" form="removeMember">Remove Teammate</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="box">
+        <h1 style="font-size: 35px;">Remove Teammate</h1>
+        <form method="post" class="removeTeammateForm" id="removeMember" asp-action="RemoveTeammate" asp-controller="GroupMember">
+            <label asp-for="removeUsername">Choose Group Member to Remove</label>
+            <br />
+            <div class="selectionStyle">
+                <select asp-for="removeUsername">
+                    <option value="" disabled selected hidden> Select Group Member </option>
+                    @{
+                        for (int i = 0; i < boardModel.m_UsernameList.Count(); i++)
+                        {
+                            <option value=@boardModel.m_UsernameList[i]>@boardModel.m_UsernameList[i]</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="buttonContainer">
+                <button type="submit" class="buttonStyle addTeammateButton" form="removeMember">Remove Teammate</button>
+            </div>
+        </form>
     </div>
 </div>
 

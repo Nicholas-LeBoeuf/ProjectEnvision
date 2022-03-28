@@ -1,6 +1,4 @@
-﻿
-
-@model Project_Envision.Models.Burndown
+﻿@model Project_Envision.Models.Burndown
 
 @{
     ViewData["Title"] = "Burndown Chart";
@@ -10,34 +8,58 @@
 <link rel="stylesheet" href="~/css/Inputs.css" />
 <link rel="stylesheet" href="~/css/BurndownChart.css" />
 
-
 <div class="box">
 
 @(Html.DevExtreme().Chart()
     .ID("chart")
     .DataSource(d => d
         .StaticJson()
-        .Url(Url.Action("GetBurndownValues", "Burndown"))
-          
+        .Url(Url.Action("GetBurndownValues", "Burndown"))   
     )
  
     .Series(s => s.Add()
         .ArgumentField("Date")
         .ValueField("StoryPoints")
         .Type(SeriesType.Line)
+        .Color("#e16e12")
     )
     
+    .ValueAxis(v => {
+        v.Add()
+            .Type(AxisScaleType.Continuous)
+            .Title("Story Points");       
+    })
+
+    .ArgumentAxis(a => a
+        .ValueMarginsEnabled(true)
+        .DiscreteAxisDivisionMode(DiscreteAxisDivisionMode.CrossLabels)
+        .Grid(g => g.Visible(true))
+    )
+
+    .Crosshair(c => c
+        .Enabled(true)
+        .Color("#e16e12")
+        .Width(3)
+        .DashStyle(DashStyle.Dot)
+        .Label(l => l
+            .Visible(true)
+            .BackgroundColor("#e16e12")
+            .Font(f => f.Color("#fff").Size(12))
+        )
+    )
+
     .ArgumentAxis(a => a.ArgumentType(ChartDataType.String))
-    .Title("Burndown Chart")
-    .Size(s => s.Height(420))
+    .Title(t => t
+        .Text("Burndown Chart")
+        .Subtitle(s => s.Text("Current Sprint") .Font(f => f.Color("#b0b0b0").Size(20)))
+        .Font(f => f.Color("#e16e12").Size(40).Weight(800))
+    )
+    
+    .Tooltip(t => t.Enabled(true) .Color("#e16e12"))
+    .Size(s => s.Height(500))
     .Legend(l => l.Visible(false))
     .LoadingIndicator(l => l.Enabled(true))
     .Export(e => e.Enabled(true))
 )
 
-
-
 </div>
-
-
-<script src="~/js/palette.js"></script>
