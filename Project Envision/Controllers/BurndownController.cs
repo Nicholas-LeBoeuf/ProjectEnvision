@@ -165,7 +165,14 @@ namespace Project_Envision.Controllers
 
             while (reader.Read())
             {
-                Burndown.TaskTotal = Convert.ToInt32(reader[0]);
+                try
+                {
+                    Burndown.TaskTotal = Convert.ToInt32(reader[0]);
+                }
+                catch
+                {
+                    Burndown.TaskTotal = 0;
+                }
             }
             reader.Close();
             connection.Close();
