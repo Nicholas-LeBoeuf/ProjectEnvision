@@ -52,6 +52,8 @@ namespace Project_Envision.Models
         {
             sprintEndTime = sprintEndTimeInput;
         }
+
+        public string sprintName { get; set; }
     }
 
    

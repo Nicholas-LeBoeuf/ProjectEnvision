@@ -1,0 +1,32 @@
+﻿@model Project_Envision.Models.Burndown
+
+@{
+    ViewData["Title"] = "Burndown Menu";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Inputs.css" />
+<link rel="stylesheet" href="~/css/Buttons.css" />
+<link rel="stylesheet" href="~/css/BurndownChart.css" />
+
+<div class="box">
+    <form>
+         <div class="secondaryInput">
+                <div class="selectionStyle">
+                     <select name="sprint" id="Sprint" asp-for="sprintName">
+                        @{
+                            for (int i = 0; i < GetSprintProperties.getSprint_NameList.Count(); i++)
+                            {
+                                <option value=@GetSprintProperties.getSprint_IdList[i]> @GetSprintProperties.getSprint_NameList[i]</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <input type="submit" class="buttonStyle" value="Submit" />
+            </div>
+
+    </form>
+</div>
