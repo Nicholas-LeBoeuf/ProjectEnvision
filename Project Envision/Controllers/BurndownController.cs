@@ -22,6 +22,11 @@ namespace Project_Envision.Controllers
             return View();
         }
 
+        public IActionResult BurndownMenu()
+        {
+            return View();
+        }
+
         public object GetBurndownValues()
         {
 
@@ -142,8 +147,16 @@ namespace Project_Envision.Controllers
 
             while (reader.Read())
             {
-                burndown.setSprintStartTime(Convert.ToString(reader[0]));
-                burndown.setSprintEndTime(Convert.ToString(reader[1]));
+                if (reader.HasRows)
+                {
+                    burndown.setSprintStartTime(Convert.ToString(reader[0]));
+                    burndown.setSprintEndTime(Convert.ToString(reader[1]));
+                }
+                else
+                {
+                    burndown.setSprintStartTime("1/1/1");
+                    burndown.setSprintEndTime("1/1/1");
+                }
             }
             reader.Close();
             connection.Close();
@@ -178,6 +191,8 @@ namespace Project_Envision.Controllers
             connection.Close();
 
         }
+
+
     }
 }
 
