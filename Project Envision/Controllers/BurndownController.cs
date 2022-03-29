@@ -19,25 +19,20 @@ namespace Project_Envision.Controllers
     {
         public IActionResult BurndownChart()
         {
-            return View();
-        }
-
-        public IActionResult BurndownMenu()
-        {
-            return View();
+            return View("BurndownChart");
         }
 
         public object GetBurndownValues()
         {
 
             List<Burndown> vals = new List<Burndown>();
-            vals.Add(new Burndown { Date = 0, StoryPoints = Burndown.TaskTotal });
+            vals.Add(new Burndown { Date = "Story Point Total", StoryPoints = Burndown.TaskTotal });
 
-            for (int i = 1; i <= (Burndown.m_GraphDates.Count()); i++)
+            for (int i = 0; i < (Burndown.m_GraphDates.Count()); i++)
             {
-                if(DateTime.Compare(Burndown.m_GraphDates[(i - 1)], DateTime.Now) <= 0)
+                if(DateTime.Compare(Burndown.m_GraphDates[i], DateTime.Now) <= 0)
                 {
-                     vals.Add(new Burndown { Date = i, StoryPoints = Burndown.m_DataTaskPoints[i - 1]});
+                     vals.Add(new Burndown { Date = Burndown.m_GraphDates[i].ToString("MM-dd-yyyy"), StoryPoints = Burndown.m_DataTaskPoints[i]});
                 }
                
             }
@@ -98,7 +93,7 @@ namespace Project_Envision.Controllers
             burndown.setGraphTaskPoints(graph_Task_Points);
 
         }
-        public IActionResult getBurndownInfo(int sprintId, Burndown burndown)
+        public void getBurndownInfo(int sprintId, Burndown burndown)
         {
             MySqlConnection connection = new MySqlConnection(Database_connection.m_Connection);
 
@@ -128,7 +123,6 @@ namespace Project_Envision.Controllers
             totalTaskPoints(sprintId);
             startAndEnd(sprintId, burndown);
             graphDataPrep(burndown);
-            return RedirectToAction("BurndownChart");
             
         }
 
@@ -192,7 +186,15 @@ namespace Project_Envision.Controllers
 
         }
 
-
+        public IActionResult BurndownMenu(Burndown burndown)
+        {
+            if (burndown.sprintId != 0)
+            {
+                getBurndownInfo(burndown.sprintId,burndown);
+                return RedirectToAction("BurndownChart");
+            }
+            return View();
+        }
     }
 }
 

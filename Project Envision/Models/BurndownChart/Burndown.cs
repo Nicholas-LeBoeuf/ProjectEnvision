@@ -11,7 +11,7 @@ namespace Project_Envision.Models
 { 
     public class Burndown 
     {
-        public int Date { get; set; }
+        public string Date { get; set; }
         public double StoryPoints { get; set; }
         
         public static List<double> m_BurndownTaskPoints { get; set; }
@@ -53,7 +53,7 @@ namespace Project_Envision.Models
             sprintEndTime = sprintEndTimeInput;
         }
 
-        public string sprintName { get; set; }
+        public int sprintId { get; set; }
     }
 
    

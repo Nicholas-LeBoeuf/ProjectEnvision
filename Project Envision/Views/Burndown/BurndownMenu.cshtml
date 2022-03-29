@@ -13,7 +13,7 @@
     <form>
          <div class="secondaryInput">
                 <div class="selectionStyle">
-                     <select name="sprint" id="Sprint" asp-for="sprintName">
+                     <select asp-for="sprintId">
                         @{
                             for (int i = 0; i < GetSprintProperties.getSprint_NameList.Count(); i++)
                             {
