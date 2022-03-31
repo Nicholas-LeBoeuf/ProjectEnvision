@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Project_Envision.Models.UserSettings
+@{
     ViewData["Title"] = "User Settings";
     Layout = "~/Views/Shared/_MainPageLayout.cshtml";
 }
@@ -21,51 +22,39 @@
 <div class="boxContainer">
     @* Change username *@
     <div class="box">
-        <div class="smallBoxTitle">Change Username</div>
-        
-        <br />
+        <form method="post" asp-controller="Settings" asp-action="ChangeUsername">
+            <div class="smallBoxTitle">Change Username</div>
 
-        <div class="secondaryInput">
-            <label>Username</label>
-            <input type="text" name="username" placeholder="Username" autocomplete="off" required="" maxlength="20" />
-        </div>
+            <br />
 
-        <div class="buttons">
-            <input type="submit" class="buttonStyle changeUsernameButton" value="Change Username" />
-        </div>
+            <div class="secondaryInput">
+                <label>Username</label>
+
+                <input type="text" asp-for="Username" name="Username" placeholder="@ModelItems.m_Username" autocomplete="off" required maxlength="20" />
+            </div>
+
+            <div class="buttons">
+                <input type="submit" class="buttonStyle changeUsernameButton" value="Change Username" />
+            </div>
+        </form>
     </div>
 
     @* Change password *@
     <div class="box">
-        <div class="smallBoxTitle">Change Username</div>
-
-        <div class="secondaryInput">
-            <label>New Password</label>
-            <input type="password" name="password" placeholder="Password" autocomplete="off" required="" maxlength="20" />
-        </div>
-
-        <br />
-
-        <div class="secondaryInput">
-            <label>Confirm Password</label>
-            <input type="password" name="confirm_password" placeholder="Confirm Password" autocomplete="off" required="" maxlength="20" />
-        </div>
-
-        <div class="buttons">
-            <input type="submit" class="buttonStyle changePasswordButton" value="Change Password" />
-        </div>
+       <form method="post" asp-controller="Settings" asp-action="ChangePassword">
+            <div class="smallBoxTitle">Change Username</div>
+            <div class="secondaryInput">
+                <label>New Password</label>
+                <input type="password" asp-for="Password" name="Password" placeholder="" autocomplete="off" minLength="8" required maxlength="20" />
+            </div>
+            <br />
+            <div class="secondaryInput">
+                <label>Confirm Password</label>
+                <input type="password" name="confirmPassword" asp-for="ConfirmPassword" autocomplete="off" minLength="8" required maxLength="20" />
+            </div>
+             <div class="buttons">
+                <input type="submit" class="buttonStyle changePasswordButton" value="Change Password" />
+            </div>
+        </form>
     </div>
-
-    <div class="box">
-
-    </div>
-
-    <div class="box">
-
-    </div>
-
-    <div class="box">
-
-    </div>
-
 </div>
